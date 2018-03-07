@@ -10,7 +10,6 @@ public class UnorderListDemo
 {
  public static void main(String[] args)
  {
-  UnorderList list=new UnorderList();	 
   Scanner scanner=new Scanner(System.in);
   
   char input=' '; 
@@ -30,7 +29,8 @@ public class UnorderListDemo
 
    switch (choice) 
    {
-    case 1  : String string[]=ReadFileData.readListOfWords(choice);
+    case 1  : UnorderList list=new UnorderList();	 
+              String string[]=ReadFileData.readListOfWords(choice);
     	      for(int i=0;i<string.length;i++)
               {
 	           list.append(string[i]);
@@ -53,7 +53,7 @@ public class UnorderListDemo
 	           list.remove(key);
 	           list.print();
 	           System.out.println("After Remove Item Print List  : "+list);
-	           Utility.fileUpdate(list);
+	           Utility.fileUpdate(list,choice);
 	           System.out.println("File is Updated...!");
 	          }
 	          else
@@ -63,45 +63,46 @@ public class UnorderListDemo
 	           list.add(key);
 	           list.print();
 	           System.out.println("After ADDing Item Print List  : "+list); 
-	           Utility.fileUpdate(list); 
+	           Utility.fileUpdate(list,choice); 
 	           System.out.println("File is Updated...!");
 	          }
 	          break;
  	       
-   case 2 :  String string2[]=Utility.readListOfWords();
-	         for(int i=0;i<string2.length;i++)
+   case 2 :  UnorderList list2=new UnorderList();	 
+             String string2[]=ReadFileData.readListOfWords(choice);
+             for(int i=0;i<string2.length;i++)
    			 {
-	          list.append(Integer.parseInt(string2[i]));
+	          list2.append(Integer.parseInt(string2[i]));
 	         }
 	         System.out.print("Elements persent in the File  : ");
-	         list.print();
-	         System.out.print(list);
+	         list2.print();
+	         System.out.print(list2);
 	 
 	         System.out.println();
 
 	         System.out.print("Enter the Key Which you want  : ");
 	         int key2=scanner.nextInt();
 	         int index2=0;
-	         boolean result2=list.search(key2);
+	         boolean result2=list2.search(key2);
 	         if(result2)
 	         {
-	          index2=list.index(key2);
+	          index2=list2.index(key2);
 	          System.out.print("Apply the action after Result : ");
 	          System.out.println(key2+" Key is Found at the "+index2+" index");
-	          list.remove(key2);
-	          list.print();
-	          System.out.println("After Remove Item Print List  : "+list);
-	          Utility.fileUpdate(list);
+	          list2.remove(key2);
+	          list2.print();
+	          System.out.println("After Remove Item Print List  : "+list2);
+	          Utility.fileUpdate(list2,choice);
 	          System.out.println("File is Updated...!");
 	         }
 	         else
 	         {
 	          System.out.print("Apply the action after Result : ");	  
 	          System.out.println(key2+" Key is not Found");	  
-	          list.add(key2);
-	          list.print();
-	          System.out.println("After ADDing Item Print List  : "+list); 
-	          Utility.fileUpdate(list); 
+	          list2.add(key2);
+	          list2.print();
+	          System.out.println("After ADDing Item Print List  : "+list2); 
+	          Utility.fileUpdate(list2,choice); 
 	          System.out.println("File is Updated...!");
 	         }
 	         break;

@@ -85,13 +85,10 @@ public class OrderList<T>
  {
   Node temp=start;
   
-  while(temp!=null && temp.data!=data)
+  while(temp!=null && !data.equals(temp.data))
    temp=temp.next;
    
-  if(temp!=null)
-	return true;
-  else
-	return false; 
+  return temp!=null;
  }
  
  public int size()
@@ -203,15 +200,15 @@ public class OrderList<T>
  
  public String toString()
  {
-  String s="[ ";
-  Node ptr=start;
-  while(ptr!=null)
+  String string="";
+  Node forword=start;
+  while(forword!=null)
   {
-   s=s+ptr.data+" ";    //Important(will call toString of Node class)
-   ptr=ptr.next;
+   string=string+forword.data+" ";    //Important(will call toString of Node class)
+   forword=forword.next;
   }
-  s=s+"] ";
-  return s;
+  
+  return string;
  }
 
 

@@ -90,11 +90,7 @@ public class UnorderList<T>
    temp=temp.next;
 
   return temp!=null;
- /* if(data.equals(temp.data))
-	return true;
-  else
-	return false; 
-*/ }
+ }
  
  public int size()
  {

@@ -20,9 +20,6 @@ import com.bridgelab.dsaprograms.UnorderListDemo;
 import static java.lang.Math.*;
 import java.io.*;
 import java.awt.Toolkit;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.PrintWriter;
 
 
 public class Utility 
@@ -1115,21 +1112,149 @@ public class Utility
 	 
 	 return count;
 	}
-
-	public static void fileUpdate(UnorderList list) 
+	public static void fileUpdate(UnorderList list,int choice) 
 	{ 
-	 try
+		
+	 switch (choice)
 	 {
-	  String string=list.toString();
+	  case 1  : try
+		        {
+		         String string=list.toString();
+		        
+		
+		         FileWriter fw=new FileWriter("/home/brideit/string.txt");
+		         BufferedWriter bw=new BufferedWriter(fw);
+		         bw.write(string);
+		         bw.close();
+		        }
+		        catch (Exception e)
+		        {
+		         e.printStackTrace(); 
+		        }
+                break;
+                
+	  case 2  : try
+		        {
+		         String string=list.toString();
+		         
+		         FileWriter fw=new FileWriter("/home/brideit/int.txt");
+		         BufferedWriter bw=new BufferedWriter(fw);
+		         bw.write(string);
+		         bw.close();
+		        }
+		 	    catch (Exception e)
+		 		{
+		 	     e.printStackTrace(); 
+		 		}
+	            break;
+
+	  default : System.out.println("Invalid Choice...!");
+		
+	}	
+   }
+	public static void fileUpdate(OrderList list,int choice) 
+	{ 
+		
+	 switch (choice)
+	 {
+	  case 1  : try
+		        {
+		         String string=list.toString();
+		        
+		
+		         FileWriter fw=new FileWriter("/home/brideit/string.txt");
+		         BufferedWriter bw=new BufferedWriter(fw);
+		         bw.write(string);
+		         bw.close();
+		        }
+		        catch (Exception e)
+		        {
+		         e.printStackTrace(); 
+		        }
+                break;
+                
+	  case 2  : try
+		        {
+		         String string=list.toString();
+		         
+		         FileWriter fw=new FileWriter("/home/brideit/int.txt");
+		         BufferedWriter bw=new BufferedWriter(fw);
+		         bw.write(string);
+		         bw.close();
+		        }
+		 	    catch (Exception e)
+		 		{
+		 	     e.printStackTrace(); 
+		 		}
+	            break;
+
+	  default : System.out.println("Invalid Choice...!");
+		
+	}	
+   }
 	
-	  FileWriter fw=new FileWriter("/home/brideit/doc.txt");
-	  BufferedWriter bw=new BufferedWriter(fw);
-	  bw.write(string);
-	  bw.close();
-	 }
-	 catch (Exception e)
+	/**
+	 * @return read the data in the file then after return string array
+	 */
+	public static String[] readListOfWords(int choice) 
+	{
+	 String string1[]=null,string3[]=null;	
+	 switch (choice)
 	 {
-	  e.printStackTrace(); 
-	 }
-	}
+	  case 1  : try
+		        {
+		         FileReader fr=new FileReader("/home/brideit/string.txt");
+		         BufferedReader br=new BufferedReader(fr);
+
+		         String string2="";
+
+		         while(true)
+		         {
+		          string2=br.readLine();
+				  if(string2==null)
+					break;
+				  else
+					string1=string2.split(" ");
+		         }
+		         br.close();
+		        }
+		        catch (Exception e)
+		        {
+		        	e.printStackTrace(); 
+		        }
+		        break;
+		      
+	  case 2  :	try
+	  			{
+	  			 FileReader fr=new FileReader("/home/brideit/int.txt");
+	  			 BufferedReader br=new BufferedReader(fr);
+ 	  			 String string4="";
+	  			 while(true)
+	  			 {
+	  			  string4=br.readLine();
+	  			  if(string4==null)
+	  			  	break;
+	  			  else
+	  			   string3=string4.split(" ");
+	  			  }
+	  			  br.close();
+	  			}
+	  			catch (Exception e)
+	  			{
+	  				e.printStackTrace(); 
+	  			}
+	  			break;
+                
+      default : System.out.println("Invalid Choice...!");
+		
+	}	
+	 
+	 if(choice==1)
+	  return string1;
+	 else 
+	 if(choice==2)
+	  return string3;
+	 else
+	  return null;	 
+  }
 }

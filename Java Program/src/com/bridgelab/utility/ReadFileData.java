@@ -13,8 +13,7 @@ public class ReadFileData
 	 String string1[]=null,string3[]=null;	
 	 switch (choice)
 	 {
-	  case 1  : 	 
-		        try
+	  case 1  : try
 		        {
 		         FileReader fr=new FileReader("/home/brideit/string.txt");
 		         BufferedReader br=new BufferedReader(fr);
@@ -35,11 +34,9 @@ public class ReadFileData
 		        {
 		        	e.printStackTrace(); 
 		        }
-		        
-	 			break;
+		        break;
 		      
-	  case 2  :		 
-	  			try
+	  case 2  :	try
 	  			{
 	  			 FileReader fr=new FileReader("/home/brideit/int.txt");
 	  			 BufferedReader br=new BufferedReader(fr);
@@ -47,7 +44,7 @@ public class ReadFileData
 	  			 while(true)
 	  			 {
 	  			  string4=br.readLine();
-	  			  if(string3==null)
+	  			  if(string4==null)
 	  			  	break;
 	  			  else
 	  			   string3=string4.split(" ");
@@ -66,7 +63,10 @@ public class ReadFileData
 	 
 	 if(choice==1)
 	  return string1;
+	 else 
+	 if(choice==2)
+	  return string3;
 	 else
-	  return string3;	  
+	  return null;	 
   }
 }
