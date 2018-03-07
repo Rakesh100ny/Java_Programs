@@ -15,8 +15,10 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
-import static java.lang.Math.*;
+import com.bridgelab.dsaprograms.UnorderListDemo;
 
+import static java.lang.Math.*;
+import java.io.*;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -1070,6 +1072,64 @@ public class Utility
 		return 0; 
 	}
 
+	public static int calculateDistinctCoupon(int number) 
+	{
+	 int count=0;	
+	 Random random=new Random();
+	
+	 int array[]=new int[number];
+  
+	 for(int i=0;i<number;i++)
+	 {
+	  array[i]=i;	 
+	 }
+	 
+	 for(int x : array)
+	 {
+	  System.out.print(x+" ");	 
+	 }
+	 System.out.println();
+	 
+	 int i=0;
+	 
+     while(array[i]!=-1 && array.length<number)
+     {
+      int nc=random.nextInt(100);
+      if(nc==array[i])
+      {
+       count++;
+       array[i]=-1;
+      }
+      else
+      {
+       count++;	  
+      }
+      System.out.print(nc+" ");
+      i++;
+     }
+     System.out.println();
+     for(int x : array)
+	 {
+	  System.out.print(x+" ");	 
+	 }
+	 
+	 return count;
+	}
 
-
+	public static void fileUpdate(UnorderList list) 
+	{ 
+	 try
+	 {
+	  String string=list.toString();
+	
+	  FileWriter fw=new FileWriter("/home/brideit/doc.txt");
+	  BufferedWriter bw=new BufferedWriter(fw);
+	  bw.write(string);
+	  bw.close();
+	 }
+	 catch (Exception e)
+	 {
+	  e.printStackTrace(); 
+	 }
+	}
 }
