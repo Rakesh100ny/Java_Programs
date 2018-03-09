@@ -11,13 +11,16 @@ package com.bridgelab.utility;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
-import com.bridgelab.dsaprograms.UnorderListDemo;
+
 
 import static java.lang.Math.*;
+import static java.lang.System.out;
+
 import java.io.*;
 import java.awt.Toolkit;
 
@@ -471,7 +474,7 @@ public class Utility
 	 * @param string2
 	 * @return checkAnagram between to string and return true or false 
 	 */
-	public static boolean CheckAnagram(String string1, String string2)
+	public static boolean checkAnagram(String string1, String string2)
 	{
 		boolean result = true;
 		char charArray1[] = string1.toLowerCase().toCharArray();
@@ -481,6 +484,7 @@ public class Utility
 		Arrays.sort(charArray2);
 
 		result = Arrays.equals(charArray1, charArray2);
+	
 		if (result)
 			return true;
 		else
@@ -518,7 +522,7 @@ public class Utility
 		Iterator<Integer> iterator = arrayList.iterator();
 		for (int i = 0; i < array.length; i++)
 		{
-			array[i] = iterator.next().intValue();
+			array[i] = iterator.next();
 		}
 
 		return array;
@@ -529,44 +533,76 @@ public class Utility
 	 * @param lower
 	 * @param high
 	 */
-	public static void printAnagramNumber(int array[])
+	public static int[] printAnagramNumber(int array[])
 	{
-		System.out.println("Anagram Number in this Range :  ");
-
+		ArrayList arrayList=new ArrayList();
+		
+          
 		for(int i=0;i<array.length;i++) 
 		{
 			for (int j=i+1; j < array.length; j++)
 			{
-				if(CheckAnagram(array[i]+"", array[j]+"")==true)
+				if(checkAnagram(array[i]+"", array[j]+"")==true)
 				{
-					System.out.println(array[i]+"-->"+array[j]);
+					//System.out.println(array[i]+"-->"+array[j]);
+					arrayList.add(array[j]);
 				}
 			}
 		}
+		
+		int array1[] = new int[arrayList.size()];
+		Iterator<Integer> iterator = arrayList.iterator();
+		for (int i = 0; i < array1.length; i++)
+		{
+			array1[i] = iterator.next();
+		}
+
+		return array1;
+		
+		
 	}
 
 	/**
 	 * @param lower
 	 * @param high
 	 */
+  
+	public static boolean isPalindrome(int number)
+	{
+	 int digit=number;
+	 int remainder,reverse=0;
+	
+	  while(digit!=0)
+	  {
+	   remainder=digit%10;
+	   reverse=reverse*10+remainder;
+	   digit=digit/10;
+	  }
+	 
+	  if(number==reverse)
+	  {
+	   return true;	  
+	  }
+	  else
+	  {
+	   return false;	  
+	  }	  
+	}
+	
 	public static void printPalindromeNumber(int array[]) 
 	{
 		System.out.print("\nPalindrome Number in this Range : [ ");
-
-		int digit,reverse=0;
-		for(int i=0;i<array.length;i++)
+		
+		for(int x : array)
 		{
-			while (array[i] != 0) 
-			{
-				digit = array[i] % 10;
-				reverse = digit + (reverse * 10);
-				array[i] = array[i] / 10;
-			}
-			if (reverse == i) 
-			{
-				System.out.print(reverse + " ");
-			}
+		 	
+		 if(isPalindrome(x))
+		 {
+          System.out.print(x+" ");			 
+		 }
 		}
+		
+	  
 		System.out.print(" ]");
 
 	}
@@ -1257,4 +1293,198 @@ public class Utility
 	 else
 	  return null;	 
   }
+
+	public static void findNumberOfBinarySearchTree(int[] array) throws ArithmeticException 
+	{
+	 
+	 
+      for(int i=0;i<array.length;i++)
+      {
+       long a=fact((2)*(array[i]));
+       long b=fact((array[i]+1));
+       long c=fact(array[i]);
+       long count=0;
+       try 
+       {
+        count=a/(b*c);
+       }
+       catch(ArithmeticException e) 
+       {
+    	count=0;   
+    	//System.out.println(e.getMessage());   
+	   }
+       System.out.println(count);	 
+      }
+	 }
+	
+
+	private static long fact(int i) 
+	{
+     long fact=1;
+     while(i>1)
+     {
+      fact=fact*i;
+      i--;
+     }
+     return fact;	
+	}
+
+	public static void printCalender(Date date) 
+	{ 
+	 int days;
+	 Date date1 =new Date(); 
+	   
+	 int start=date.getDay();
+	 int month=date.getMonth();  
+	 int year=date.getYear()+1900;
+	 
+	 
+	 System.out.println("Start : "+start);
+	 System.out.println("Start : "+month);
+	 System.out.println("Start : "+year);
+	 boolean isPrime=checkLeapYear(year+"");
+	 
+	 
+	 System.out.println("****** "+ month + " "+ year +" ********");
+	 System.out.println("SUN MON TUE WED THU FRI SAT");
+	 if(month==0 || month==2 || month==4 || month==6 || month==7 || month==9 || month==11)  
+	 {
+	  days=31;
+	 } 
+	 else
+	 if(month==1)
+	 {
+	  if(isPrime)
+	   days=29;
+	  else
+	   days=28;	  
+	 }                                                 
+	 else
+	 {   
+	  days=30;
+	 }
+		  
+	 int j; 
+	 for(j=1;j<=start;j++)
+	  System.out.print("    ");
+	 for(int i=1,startPoint=j;i<=days;i++,startPoint++)
+	 {
+	  if(startPoint==7)
+	  {
+	   System.out.printf("%3d ",i);
+	   System.out.println();  
+	   startPoint=0;
+	   }   
+	   else 
+	    System.out.printf("%3d ",i);
+	  }
+	  System.out.println("\n");	
+	}
+
+	public static void fileUpdate(OrderList list) 
+	{
+		try
+        {
+         String string=list.toString();
+        
+
+         FileWriter fw=new FileWriter("/home/brideit/integer.txt");
+         BufferedWriter bw=new BufferedWriter(fw);
+         bw.write(string);
+         bw.close();
+        }
+        catch (Exception e)
+        {
+         e.printStackTrace(); 
+        }	
+	}
+	
+	public static int[][] print2DArrayPrime(int lower, int high) 
+	{
+	 int start=0,count=0,end=100;
+	 
+	 ArrayList<Integer> arrayList=new ArrayList<Integer>();
+     
+	 for (int i = lower; i < high; i++)
+	 {
+	  int d = 0;
+	  double root = 0.0;
+	  for (d = 2, root = sqrt(i); d <= root && i % d != 0; d++);
+   	  if (lower <= 1) 
+   	  {
+	   lower++;
+	  } 
+	  else 
+	  {
+	   if (d > root)
+	   {
+		arrayList.add(i);
+	   }
+	  }
+	 }
+	 
+	 int array[][]=new int[10][];
+	
+	 for (int i = 0; i < 10; i++)
+	 {
+	  for (int j = start; j <= high; j++) 
+	  {
+	   count=isPrime(start,end);	
+	  }
+	  start += 100;
+	  end += 100;
+	  array[i]=new int[count];
+     }
+	 
+	 Iterator<Integer> iterator = arrayList.iterator();
+				
+	 for(int i=0; i<array.length; i++)
+	 {			
+	  for(int j=0; j<array[i].length; j++)
+	   {	 
+	    array[i][j] = iterator.next();
+	   }
+	 }
+	 
+	return array;	
+
+		
+	}
+public static int isPrime(int lower, int high)
+{ 
+	int count=0;
+	for (int i = lower; i < high; i++)
+	{
+		int d = 0;
+		double root = 0.0;
+		for (d = 2, root = sqrt(i); d <= root && i % d != 0; d++);
+		if (lower <= 1) 
+		{
+			lower++;
+		} 
+		else 
+		{
+			if (d > root)
+			{
+				count++;
+			}
+		}
+	}
+	return count;
+}
+
+ public static void print2DAnagramNumber(int[][] array) 
+ {
+  for(int i=0;i<array.length;i++) 
+  {
+   for (int j=0;j < array[i].length; j++)
+   {
+	if(checkAnagram(array[i][j]+"",array[i][j+1]+""))
+	{
+	 System.out.println(array[i][j]+"-->"+array[i][j+1]);
+	}
+   }
+  }
+ }
+
 }

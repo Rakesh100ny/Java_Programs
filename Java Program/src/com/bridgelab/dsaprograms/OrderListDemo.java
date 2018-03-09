@@ -28,8 +28,7 @@ public class OrderListDemo
 
 	   switch (choice) 
 	   {
-	    case 1  : @SuppressWarnings("rawtypes")
-	              OrderList<Comparable> list=new OrderList<Comparable>();	 
+	    case 1  : OrderList<Comparable> list=new OrderList<Comparable>();	 
 	              String string[]=ReadFileData.readListOfWords(choice);
 	    	      for(int i=0;i<string.length;i++)
 	              {
@@ -68,8 +67,7 @@ public class OrderListDemo
 		          }
 		          break;
 	 	       
-	   case 2 :  @SuppressWarnings("rawtypes")
-                 OrderList<Comparable> list2=new OrderList<Comparable>();	 
+	   case 2 :  OrderList<Comparable> list2=new OrderList<Comparable>();	 
 	             String string2[]=ReadFileData.readListOfWords(choice);
 	             for(int i=0;i<string2.length;i++)
 	   			 {

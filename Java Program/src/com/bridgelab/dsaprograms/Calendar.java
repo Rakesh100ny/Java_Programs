@@ -2,67 +2,36 @@ package com.bridgelab.dsaprograms;
 
 import static java.lang.System.*;
 
-import java.util.Date;
-import java.util.Scanner;
-import java.text.*;
+import java.util.*;
+
+import com.bridgelab.utility.Utility;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Calendar
 {
  public static void main(String[] args) 
  {
-	  int days;
-	  out.println();
-	  out.print("Enter the month and year in form [nov 2017] : ");
+	 
+	  System.out.println();
+	  System.out.print("Enter the Month and Year in form [jan 2018] : ");
       Scanner scanner=new Scanner(System.in);
-	  String date=scanner.next();
+	  String dateInput=scanner.nextLine();
 	  SimpleDateFormat sdf=new SimpleDateFormat("MMM y");
-	  Date d=null;
+	  Date date=null;
 
 	  try 
 	  {
-	   d=sdf.parse(date);
+	   date=sdf.parse(dateInput);
 	  }
 	  catch(ParseException e)
 	  {
 	   out.println("Invalid date format ");
 	   exit(1);
 	  }
-
-	  @SuppressWarnings("deprecation")
-	int first=d.getDay();
-	  @SuppressWarnings("deprecation")
-	int mon=d.getMonth();  
-	  out.println("SUN MON TUE WED THU FRI SAT");
+    
+	  Utility.printCalender(date);
 	  
-	  if(mon==0 || mon==2 || mon==4 || mon==6 || mon==7 || mon==9 || mon==11)  
-	  {
-	    days=31;
-	  } 
-	  else
-	  if(mon==1)
-	  {
-	   days=28; 
-	  }                                                 
-	  else
-	  {   
-	   days=30;
-	  }
-	  
-	  int j; 
-	  for(j=1;j<=first;j++)
-	   out.print("    ");
-	 
-	  for(int i=1,sp=j;i<=days;i++,sp++)
-	  {
-	   if(sp==7)
-	   {
-	    out.printf("%3d ",i);
-	    out.println();  
-	    sp=0;
-	   }   
-	   else 
-	    out.printf("%3d ",i);
-	  }
-	  out.println("\n");
-	 }
+  	 }
 	}

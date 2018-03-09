@@ -18,16 +18,20 @@ public class NumberAnagramAndPalindrome
  public static void main(String[] args) 
  {
   Scanner scanner=new Scanner(System.in);
-  System.out.println("Enter the Lower Range : ");
+  System.out.print("Enter the Lower Range             : ");
   int lower=scanner.nextInt();
-  System.out.println("Enter the High Range  : ");
+  System.out.print("Enter the High Range              : ");
   int high=scanner.nextInt();
   scanner.close();
-  int array[]=Utility.printPrimeNumber(lower,high);
-	  
-  Utility.printAnagramNumber(array);
-  Utility.printPalindromeNumber(array);
+  int array1[]=Utility.printPrimeNumber(lower,high);
+  Utility.printPalindromeNumber(array1);
+  System.out.println();
+  int array2[]=Utility.printAnagramNumber(array1);
+  System.out.print("\nAnagram Number in this Range    : [ ");
+  for(int value : array2)
+  {
+   System.out.print(value+" ");	  
+  }
+  System.out.println("] ");  
  }
-
-
 }

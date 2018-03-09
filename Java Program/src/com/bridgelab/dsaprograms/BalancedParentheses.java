@@ -2,14 +2,15 @@ package com.bridgelab.dsaprograms;
 
 import java.util.Scanner;
 
-import com.bridgelab.utility.StackList;
+
+import com.bridgelab.utility.StackListForBalanceParentheses;
 
 public class BalancedParentheses
 {	
  public static void main(String[] args) 
  {
   Scanner scanner=new Scanner(System.in);	 
-  StackList stack=new StackList();
+  StackListForBalanceParentheses stack=new StackListForBalanceParentheses();
   String expresion;
   System.out.print("\nEnter the expression     : ");    
   expresion=scanner.next();

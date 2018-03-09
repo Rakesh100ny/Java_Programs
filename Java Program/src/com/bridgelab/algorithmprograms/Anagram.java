@@ -25,7 +25,7 @@ public class Anagram
   
   scanner.close();
   
-  boolean result=Utility.CheckAnagram(string1,string2);
+  boolean result=Utility.checkAnagram(string1,string2);
  
   if(result)
   {
