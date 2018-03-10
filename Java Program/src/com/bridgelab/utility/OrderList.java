@@ -1,9 +1,11 @@
 package com.bridgelab.utility;
+
 import com.bridgelab.utility.Node;
+import java.lang.Comparable;
 
 public class OrderList<T> 
 {
- Node <?>start,last;
+ Node start,last;
  private int count;
  
  public static Node list()

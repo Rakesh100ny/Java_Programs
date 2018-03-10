@@ -1,17 +1,16 @@
 package com.bridgelab.utility;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
 
 public class StackListForAnagram
 {
  private Node top;
  
- public boolean push(int val)
+ public void push(int val)
  {
   Node nd=new Node(val);
   nd.next=top;
   top=nd;
-  return true;
+  
  }
 	
  public int pop()
@@ -22,23 +21,34 @@ public class StackListForAnagram
   return n;
  }
  
- public void print()
+ public void print() 
  {
-  _printRev(top);	 
+  Node forword=top;
+  int n=forword.val;
+  
+  while((n=pop())!=-1)
+  {
+   System.out.print(n+" ");	  
+  }
+ }	
+ 
+ 
+ 
+ 
+ 
+ /*public void print()
+ {
+  _printRev(top);
  }
  
  
  private void _printRev(Node top)
  {
-  Node forword=top;
-  if(forword==null) return;
-  
-  _printRev(top.next);
+  if(top==null) return;
+  _printRev(top.next);   
   System.out.print(top.val+" ");
-  
-  
  } 
-
+*/
 
 class Node
  {

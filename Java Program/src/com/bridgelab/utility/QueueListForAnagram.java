@@ -1,6 +1,5 @@
 package com.bridgelab.utility;
 
-import com.bridgelab.dsaprograms.AnagramUsingQueue;
 
 public class QueueListForAnagram 
 {

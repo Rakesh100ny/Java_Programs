@@ -9,21 +9,18 @@
 
 package com.bridgelab.algorithmprograms;
 
-import java.util.*;
 import com.bridgelab.utility.Utility;
 
-public class dayOfWeek
-{
- public static void main(String[] args) 
- {
-  Scanner scanner=new Scanner(System.in);
-  System.out.print("Enter the Day   : ");
-  int day=scanner.nextInt();
-  System.out.print("Enter the Month : ");
-  int month=scanner.nextInt();
-  System.out.print("Enter the Year  : ");
-  int year=scanner.nextInt();
-  scanner.close();  
-  Utility.calculateDayOfWeek(day,month,year);
- }
+public class dayOfWeek {
+	public static void main(String[] args) {
+		Utility utility = new Utility();
+		System.out.print("Enter the Day   : ");
+		int day = utility.inputInteger();
+		System.out.print("Enter the Month : ");
+		int month = utility.inputInteger();
+		System.out.print("Enter the Year  : ");
+		int year = utility.inputInteger();
+
+		Utility.calculateDayOfWeek(day, month, year);
+	}
 }

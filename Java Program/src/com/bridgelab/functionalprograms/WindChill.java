@@ -10,27 +10,23 @@
 
 package com.bridgelab.functionalprograms;
 
-import java.util.Scanner;
 import com.bridgelab.utility.Utility;
 
-public class WindChill
-{
- public static void main(String[] args) 
- {
-  Scanner scanner=new Scanner(System.in);
-  System.out.println("Enter Temperature   : ");
-  double temperature=scanner.nextDouble();
+public class WindChill {
+	public static void main(String[] args) {
+		Utility utility = new Utility();
+		System.out.println("Enter Temperature   : ");
+		double temperature = utility.inputDouble();
 
-  System.out.println("Enter Speed of Wind : ");
-  double speed=scanner.nextDouble();
-	
-  double windChil=Utility.calculateWindChill(temperature,speed);
-  scanner.close();
+		System.out.println("Enter Speed of Wind : ");
+		double speed = utility.inputDouble();
 
-  if(windChil>0)
-   System.out.println("Wind Chill is      : "+windChil);
-  else
-   System.out.println("Invalid Input...!");	 
-   
- }
+		double windChil = Utility.calculateWindChill(temperature, speed);
+
+		if (windChil > 0)
+			System.out.println("Wind Chill is      : " + windChil);
+		else
+			System.out.println("Invalid Input...!");
+
+	}
 }

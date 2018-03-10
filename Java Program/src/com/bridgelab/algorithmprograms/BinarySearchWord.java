@@ -9,34 +9,29 @@
 
 package com.bridgelab.algorithmprograms;
 
-import java.util.*;
 import com.bridgelab.utility.Utility;
 
-public class BinarySearchWord
-{
- public static void main(String[] args)
- {
-	  Scanner scanner=new Scanner(System.in);
-	  String string2[]=Utility.readListOfWords();
-	  
-	  System.out.print("Print The Item Before Sorting  : ");
-	  Utility.print(string2);
-	  
-	  System.out.println(); 
-	  
-      System.out.print("Print The Item After Sorting   : ");
-      Utility.printSort(string2);
+public class BinarySearchWord {
+	public static void main(String[] args) {
+		Utility utility = new Utility();
+		String string2[] = Utility.readListOfWords();
 
+		System.out.print("Print The Item Before Sorting  : ");
+		Utility.print(string2);
 
-	  System.out.println(); 
-	  
-      System.out.print("Enter the Key Value            : ");
-	  String string=scanner.next();
-      scanner.close(); 
-      System.out.println(); 
-	  string2=Utility.binarySearch(string2,string);
-	  
-	  
- }
+		System.out.println();
+
+		System.out.print("Print The Item After Sorting   : ");
+		Utility.printSort(string2);
+
+		System.out.println();
+
+		System.out.print("Enter the Key Value            : ");
+		String string = utility.inputString();
+
+		System.out.println();
+		string2 = Utility.binarySearch(string2, string);
+
+	}
 
 }

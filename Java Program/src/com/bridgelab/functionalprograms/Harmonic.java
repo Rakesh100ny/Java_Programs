@@ -9,26 +9,19 @@
 
 package com.bridgelab.functionalprograms;
 
-import java.util.Scanner;
-
 import com.bridgelab.utility.Utility;
 
-public class Harmonic 
-{
- public static void main(String[] args)
- {
-  Scanner scanner = new Scanner(System.in);
-  System.out.println("Enter a Number : ");
-  float realNumber=scanner.nextFloat();
-  float value=Utility.harmonicValue(realNumber);
-  scanner.close();
-  if(value!=0)
-  {
-   System.out.println("The Harmonic Value is: "+value);
-  }
-  else
-  {
-   System.out.println("Invalid Input...!");
-  }
- } 	
+public class Harmonic {
+	public static void main(String[] args) {
+		Utility utility = new Utility();
+		System.out.println("Enter a Number : ");
+		float realNumber = utility.inputFloat();
+		float value = Utility.harmonicValue(realNumber);
+
+		if (value != 0) {
+			System.out.println("The Harmonic Value is: " + value);
+		} else {
+			System.out.println("Invalid Input...!");
+		}
+	}
 }

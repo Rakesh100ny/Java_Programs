@@ -9,25 +9,22 @@
 
 package com.bridgelab.functionalprograms;
 
-import java.util.Scanner;
 import com.bridgelab.utility.Utility;
 
-public class Quadratic 
-{
- public static void main(String[] args) 
- {
-  Scanner scanner = new Scanner(System.in);
+public class Quadratic {
+	public static void main(String[] args) {
+		Utility utility = new Utility();
 
-  System.out.println("Enter the Values of a : ");
-  float a = scanner.nextFloat();
-  System.out.println("Enter the Values of b : ");
-  float b = scanner.nextFloat();
-  System.out.println("Enter the Values of c : ");
-  float c = scanner.nextFloat();
-		
-  float delta=Utility.findDelta(a,b,c);
-  scanner.close();
-  Utility.findRoots(a,b,delta); 
-  
- }
+		System.out.println("Enter the Values of a : ");
+		float a = utility.inputFloat();
+		System.out.println("Enter the Values of b : ");
+		float b = utility.inputFloat();
+		System.out.println("Enter the Values of c : ");
+		float c = utility.inputFloat();
+
+		float delta = Utility.findDelta(a, b, c);
+
+		Utility.findRoots(a, b, delta);
+
+	}
 }

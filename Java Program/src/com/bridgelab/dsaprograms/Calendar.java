@@ -1,13 +1,23 @@
+/******************************************************************************
+ *  
+ *  Purpose : To take date Input using SimpleDateFormat and make one Standard
+ *            Format then after print Calendar     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ******************************************************************************/
+
 package com.bridgelab.dsaprograms;
 
 import static java.lang.System.*;
 
-import java.util.*;
 
 import com.bridgelab.utility.Utility;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Calendar
 {
@@ -16,8 +26,8 @@ public class Calendar
 	 
 	  System.out.println();
 	  System.out.print("Enter the Month and Year in form [jan 2018] : ");
-      Scanner scanner=new Scanner(System.in);
-	  String dateInput=scanner.nextLine();
+      Utility utility=new Utility();
+      String dateInput=utility.inputString();
 	  SimpleDateFormat sdf=new SimpleDateFormat("MMM y");
 	  Date date=null;
 

@@ -7,26 +7,20 @@
  *    
  ******************************************************************************/
 
-
-
 package com.bridgelab.functionalprograms;
-
-import java.util.Scanner;
 
 import com.bridgelab.utility.Utility;
 
-public class Gambler
-{
- public static void main(String[] args)
- {
-  Scanner scanner = new Scanner(System.in);
-  System.out.println("Enter Stake Value     : ");
-  int $stack=scanner.nextInt();
-  System.out.println("Enter Goal Value      : ");
-  int $goal=scanner.nextInt();
-  System.out.println("Enter Number of Times : ");
-  int noOfTimes=scanner.nextInt();
-  scanner.close();
-  Utility.calculateGamblerWinLoss($stack,$goal,noOfTimes);  
- }
+public class Gambler {
+	public static void main(String[] args) {
+		Utility utility = new Utility();
+		System.out.println("Enter Stake Value     : ");
+		int $stack = utility.inputInteger();
+		System.out.println("Enter Goal Value      : ");
+		int $goal = utility.inputInteger();
+		System.out.println("Enter Number of Times : ");
+		int noOfTimes = utility.inputInteger();
+
+		Utility.calculateGamblerWinLoss($stack, $goal, noOfTimes);
+	}
 }

@@ -1,5 +1,14 @@
-package com.bridgelab.dsaprograms;
+/******************************************************************************
+ *  
+ *  Purpose : Determine Anagram Using Stack implement LinkedList.    
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ******************************************************************************/
 
+
+package com.bridgelab.dsaprograms;
 
 import com.bridgelab.utility.Utility;
 import com.bridgelab.utility.StackListForAnagram;;
@@ -12,22 +21,19 @@ public class AnagramUsingStack
   int lower=0;
   int high=1000;
   int array1[]=Utility.printPrimeNumber(lower,high);
-  int array2[]=Utility.printAnagramNumber(array1);
-  System.out.print("\nAnagram Number in this Range    : [ ");
-  for(int value : array2)
-  {
-   System.out.print(value+" ");	  
-  }
-  System.out.println("] ");  
-  
+  Integer array2[][]=Utility.printAnagramNumber(array1);
+
   for(int i=0;i<array2.length;i++)
   {
-   boolean b=stack.push(array2[i]);	  
+   for(int j=0;j<array2[i].length;j++)
+   {
+    stack.push(array2[i][j]);
+   }
   }
   
-  System.out.print("\nAnagram Number in this Range    : [ ");
+  System.out.print("\nAnagram Number in this Range : [ ");
   stack.print();
-    System.out.println("] ");  
+  System.out.println("] ");  
 
  }
 }

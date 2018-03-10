@@ -9,22 +9,18 @@
 
 package com.bridgelab.algorithmprograms;
 
-import java.util.*;
 import com.bridgelab.utility.Utility;
 
-public class toBinary
-{
- public static void main(String[] args) 
- {
-  Scanner scanner=new Scanner(System.in);
-  System.out.print("Enter any Decimal Value : ");
-  int decimal=scanner.nextInt();
-  
-  String binary=Utility.toBinary(decimal);
-  scanner.close();
-  for(int i=binary.length()-1;i>=0;i--)
-  {
-   System.out.print(binary.charAt(i));	  
-  }
- } 
+public class toBinary {
+	public static void main(String[] args) {
+		Utility utility = new Utility();
+		System.out.print("Enter any Decimal Value : ");
+		int decimal = utility.inputInteger();
+
+		String binary = Utility.toBinary(decimal);
+
+		for (int i = binary.length() - 1; i >= 0; i--) {
+			System.out.print(binary.charAt(i));
+		}
+	}
 }

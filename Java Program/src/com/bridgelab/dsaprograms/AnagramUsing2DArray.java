@@ -1,30 +1,31 @@
-package com.bridgelab.dsaprograms;
+/******************************************************************************
+ *  
+ *  Purpose : Determine Anagram and Store in 2DArray.    
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ******************************************************************************/
 
-import java.util.Scanner;
+package com.bridgelab.dsaprograms;
 
 import com.bridgelab.utility.Utility;
 
-public class AnagramUsing2DArray
-{
+public class AnagramUsing2DArray {
 
-	public static void main(String[] args) 
-	{
-		Scanner scanner=new Scanner(System.in);
-		System.out.println("Enter the Lower Range : ");
-		int lower=scanner.nextInt();
-		System.out.println("Enter the High Range  : ");
-		int high=scanner.nextInt();
-		scanner.close();
-		if(lower==0 && high==1000)
-		{
-			int array[][]=Utility.print2DArrayPrime(lower, high);
+	public static void main(String[] args) {
+		int lower = 0, high = 1000;
+		int array1[] = Utility.printPrimeNumber(lower, high);
+		Integer array2[][] = Utility.printAnagramNumber(array1);
+		System.out.print("\nAnagram Number in this Range    : ");
+		System.out.printf("[ %3d --> %3d ]", array2[0][0], array2[0][1]);
+		System.out.println();
 
-			Utility.print2DAnagramNumber(array);
-
-		}
-		else
-		{
-			System.out.println("Invalid Input Range Please Enter Start Range 0 and Last Range 1000 ");	
+		for (int i = 1; i < array2.length; i++) {
+			for (int j = 0; j < array2[i].length - 1; j++) {
+				System.out.printf("\t\t\t\t  [ %3d --> %3d ]", array2[i][j], array2[i][j + 1]);
+			}
+			System.out.println();
 		}
 	}
 }

@@ -9,38 +9,28 @@
 
 package com.bridgelab.functionalprograms;
 
-import java.util.Scanner;
-
 import com.bridgelab.utility.Utility;
 
-public class LeapYear 
-{
- public static void main(String[] args) 
- {
-   Scanner scanner=new Scanner(System.in);
-   System.out.println("Enter a leap year : ");
-   
-   String year=scanner.next();
-   
-   boolean input=Utility.ensureInput(year);
-   
-   boolean value=Utility.checkLeapYear(year);
-   scanner.close();
-   if(!input)
-   {
-	 System.out.println("Invalid Input...!");   
-   }
-   else
-   {
-	   if(value && input)
-	   {
-		System.out.println(year+" is a Leap year...!");
-	   }
-	   else
-	   {
-		System.out.println(year+" is not a Leap year...!");
-	   }
-   }
- 
-  }
- }
+public class LeapYear {
+	public static void main(String[] args) {
+		Utility utility = new Utility();
+		System.out.println("Enter a leap year : ");
+
+		String year = utility.inputString();
+
+		boolean input = Utility.ensureInput(year);
+
+		boolean value = Utility.checkLeapYear(year);
+
+		if (!input) {
+			System.out.println("Invalid Input...!");
+		} else {
+			if (value && input) {
+				System.out.println(year + " is a Leap year...!");
+			} else {
+				System.out.println(year + " is not a Leap year...!");
+			}
+		}
+
+	}
+}

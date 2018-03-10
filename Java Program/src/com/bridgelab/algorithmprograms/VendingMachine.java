@@ -9,17 +9,14 @@
 
 package com.bridgelab.algorithmprograms;
 
-import java.util.*;
 import com.bridgelab.utility.Utility;
 
-public class VendingMachine
-{
- public static void main(String[] args)
- {
-  Scanner scanner=new Scanner(System.in);
-  System.out.print("Enter The Amount : ");
-  int value=scanner.nextInt();
-  Utility.findNotes(value);
-  scanner.close();
- }
+public class VendingMachine {
+	public static void main(String[] args) {
+		Utility utility = new Utility();
+		System.out.print("Enter The Amount : ");
+		int value = utility.inputInteger();
+		Utility.findNotes(value);
+
+	}
 }

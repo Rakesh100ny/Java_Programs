@@ -2,15 +2,13 @@ package com.bridgelab.functionalprograms;
 
 import com.bridgelab.utility.Utility;
 
-public class CouponNumbers {
+public class PrimeFactor {
 	public static void main(String[] args) {
 		Utility utility = new Utility();
-		System.out.print("Enter The Number : ");
+		System.out.print("Enter Any Number Which You Want To Find Prime Factor : ");
 		int number = utility.inputInteger();
 
-		int count = Utility.calculateDistinctCoupon(number);
-		System.out.println();
-		System.out.println(count);
-
+		Utility.findPrimeFactor(number);
 	}
+
 }
