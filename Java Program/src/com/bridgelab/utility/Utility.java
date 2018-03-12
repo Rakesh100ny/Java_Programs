@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -197,9 +198,9 @@ public class Utility {
 	public static double[] powerOf(int number) {
 		double array[] = new double[number];
 
-		for (int i = 1; i <= number; i++) {
+		for (int i = 0;i <number; i++) {
 			double power = pow(2, i);
-			array[i - 1] = power;
+			array[i] = power;
 		}
 		return array;
 	}
@@ -672,7 +673,7 @@ public class Utility {
 		} else {
 			high = mid;
 		}
-		scanner.close();
+		//scanner.close();
 
 		return findGuessingNumber(lower, high);
 	}
@@ -1091,7 +1092,7 @@ public class Utility {
 		 boolean[] isCollected = new boolean[number]; 
 	        int count = 0;                       
 	        int distinct  = 0;                   
-
+            String string="";
 	        
 	        while (distinct < number)
 	        {
@@ -1100,9 +1101,11 @@ public class Utility {
 	            if (!isCollected[value]) {     
 	                distinct++;
 	                isCollected[value] = true;
-	                System.out.print(distinct+" ");
+	                string+=value+" ";
+	                
 	            }
 	        }
+	        System.out.println("Distinct Number  : "+string);
 	        return count;
 	}
 
@@ -1408,6 +1411,21 @@ public class Utility {
 			}
 		}
 		System.out.println(string);
+	}
+
+	public static void fileUpdate(LinkedHashMap<Integer, OrderList>  map)
+	{
+		try
+		{
+		String string = map.toString();
+        System.out.println(string);
+		FileWriter fw = new FileWriter("/home/brideit/doc.txt");
+		BufferedWriter bw = new BufferedWriter(fw);
+		bw.write(string);
+		bw.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
 	}
 
 }

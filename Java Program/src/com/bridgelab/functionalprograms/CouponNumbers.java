@@ -9,8 +9,7 @@ public class CouponNumbers {
 		int number = utility.inputInteger();
 
 		int count = Utility.calculateDistinctCoupon(number);
-		System.out.println();
-		System.out.println(count);
+		System.out.println("No. of Count     : "+count);
 
 	}
 }

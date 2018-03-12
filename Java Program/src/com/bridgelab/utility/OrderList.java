@@ -199,8 +199,7 @@ public class OrderList<T>
 	 
   return index+1;	  
  }
- 
- public String toString()
+  public String toString()
  {
   String string="";
   Node forword=start;
