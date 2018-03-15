@@ -11,12 +11,22 @@ package com.bridgelab.utility;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import static java.lang.Math.*;
 
@@ -24,7 +34,11 @@ import java.io.*;
 import java.awt.Toolkit;
 
 public class Utility {
-	public static Scanner scanner;
+	private final static String REGEX_NAME = "<<name>>";
+	private final static String REGEX_FULLNAME = "<<full name>> ";
+	private final static String REGEX_MOBILE_NO = "xxxxxxxxxx";
+    private final static String REGEX_DATE = "<<date>>";
+	private static Scanner scanner;
 
 	public Utility() {
 		scanner = new Scanner(System.in);
@@ -34,6 +48,15 @@ public class Utility {
 	 * @return string input given by the user
 	 */
 	public String inputString() {
+		try {
+			return scanner.nextLine();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return "";
+	}
+
+	public String inputString2() {
 		try {
 			return scanner.next();
 		} catch (Exception e) {
@@ -198,7 +221,7 @@ public class Utility {
 	public static double[] powerOf(int number) {
 		double array[] = new double[number];
 
-		for (int i = 0;i <number; i++) {
+		for (int i = 0; i < number; i++) {
 			double power = pow(2, i);
 			array[i] = power;
 		}
@@ -224,13 +247,13 @@ public class Utility {
 	 * @return take input for integer array and return integer array
 	 */
 	public static int[] takeInput(int[] array) {
-		Scanner scanner = new Scanner(System.in);
+		Utility utility=new Utility();
 
 		for (int i = 0; i < array.length; i++) {
 			System.out.print("# Item " + (i + 1));
-			array[i] = scanner.nextInt();
+			array[i] = utility.inputInteger();
 		}
-		scanner.close();
+		
 
 		return array;
 	}
@@ -436,7 +459,7 @@ public class Utility {
 	 * @return to take input depentsUpon choice and return the array
 	 */
 	public static <T> T[][] takeInput(int row, int colum) {
-		Scanner scanner = new Scanner(System.in);
+		Utility utility=new Utility();
 		PrintWriter pw = new PrintWriter(System.out);
 		Integer array1[][] = new Integer[row][colum];
 		Double array2[][] = new Double[row][colum];
@@ -453,7 +476,7 @@ public class Utility {
 		System.out.println("---------------------------------");
 
 		System.out.print("Enter The Choice : ");
-		int choice = scanner.nextInt();
+		int choice = utility.inputInteger();
 
 		switch (choice) {
 		case 1:
@@ -462,7 +485,7 @@ public class Utility {
 
 			for (int i = 0; i < row; i++) {
 				for (int j = 0; j < colum; j++) {
-					array1[i][j] = scanner.nextInt();
+					array1[i][j] = utility.inputInteger();
 				}
 			}
 			break;
@@ -473,7 +496,7 @@ public class Utility {
 
 			for (int i = 0; i < row; i++) {
 				for (int j = 0; j < colum; j++) {
-					array2[i][j] = scanner.nextDouble();
+					array2[i][j] = utility.inputDouble();
 				}
 			}
 			break;
@@ -484,7 +507,7 @@ public class Utility {
 
 			for (int i = 0; i < row; i++) {
 				for (int j = 0; j < colum; j++) {
-					array3[i][j] = scanner.next();
+					array3[i][j] = utility.inputString();
 				}
 			}
 			break;
@@ -494,7 +517,6 @@ public class Utility {
 			System.exit(0);
 
 		}
-		scanner.close();
 
 		if (choice == 1)
 			return (T[][]) array1;
@@ -655,7 +677,7 @@ public class Utility {
 	 * @return calculate userGuessing Number and return value
 	 */
 	public static int findGuessingNumber(int lower, int high) {
-
+     
 		if (lower > high)
 			return -1;
 
@@ -665,16 +687,14 @@ public class Utility {
 		int mid = (lower + high) / 2;
 
 		System.out.println("Is it Between " + lower + " to " + mid + " ?");
-
+        Utility utility=new Utility();
 		boolean flag = true;
-		Scanner scanner = new Scanner(System.in);
-		if (flag != scanner.nextBoolean()) {
+		if (flag != utility.inputBoolean()) {
 			lower = mid + 1;
 		} else {
 			high = mid;
 		}
-		//scanner.close();
-
+		
 		return findGuessingNumber(lower, high);
 	}
 
@@ -682,15 +702,15 @@ public class Utility {
 	 * @return to take input and return Integer array
 	 */
 	public static Integer[] takeInputInteger() {
-		Scanner scanner = new Scanner(System.in);
+		Utility utility=new Utility();
 		System.out.print("Enter  Item in the Array  : ");
-		int number = scanner.nextInt();
+		int number = utility.inputInteger();
 		Integer array[] = new Integer[number];
 		for (int i = 0; i < array.length; i++) {
 			System.out.print("# " + (i + 1) + " Item ");
-			array[i] = scanner.nextInt();
+			array[i] = utility.inputInteger();
 		}
-		scanner.close();
+		
 		return array;
 	}
 
@@ -698,15 +718,14 @@ public class Utility {
 	 * @return to take input and return String array
 	 */
 	public static String[] takeInputString() {
-		Scanner scanner = new Scanner(System.in);
+		Utility utility=new Utility();
 		System.out.print("Enter  Item in the Array  : ");
-		int number = scanner.nextInt();
+		int number = utility.inputInteger();
 		String array[] = new String[number];
 		for (int i = 0; i < array.length; i++) {
 			System.out.print("# " + (i + 1) + " Item ");
-			array[i] = scanner.next();
+			array[i] = utility.inputString();
 		}
-		scanner.close();
 		return array;
 	}
 
@@ -822,7 +841,7 @@ public class Utility {
 	public static String[] readListOfWords() {
 		String string[] = null;
 		try {
-			FileReader fr = new FileReader("/home/brideit/doc.txt");
+			FileReader fr = new FileReader("/home/brideit/file.txt");
 			BufferedReader br = new BufferedReader(fr);
 
 			String string2 = "";
@@ -1089,33 +1108,31 @@ public class Utility {
 	}
 
 	public static int calculateDistinctCoupon(int number) {
-		 boolean[] isCollected = new boolean[number]; 
-	        int count = 0;                       
-	        int distinct  = 0;                   
-            String string="";
-	        
-	        while (distinct < number)
-	        {
-	            int value = getCoupon(number);  
-	            count++;                       
-	            if (!isCollected[value]) {     
-	                distinct++;
-	                isCollected[value] = true;
-	                string+=value+" ";
-	                
-	            }
-	        }
-	        System.out.println("Distinct Number  : "+string);
-	        return count;
+		boolean[] isCollected = new boolean[number];
+		int count = 0;
+		int distinct = 0;
+		String string = "";
+
+		while (distinct < number) {
+			int value = getCoupon(number);
+			count++;
+			if (!isCollected[value]) {
+				distinct++;
+				isCollected[value] = true;
+				string += value + " ";
+
+			}
+		}
+		System.out.println("Distinct Number  : " + string);
+		return count;
 	}
 
-	private static int getCoupon(int number) 
-	{
-	 /*Random random=new Random();
-	 int value=random.nextInt(10);*/
-		 return (int) (Math.random() * number);
-	 
-	
+	private static int getCoupon(int number) {
+		/*
+		 * Random random=new Random(); int value=random.nextInt(10);
+		 */
+		return (int) (Math.random() * number);
+
 	}
 
 	public static void fileUpdate(UnorderList list, int choice) {
@@ -1273,18 +1290,70 @@ public class Utility {
 
 	public static void printCalender(Date date) {
 		int days;
-		new Date();
+		
 
 		int start = date.getDay();
 		int month = date.getMonth();
 		int year = date.getYear() + 1900;
 
-		System.out.println("Start : " + start);
-		System.out.println("Start : " + month);
-		System.out.println("Start : " + year);
+	
 		boolean isPrime = checkLeapYear(year + "");
 
-		System.out.println("****** " + month + " " + year + " ********");
+		String result="";
+		switch (month) 
+		{
+		 case 0  : String mon0="Jaunary";
+		           result=mon0;
+		           break;
+		 case 1  : String mon1="february";
+		 		   result=mon1;
+                   break;
+		 case 2  : String mon2="March";
+		 		   result=mon2;
+		           break;
+				
+		 case 3  : String mon3="April";
+		 		   result=mon3;
+		           break;
+				
+		 case 4  : String mon4="May";
+		 		   result=mon4;
+		           break;
+				
+		 case 5  : String mon5="June";
+		 		   result=mon5;
+		           break;
+				
+		 case 6  : String mon6="July";
+		 		   result=mon6;
+		           break;
+				
+		 case 7  : String mon7="August";
+		 		   result=mon7;
+		           break;
+				
+		 case 8  : String mon8="September";
+		 		   result=mon8;
+		           break;
+				
+		 case 9  : String mon9="October";
+		 		   result=mon9;
+		           break;
+				
+		 case 10 : String mon10="November";
+		 		   result=mon10;
+		           break;
+				
+		 case 11 : String mon11="December";
+		 		   result=mon11;
+		           break;
+					
+		 default : System.out.println("Invalid Month");
+			
+		}
+		
+		
+		System.out.println("******* " + result + " " + year + " ********");
 		System.out.println("SUN MON TUE WED THU FRI SAT");
 		if (month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11) {
 			days = 31;
@@ -1413,19 +1482,557 @@ public class Utility {
 		System.out.println(string);
 	}
 
-	public static void fileUpdate(LinkedHashMap<Integer, OrderList>  map)
-	{
-		try
-		{
-		String string = map.toString();
-        System.out.println(string);
-		FileWriter fw = new FileWriter("/home/brideit/doc.txt");
-		BufferedWriter bw = new BufferedWriter(fw);
-		bw.write(string);
-		bw.close();
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
+	public static void fileUpdate(HashMap<Integer, OrderList> map) {
+		try {
+			String string = map.toString();
+			System.out.println(string);
+			FileWriter fw = new FileWriter("/home/brideit/fileupdate.txt");
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(string);
+			bw.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-}
+	public static void toSearchElem(int data, HashMap<Integer, OrderList> map) {
+		int rem = data / 11;
+
+		if (map.get(rem).search(data)) {
+			map.get(rem).remove(data);
+
+			System.out.println("Element remove");
+			// Utility.fileUpdate(map);
+		} else {
+			map.get(rem).insert(data);
+			System.out.println("Element add");
+			// Utility.fileUpdate(map);
+		}
+	}
+
+	public static void hashingFunction(String[] string) {
+		Utility utility = new Utility();
+		HashMap<Integer, OrderList> map = new HashMap<Integer, OrderList>();
+		int rem = -1;
+		for (int i = 0; i < string.length; i++) {
+			rem = Integer.parseInt(string[i]) % 11;
+			if (map.containsKey(rem)) {
+				OrderList list = map.get(rem);
+				list.insert(Integer.parseInt(string[i]));
+			} else {
+				map.put(rem, new OrderList());
+				OrderList list = map.get(rem);
+				list.insert(Integer.parseInt(string[i]));
+			}
+		}
+
+		System.out.println(map);
+		System.out.print("Elements persent in the File  : ");
+		for (String str : string) {
+			System.out.print(str + " ");
+		}
+		System.out.println();
+
+		System.out.print("Enter the Key Which you want  : ");
+		int key = utility.inputInteger();
+		// int index = 0;
+		rem = key % 11;
+
+		if (map.containsKey(rem)) {
+			OrderList list = map.get(rem);
+
+			if (list.search(key)) {
+				list.remove(key);
+				System.out.println(key + " Found and removed from the list...!");
+				fileUpdate(map);
+				System.out.println("File is Update...!");
+			} else {
+				list.add(key);
+				System.out.println(key + " Not Found and added from the list...!");
+				fileUpdate(map);
+				System.out.println("File is Update...!");
+			}
+		} else {
+			map.put(rem, new OrderList());
+			OrderList list = map.get(rem);
+			if (!list.search(key)) {
+				list.add(key);
+				System.out.println(key + " Not Found and added from the list...!");
+				fileUpdate(map);
+				System.out.println("File is Update...!");
+			}
+		}
+	}
+
+	public static void regularExpressionApply(UserDetails information, String string2) 
+	{
+		Pattern pattern = Pattern.compile(REGEX_NAME);
+		Matcher matcher = pattern.matcher(string2); 
+		string2 = matcher.replaceAll(information.getFirstName());
+
+		pattern = Pattern.compile(REGEX_FULLNAME);
+		matcher = pattern.matcher(string2); 
+		string2 = matcher.replaceAll(information.getFirstName()+" "+information.getLastName()+" ");
+
+		pattern = Pattern.compile(REGEX_MOBILE_NO);
+		matcher = pattern.matcher(string2); 
+		string2 = matcher.replaceAll(information.getMobileNo());
+
+		pattern = Pattern.compile(REGEX_DATE);
+		matcher = pattern.matcher(string2); 
+		string2 = matcher.replaceAll(information.getDate());
+		
+		System.out.println("Finally Replace String : "+string2);
+	
+	}
+
+	public static String[] initializeCards()
+	{
+	 String suit[]= {"Clubs", "Diamonds", "Hearts", "Spades"};
+	 String rank[]= {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+	 String deckOfCards[]=new String[52];
+	 int position=0;
+	 for(int i=0;i<suit.length;i++)
+	 {
+	  for(int j=0;j<rank.length;j++)
+	  {
+	   if(suit[i].length()==5)
+	   {
+		deckOfCards[position++]=suit[i]+"    --> "+rank[j];   
+	   }
+	   else
+	   if(suit[i].length()==6)
+	   {
+		deckOfCards[position++]=suit[i]+"   --> "+rank[j];   
+	   }
+	   else
+	   if(suit[i].length()==8)
+	   {
+	    deckOfCards[position++]=suit[i]+" --> "+rank[j];	   
+	   }
+		  
+	   	  
+	  }
+	 }
+	 System.out.print("Before Shuffle The Cards : ");
+	 System.out.printf("[ %s ]",deckOfCards[0]);
+	 System.out.println();
+	 for(int i=1;i<deckOfCards.length;i++)
+	 {
+	  System.out.printf("\t\t\t   [ %s ]",deckOfCards[i]);
+	  System.out.println();
+	 }
+	return deckOfCards;
+	}
+
+	public static String[] shuffleCards(String[] initialize)
+	{
+	 for(int i=0;i<initialize.length;i++)
+	 {
+	  int random=(int)(Math.random()*(52));
+	  String temp=initialize[i];
+	  initialize[i]=initialize[random];
+	  initialize[random]=temp;
+	 }
+	 
+	 System.out.print("After Shuffle The Cards : ");
+	 System.out.printf(" [ %s ]",initialize[0]);
+	 System.out.println();
+	 for(int i=1;i<initialize.length;i++)
+	 {
+	  System.out.printf("\t\t\t   [ %s ]",initialize[i]);
+	  System.out.println();
+	 }
+		return initialize;
+	}
+
+	public static String[][] distributeCards(String[] shuffle, int noOfCards, int noOfPlayers) 
+	{
+	 String printCards[][]=new String[noOfPlayers][noOfCards];	
+	 int position=0;
+	 for(int i=0;i<noOfPlayers;i++)
+	 {
+	  for(int j=0;j<noOfCards;j++)
+	  {
+	   printCards[i][j]=shuffle[position++];	  
+	  }
+	 }
+		
+	 System.out.println(" After Distribute Cards : ");
+		int count=1;
+		for (int i = 0; i < noOfPlayers; i++)
+		{
+		 System.out.println("\t\t\t    "+(count++)+" Player Cards");
+		 System.out.println("\t\t\t  ------------------");
+	     for (int j = 0; j < noOfCards; j++)
+	     {
+		  System.out.println("\t\t\t    "+printCards[i][j]);
+		 }
+		 System.out.println("");
+        }
+		return printCards;
+	}
+
+	public static void printSortedUsingQueue(String[][] distribute, int noOfCards, int noOfPlayers)
+	{
+     QueueUsingString queue=new QueueUsingString();
+     
+     String array[]=new String[noOfCards];
+     
+	 for(int i=0;i<noOfPlayers;i++)
+     {
+      for(int j=0;j<noOfCards;j++)
+      {
+       array[j]=distribute[i][j];   	  
+      }
+      queue.insert(i+1+"");
+      sort(array); 
+     }
+	 printSortedCards(queue);
+	}
+
+	private static void printSortedCards(QueueUsingString queue) 
+	{
+		for (int i = 0; i < 4; i++)
+		{
+		 System.out.println("\t\t\t    "+(i+1)+" Player Cards");
+		 System.out.println("\t\t\t  ------------------");
+	     for (int j = 0; j < 9; j++)
+	     {
+		  queue.print();
+		 }
+		 System.out.println("");
+        }
+		
+	}
+
+	private static void sort(String[] array) 
+	{
+	 QueueUsingString queue=new QueueUsingString();
+     Arrays.sort(array);
+     
+     for(int i=0;i<array.length;i++)
+     {
+      queue.insert(array[i]);	 
+     }
+     printSortedCards(queue);
+	}
+
+	public static void writeInventory() 
+	{
+	 Utility utility=new Utility();
+	 InventoryDetails details=new InventoryDetails();
+	 JSONObject finalObj=new JSONObject();	
+	 JSONObject outer=new JSONObject();	
+
+	 System.out.print("\n\t\t\tEnter the Number that you are want to store Inventory :");
+	 int number=utility.inputInteger();
+	 String array[]=new String[number]; 
+	 
+	 for(int i=0;i<array.length;i++)
+	 {
+	  System.out.print("\t\t\t"+(i+1)+".Enter the Inventory    : ");	 
+	  array[i]=utility.inputString2();
+	 }
+	 
+	 for(String name : array)
+	 {
+	  System.out.print("\t\t\tEnter the types of "+name+"  : ");
+	  int count = utility.inputInteger();
+	  JSONArray jsonArray=new JSONArray();
+	  for (int p = 0; p < count; p++) 
+   	  {
+	   JSONObject jsonObject = new JSONObject();
+	   System.out.print("\t\t\tEnter Name of "+name+"       : ");
+	   String value=utility.inputString2();
+	   details.setInventoryName(value); 
+	   jsonObject.put("name", details.getInventoryName());
+	   System.out.print("\t\t\tEnter Weight of "+name+"     : ");
+	   details.setWeight(utility.inputDouble());
+	   jsonObject.put("weight", details.getWeight());
+	   System.out.print("\t\t\tEnter Price of "+name+"      : ");
+	   details.setPrice(utility.inputDouble());
+	   jsonObject.put("price", details.getPrice());
+	   jsonObject.put("total", details.getWeight()*details.getPrice());
+       jsonArray.add(jsonObject);
+      }
+ 	   finalObj.put(name,jsonArray);
+ 	 }
+	 
+	 outer.put("data", finalObj);
+	 
+	 PrintWriter printWriter = null;
+		
+	 try
+	 {
+	  printWriter = new PrintWriter("/home/brideit/info.json");
+	 }
+	 catch (FileNotFoundException e)
+	 {
+			e.printStackTrace();
+	 }
+	 printWriter.write(((Object) outer).toString());
+	 printWriter.close();
+	 
+	}
+
+	public static void calculateValueOfInventory() throws FileNotFoundException, IOException, ParseException
+	{
+	 
+	 double totalAmount=0;	
+	 JSONParser parser=new JSONParser();
+	 Object outer=parser.parse(new FileReader("/home/brideit/info.json"));
+	 JSONObject outerobject = (JSONObject) outer;
+	 JSONObject jsonObj=(JSONObject) outerobject.get("data");
+	 	
+	 JSONArray arr=(JSONArray) jsonObj.get("Rice");
+	 JSONObject inner = null;
+	
+	  System.out.println();
+	  System.out.println("\t\t\t\t            R I C E");
+	  System.out.println("\t\t\t\t------------------------------");
+	  double riceTotal=0;
+	  
+	 for(int i=0;i<arr.size();i++) 
+	 {
+	   inner=(JSONObject) arr.get(i);
+	   riceTotal=(double)inner.get("total");
+	   totalAmount+=riceTotal;
+	   System.out.println("\t\t\t\tRice Inventory Name   : " + inner.get("name"));
+	   System.out.println("\t\t\t\tRice Inventory Price  : " + inner.get("price"));
+	   System.out.println("\t\t\t\tRice Inventory Weight : " + inner.get("weight"));
+	   System.out.println("\t\t\t\tRice Total Price      : " + riceTotal);
+	 }
+	  System.out.println();
+	  System.out.println("\t\t\t\t            P U L S E ");
+	  System.out.println("\t\t\t\t-------------------------------");
+	  JSONArray arr2=(JSONArray) jsonObj.get("Pulse");
+	  JSONObject inner2 = null;
+	  double pulseTotal=0;
+	  for(int i=0;i<arr2.size();i++) 
+	  {
+	   inner2=(JSONObject) arr2.get(i);
+	   pulseTotal=(double)inner2.get("total");
+	   totalAmount+=pulseTotal;
+	   System.out.println("\t\t\t\tPulse Inventory Name   : " + inner2.get("name"));
+	   System.out.println("\t\t\t\tPulse Inventory Price  : " + inner2.get("price"));
+	   System.out.println("\t\t\t\tPulse Inventory Weight : " + inner2.get("weight"));	 
+	   System.out.println("\t\t\t\tPulse Total Price      : " + pulseTotal);
+	  }
+	
+	  JSONArray arr3=(JSONArray) jsonObj.get("Wheat");
+	  JSONObject inner3 = null;
+	  System.out.println();
+	  System.out.println("\t\t\t\t            W H E A T ");
+	  System.out.println("\t\t\t\t-------------------------------");
+      double wheatTotal=0;
+	  for(int i=0;i<arr3.size();i++) 
+	  {
+	   inner3=(JSONObject) arr3.get(i);
+	   wheatTotal=(double)inner3.get("total");
+	   totalAmount+=wheatTotal;
+	   System.out.println("\t\t\t\tWheat Inventory Name   : " + inner3.get("name"));
+	   System.out.println("\t\t\t\tWheat Inventory Price  : " + inner3.get("price"));
+	   System.out.println("\t\t\t\tWheat Inventory Weight : " + inner3.get("weight"));	 
+	   System.out.println("\t\t\t\tWheat Total Price      : " + wheatTotal);
+	  }
+	
+	   System.out.println("\n\t\t\t\tTotal Amount in the Inventory  : " + totalAmount);
+	
+	
+	}
+
+	public static void stockReport() throws FileNotFoundException, IOException, ParseException 
+	{
+		JSONArray jsonArray = new JSONArray();
+		Utility utility = new Utility();
+		System.out.println("Enter Number of Company : ");
+		int number = utility.inputInteger();
+		String[] array = new String[number];
+		int share[]  = new int[number];
+		int amount[] = new int[number];
+		int total[]  = new int[number];
+		System.out.println("Enter Company Name : ");
+		int totalStock=0;
+	
+/*		for(int i=0; i<number; i++){
+
+			array[i] = utility.inputString2();
+		}
+
+
+		for(int i=0; i<number; i++)
+		{
+			System.out.println("Enter the number of shares for "+array[i]+" and share amount");
+			share[i] = utility.inputInteger();
+			amount[i] = utility.inputInteger();
+		}
+*/
+
+		for(int i=0;i<number;i++)
+		{
+		 System.out.print("Enter Company Name     : ");
+		 array[i] = utility.inputString2();
+		 System.out.print("Enter No of Share      : ");
+		 share[i] = utility.inputInteger();
+		 System.out.print("Enter Amount of Share  : ");
+		 amount[i] = utility.inputInteger();
+		}
+		
+		for(int i=0; i<number; i++){
+			total[i] = share[i]*amount[i];
+		}
+		System.out.println();
+		System.out.println("*******************Stock Report**************************");
+		System.out.println();
+		System.out.println("  Company Name    Shares    Price   total of each");
+		System.out.println();
+		PrintWriter printWriter =null;
+		
+			printWriter = new PrintWriter("/home/bridgeit/stock.json");
+		
+		for(int i=0; i<number; i++)
+		{
+			System.out.println("  "+array[i]+"        "+share[i]+"       "+amount[i]+"     "+total[i]+"/-");	
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("Company Name",array[i]);
+			jsonObject.put("Shares",share[i]);
+			jsonObject.put("Price",amount[i]);
+			jsonObject.put("total",total[i]);
+			jsonArray.add(jsonObject);
+			
+		}	
+		
+		printWriter.write(jsonArray.toJSONString());
+		printWriter.flush();
+		printWriter.close();
+System.out.println();
+		for(int i=0; i<number; i++){
+			totalStock+= share[i]*amount[i];
+		}
+		System.out.println("Total stock is: "+totalStock);
+	}
+	
+	/*	 Utility utility=new Utility();
+		 JSONObject finalObj=new JSONObject();	
+		 JSONObject outer=new JSONObject();	
+		 JSONObject object=new JSONObject();	
+		 System.out.print("\n\t\t\t   S T O C K-R E P O R T ");
+		 System.out.println("\n\t\t\t-------------------------------");
+		 System.out.print("\n\t\t\tEnter the Number of Stock : ");
+		 int number=utility.inputInteger();
+		 String name[]=new String[number]; 
+		 String share[]=new String[number];
+		// String price[]=new String[number];
+		 
+		 for(int i=0;i<name.length;i++)
+		 {
+		  System.out.print("\t\t\t"+(i+1)+".Enter The Name Of Share : ");	 
+		  name[i]=utility.inputString2();
+		 }
+		 
+		 for(String value : name)
+		 {
+		  JSONArray jsonArray=new JSONArray();
+		  JSONObject jsonObject = new JSONObject();
+		  jsonObject.put("Share_Name", value);
+		  System.out.print("\t\t\tEnter Number of "+value+" Share : ");
+		  int noOfShare=utility.inputInteger();
+		  jsonObject.put("Share_Number", noOfShare);
+		  System.out.print("\t\t\tEnter Price of "+value+"  Share : ");
+          double price=utility.inputDouble();
+          jsonObject.put("Share_Price",price);
+		  jsonObject.put("Share_Total", noOfShare*price);
+	      jsonArray.add(jsonObject);
+	      finalObj.put(value,jsonArray);
+	 	 }
+		 
+		 outer.put("Stock_Data", finalObj);
+		 
+		 PrintWriter printWriter = null;
+			
+		 try
+		 {
+		  printWriter = new PrintWriter("/home/brideit/stock.json");
+		 }
+		 catch (FileNotFoundException e)
+		 {
+				e.printStackTrace();
+		 }
+		 printWriter.write(((Object) outer).toString());
+		 printWriter.close();
+		 
+	    printStockReport();
+	}*/
+
+	public static void printStockReport() throws FileNotFoundException, IOException, ParseException 
+	{
+		 double totalAmount=0;	
+		 JSONParser parser=new JSONParser();
+		 Object outer=parser.parse(new FileReader("/home/brideit/stock.json"));
+		 JSONObject outerobject = (JSONObject) outer;
+		 JSONObject jsonObj=(JSONObject) outerobject.get("Stock_Data");
+		 	
+		 JSONArray arr=(JSONArray) jsonObj.get("abc");
+		 JSONObject inner = null;
+		
+		  System.out.println();
+		  System.out.println("\t\t\t            A B C");
+		  System.out.println("\t\t\t-------------------------");
+		  double abcTotal=0;
+		  
+		 for(int i=0;i<arr.size();i++) 
+		 {
+		   inner=(JSONObject) arr.get(i);
+		   abcTotal=(double)inner.get("Share_Total");
+		   totalAmount+=abcTotal;
+		   System.out.println("\t\t\tShare Name        : " + inner.get("Share_Name"));
+		   System.out.println("\t\t\tShare Price       : " + inner.get("Share_Price"));
+		   System.out.println("\t\t\tShare Number      : " + inner.get("Share_Number"));
+		   System.out.println("\t\t\tShare Total Price : " + abcTotal);
+		 }
+		  System.out.println();
+		  System.out.println("\t\t\t            X Y Z ");
+		  System.out.println("\t\t\t--------------------------");
+		  JSONArray arr2=(JSONArray) jsonObj.get("xyz");
+		  JSONObject inner2 = null;
+		  double xyzTotal=0;
+		  for(int i=0;i<arr2.size();i++) 
+		  {
+		   inner2=(JSONObject) arr2.get(i);
+		   xyzTotal=(double)inner2.get("Share_Total");
+		   totalAmount+=xyzTotal;
+		   System.out.println("\t\t\tShare Name        : " + inner.get("Share_Name"));
+		   System.out.println("\t\t\tShare Price       : " + inner.get("Share_Price"));
+		   System.out.println("\t\t\tShare Number      : " + inner.get("Share_Number"));
+		   System.out.println("\t\t\t\tPulse Total Price : " + xyzTotal);
+		  }
+		
+		  /*JSONArray arr3=(JSONArray) jsonObj.get("Wheat");
+		  JSONObject inner3 = null;
+		  System.out.println();
+		  System.out.println("\t\t\t\t            W H E A T ");
+		  System.out.println("\t\t\t\t-------------------------------");
+	      double wheatTotal=0;
+		  for(int i=0;i<arr3.size();i++) 
+		  {
+		   inner3=(JSONObject) arr3.get(i);
+		   wheatTotal=(double)inner3.get("total");
+		   totalAmount+=wheatTotal;
+		   System.out.println("\t\t\t\tWheat Inventory Name   : " + inner3.get("name"));
+		   System.out.println("\t\t\t\tWheat Inventory Price  : " + inner3.get("price"));
+		   System.out.println("\t\t\t\tWheat Inventory Weight : " + inner3.get("weight"));	 
+		   System.out.println("\t\t\t\tWheat Total Price      : " + wheatTotal);
+		  }
+		
+	*/	   System.out.println("\n\t\t\tTotal Amount in the Inventory  : " + totalAmount);		
+	}
+	
+		
+	}
+		
+		
+   
+
+	
+

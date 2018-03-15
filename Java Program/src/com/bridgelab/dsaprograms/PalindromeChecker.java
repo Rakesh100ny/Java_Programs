@@ -9,14 +9,14 @@
 
 package com.bridgelab.dsaprograms;
 
-import com.bridgelab.utility.DequeForPalindrome;
+import com.bridgelab.utility.Deque;
 import com.bridgelab.utility.Utility;
 
 public class PalindromeChecker {
 	public static void main(String[] args) {
 		char choice, item;
 		Utility utility = new Utility();
-		DequeForPalindrome deque = DequeForPalindrome.deque();
+		Deque deque = Deque.deque();
 
 		while (true) {
 			System.out.print("\n\n\n\n\t\t\t\tD E Q U E-M E N U");
@@ -38,7 +38,7 @@ public class PalindromeChecker {
 				System.out.print("\n\n\n\t\t\t\tEnter Item To Insert : ");
 				item = utility.inputCharacter();
 
-				DequeForPalindrome.addRear(deque, item);
+				Deque.addRear(deque, item);
 				break;
 
 			case 'i':
@@ -48,14 +48,14 @@ public class PalindromeChecker {
 				System.out.print("\n\n\n\t\t\t\tEnter Item To Insert : ");
 				item = utility.inputCharacter();
 
-				DequeForPalindrome.addFront(deque, item);
+				Deque.addFront(deque, item);
 				break;
 
 			case 'R':
 				System.out.print("\n\n\n\n\t\t\t\tD E Q U E -Remove(Rear)");
 				System.out.print("\n\t\t\t\t-----------------------\n");
 
-				item = DequeForPalindrome.removeRear(deque);
+				item = Deque.removeRear(deque);
 				if (item != ' ') {
 					System.out.println("\n\n\n\t\t\t\tItem deleted : " + item);
 				} else {
@@ -67,7 +67,7 @@ public class PalindromeChecker {
 				System.out.print("\n\n\n\n\t\t\t\tD E Q U E -Remove(Front)");
 				System.out.print("\n\t\t\t\t-------------------------\n");
 
-				item = DequeForPalindrome.removeFront(deque);
+				item = Deque.removeFront(deque);
 				if (item != ' ') {
 					System.out.println("\n\n\n\t\t\t\tItem deleted : " + item);
 				} else {
@@ -77,7 +77,7 @@ public class PalindromeChecker {
 
 			case 'c':
 			case 'C':
-				boolean result = DequeForPalindrome.checkDeque(deque);
+				boolean result = Deque.checkDeque(deque);
 				if (result) {
 					System.out.println("\n\n\n\t\t\t\tResult : String is Panlindrome in the Deque.......!");
 				} else {

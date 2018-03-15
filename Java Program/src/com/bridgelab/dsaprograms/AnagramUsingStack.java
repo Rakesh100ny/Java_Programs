@@ -10,14 +10,14 @@
 
 package com.bridgelab.dsaprograms;
 
-import com.bridgelab.utility.Utility;
-import com.bridgelab.utility.StackListForAnagram;;
+ import com.bridgelab.utility.Utility;
+import com.bridgelab.utility.Stack;
 
 public class AnagramUsingStack
 {
  public static void main(String[] args) 
  {
-  StackListForAnagram stack=new StackListForAnagram(); 	 
+  Stack stack=new Stack(); 	 
   int lower=0;
   int high=1000;
   int array1[]=Utility.printPrimeNumber(lower,high);

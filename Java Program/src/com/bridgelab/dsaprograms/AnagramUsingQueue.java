@@ -10,14 +10,14 @@
 
 package com.bridgelab.dsaprograms;
 
-import com.bridgelab.utility.QueueListForAnagram;
+import com.bridgelab.utility.Queue;
 import com.bridgelab.utility.Utility;
 
 public class AnagramUsingQueue 
 {
  public static void main(String[] args) 
  {
-	  QueueListForAnagram queue=new QueueListForAnagram(); 	 
+	  Queue queue=new Queue(); 	 
 	  int lower=0;
 	  int high=1000;
 	  int array1[]=Utility.printPrimeNumber(lower,high);

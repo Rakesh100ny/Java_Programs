@@ -10,7 +10,7 @@
 
 package com.bridgelab.dsaprograms;
 
-import static java.lang.System.*;
+
 
 
 import com.bridgelab.utility.Utility;
@@ -28,6 +28,7 @@ public class Calendar
 	  System.out.print("Enter the Month and Year in form [jan 2018] : ");
       Utility utility=new Utility();
       String dateInput=utility.inputString();
+     
 	  SimpleDateFormat sdf=new SimpleDateFormat("MMM y");
 	  Date date=null;
 
@@ -37,8 +38,8 @@ public class Calendar
 	  }
 	  catch(ParseException e)
 	  {
-	   out.println("Invalid date format ");
-	   exit(1);
+	   System.out.println("Invalid date format ");
+	   System.exit(1);
 	  }
     
 	  Utility.printCalender(date);
