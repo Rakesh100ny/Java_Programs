@@ -1,10 +1,10 @@
 package com.bridgelab.utility;
 
-public class Queue 
+public class Queue<T> 
 {
- private Node front,rear;
+ private  Node front,rear;
  private int count=0;
- public void insert(int val)
+ public  void insert(T val)
  {
   Node nd=new Node(val);
   
@@ -17,10 +17,10 @@ public class Queue
   count++;
  }
  
- public  int delete()
+ public T delete()
  {
-  if(front==null)return -1;
-  int n=front.val;
+  if(front==null)return null;
+  T n=(T)front.val;
   front=front.next;
   count--;
   return n;
@@ -34,23 +34,23 @@ public class Queue
  public void print() 
  {
   Node forword=front;
-  int n=forword.val;
+  T n=(T)forword.val;
   
-  while((n=delete())!=-1)
+  while((n=delete())!=null)
   {
    System.out.print(n+" ");	  
   }
  }	
 
   
- class Node
+ class Node<T>
  {
-  int val;
+  T val;
   Node next;
   
   Node(){}
   
-  Node(int val)
+  Node(T val)
   {
    this.val=val;	  
   }

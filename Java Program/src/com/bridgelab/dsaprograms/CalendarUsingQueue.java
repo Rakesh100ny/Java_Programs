@@ -47,8 +47,8 @@ public class CalendarUsingQueue
 		queue.insert(year);
 		
 		
-		int mon=queue.delete();
-		int y=queue.delete();
+		int mon=(int) queue.delete();
+		int y=(int)queue.delete();
 		
 		String result="";
 		switch (mon) 
