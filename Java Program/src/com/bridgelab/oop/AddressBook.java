@@ -1,11 +1,15 @@
 package com.bridgelab.oop;
 
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
 import com.bridgelab.utility.AddressBookOperation;
 import com.bridgelab.utility.Utility;
 
 public class AddressBook 
 {
- public static void main(String[] args) 
+ public static void main(String[] args) throws ParseException, IOException 
  {
 	 
   AddressBookOperation action=new AddressBookOperation();	 
@@ -15,17 +19,17 @@ public class AddressBook
   {
 
   	System.out.print("\n\n\n\n\t\t\t\t    B O O K-S Y S T E M ");
-  	System.out.print("\n\t\t\t\t----------------------------------\n");
+  	System.out.print("\n\t\t\t\t----------------------------");
 
   	System.out.print("\n\t\t\t\tAdd    Adress Book : Enter 1");
   	System.out.print("\n\t\t\t\tEdit   Adress Book : Enter 2");
   	System.out.print("\n\t\t\t\tDelete Adress Book : Enter 3");
   	System.out.print("\n\t\t\t\tSort   Adress Book : Enter 4");
 
-  	System.out.print("\n\t\t\t\t-----------------------------------\n");
+  	System.out.print("\n\t\t\t\t-----------------------------\n");
 
   	
-  	System.out.print("\n\n\n\t\t\t\tEnter Choice : ");
+  	System.out.print("\n\t\t\t\tEnter Choice : ");
     int choice=utility.inputInteger();
 
    switch (choice)

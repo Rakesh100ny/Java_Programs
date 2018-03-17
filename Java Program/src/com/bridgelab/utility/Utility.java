@@ -828,12 +828,12 @@ public class Utility {
 				}
 			}
 		}
-		System.out.print("[ ");
+		/*System.out.print("[ ");
 		for (T value : array) {
 			System.out.print(value + " ");
 		}
 		System.out.print(" ]");
-
+*/
 		return array;
 	}
 
