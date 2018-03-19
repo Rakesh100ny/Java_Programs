@@ -23,12 +23,14 @@ public class CliniqueManagement
 	  	System.out.print("\n\t\t\t\t    Add   Doctor      : Enter 1");
 	  	System.out.print("\n\t\t\t\t    Add   Patient     : Enter 2");
 	  	System.out.print("\n\t\t\t\t    Take  Appointment : Enter 3");
-	  	System.out.print("\n\t\t\t\t    Search Both       : Enter 4");
+	  	System.out.print("\n\t\t\t\t    Display Doctor    : Enter 4");
+	  	System.out.print("\n\t\t\t\t    Display Patient   : Enter 5");
+	  	System.out.print("\n\t\t\t\t    Search Both       : Enter 6");
 
 	  	System.out.print("\n\t\t\t\t------------------------------------\n");
 
 	  	
-	  	System.out.print("\n\t\t\t\tEnter Choice : ");
+	  	System.out.print("\n\t\t\t\t \t  Enter Choice : ");
 	    int choice=utility.inputInteger();
 
 	   switch (choice)
@@ -42,12 +44,19 @@ public class CliniqueManagement
 	     case 3 : action.takeAppointment();
 	              break;
 	              
-	     case 4 : action.search();
+	     case 4 : action.displayDoctor();         
+	              break;
+	       
+	     case 5 : action.displayPatient();
+	              break;
+	              
+	     case 6 : action.search();
 	              break;
 	              
 	    default : System.out.println("\n\t\t\t\tInvalid Choice...!");		       
 	   }
-	   System.out.print("\n\t\t\t\tDo you Want to continue (Y/N) : ");
+	   System.out.println();
+	   System.out.print("\n\t\t\t\t   Do you Want to continue (Y/N) : ");
 	   input=utility.inputCharacter();
 	  }while(input=='Y' || input=='y');
 	 }
