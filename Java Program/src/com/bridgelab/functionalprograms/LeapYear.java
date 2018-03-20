@@ -18,7 +18,7 @@ public class LeapYear {
 
 		String year = utility.inputString();
 
-		boolean input = Utility.ensureInput(year);
+		boolean input = Utility.isYear(year);
 
 		boolean value = Utility.checkLeapYear(year);
 

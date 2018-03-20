@@ -17,10 +17,7 @@ public class FlipCoin {
 		System.out.println("Enter The Number : ");
 		int number = utility.inputInteger();
 
-		float headPercentage = Utility.calculateHeadPercentage(number);
-		float tailPercentage = Utility.calculateTailPercentage(number);
-
-		System.out.println("Percentage of Head " + headPercentage + "% " + "vs " + "Tails " + tailPercentage + "%");
-
+		Utility.calculatePercentage(number);
+	
 	}
 }

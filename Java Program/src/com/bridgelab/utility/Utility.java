@@ -164,39 +164,29 @@ public class Utility {
 	 * @param number
 	 * @return calculate headPercentage and return float headPercentage value
 	 */
-	public static float calculateHeadPercentage(int number) {
-		float head = 0.0f;
-		Random random = new Random();
+	public static void calculatePercentage(int number) {
+		double head=0,tail=0;
+		
 		for (int i = 0; i < number; i++) {
-			float $float = random.nextInt(1);
+			double $float =  (Math.random()*1);
 			if ($float > 0.5 && $float < 1) {
 				head++;
 			}
-		}
-		return head;
-	}
-
-	/**
-	 * @param number
-	 * @return calculate tailPercentage and return float tailPercentage value
-	 */
-	public static float calculateTailPercentage(int number) {
-		float tail = 0.0f;
-		Random random = new Random();
-		for (int i = 0; i < number; i++) {
-			float $float = random.nextInt(1);
-			if ($float > 0 && $float < 0.5) {
+			else
+			if ($float > 0 && $float < 0.5)
+			{
 				tail++;
 			}
 		}
-		return tail;
+		System.out.println("Percentage of Head " + head + "% " + "vs " + "Tails " + tail + "%");
+
 	}
 
-	/**
+		/**
 	 * @param year
 	 * @return ensure that input is correct or not and return true or false value
 	 */
-	public static boolean ensureInput(String year) {
+	public static boolean isYear(String year) {
 		if (year.matches("[0-9]{4}"))
 			return true;
 		else
@@ -267,15 +257,19 @@ public class Utility {
 	public static void findTriples(int[] array, int length) {
 		int i, j, k, count = 0;
 
-		for (i = 0; i < length; i++) {
-			for (j = i + 1; j < length - 1; j++) {
-				for (k = j + 1; k < length - 2; k++) {
-					if (array[i] + array[j] + array[k] == 0) {
-						System.out.println(" [ " + array[i] + " " + array[j] + " " + array[k] + " ]");
-						count++;
-					}
-				}
-			}
+		for (i = 0; i < length; i++) 
+		{
+		 for (j = i + 1; j < length; j++) 
+		 {
+		  for (k = j + 1; k < length; k++) 
+		  {
+		   if (array[i] + array[j] + array[k] == 0) 
+		   {
+			System.out.println(" [ " + array[i] + " " + array[j] + " " + array[k] + " ]");
+			count++;
+		   }
+		  }
+		 }
 		}
 		System.out.println("Total Number of Triples : " + count);
 	}
@@ -365,7 +359,7 @@ public class Utility {
 	 */
 	public static double calculateWindChill(double temperature, double speed) {
 		double wind = 0.0;
-		if (temperature > 50 && (speed > 3 && speed < 120)) {
+		if (temperature < 50 && (speed >= 3 && speed < 120)) {
 			wind = (35.74 + (0.6215 * temperature) + ((0.4275 * temperature) - 35.75) * pow(speed, 0.16));
 		}
 		return wind;
@@ -436,15 +430,15 @@ public class Utility {
 	/**
 	 * @param string
 	 */
-	public static void permutateString(String string) {
+/*	public static void permutateString(String string) {
 		permutateString("", string);
-	}
+	}*/
 
 	/**
 	 * @param string
 	 * @param string2
 	 */
-	private static void permutateString(String string, String string2) {
+	public static void permutateString(String string, String string2) {
 		if (string2.length() <= 1)
 			System.out.println(string + string2);
 		else {
@@ -705,11 +699,11 @@ public class Utility {
 	 */
 	public static Integer[] takeInputInteger() {
 		Utility utility = new Utility();
-		System.out.print("Enter  Item in the Array  : ");
+		System.out.print("\n\t\t\t\tEnter  Item in the Array  : ");
 		int number = utility.inputInteger();
 		Integer array[] = new Integer[number];
 		for (int i = 0; i < array.length; i++) {
-			System.out.print("# " + (i + 1) + " Item ");
+			System.out.print("\t\t\t\t# " + (i + 1) + " Item --> ");
 			array[i] = utility.inputInteger();
 		}
 
@@ -721,12 +715,12 @@ public class Utility {
 	 */
 	public static String[] takeInputString() {
 		Utility utility = new Utility();
-		System.out.print("Enter  Item in the Array  : ");
+		System.out.print("\n\t\t\t\tEnter  Item in the Array  : ");
 		int number = utility.inputInteger();
 		String array[] = new String[number];
 		for (int i = 0; i < array.length; i++) {
-			System.out.print("# " + (i + 1) + " Item ");
-			array[i] = utility.inputString();
+			System.out.print("\t\t\t\t# " + (i + 1) + " Item -->  ");
+			array[i] = utility.inputString2();
 		}
 		return array;
 	}
@@ -748,7 +742,7 @@ public class Utility {
 			if (key.compareTo(array[mid]) == 0) {
 				count++;
 				System.out.println();
-				System.out.println(key + " Key is Found at Position " + mid);
+				System.out.println("\n\t\t\t\t"+key + " Key is Found at Position " + mid);
 
 			}
 
@@ -828,12 +822,12 @@ public class Utility {
 				}
 			}
 		}
-		/*System.out.print("[ ");
+		System.out.print("[ ");
 		for (T value : array) {
 			System.out.print(value + " ");
 		}
 		System.out.print(" ]");
-*/
+
 		return array;
 	}
 
@@ -843,7 +837,7 @@ public class Utility {
 	public static String[] readListOfWords() {
 		String string[] = null;
 		try {
-			FileReader fr = new FileReader("/home/brideit/file.txt");
+			FileReader fr = new FileReader("/home/brideit/doc.txt");
 			BufferedReader br = new BufferedReader(fr);
 
 			String string2 = "";
@@ -867,17 +861,18 @@ public class Utility {
 	 * @param month
 	 * @param year
 	 */
-	public static void calculateDayOfWeek(int day, int month, int year) {
+	public static void calculateDayOfWeek(int day, int month, int year)
+	{
 		int d, y, x, m;
 		y = year - (14 - month) / 12;
 		x = y + y / 4 - y / 100 + y / 400;
-		m = (month + 12 * ((14 - month) / 12) - 2);
-		d = (day + x + 31) * (m / 12) % 7;
+		m = month + 12 * ((14 - month) / 12) - 2;
+		d = (day + x + (31*m) / 12) % 7;
 
 		switch (d) {
 		case 0:
 			System.out.println("0");
-			System.out.println(day + " /" + month + " /" + year + " Sunday");
+			System.out.println(day + "/" + month + "/" + year + " Sunday");
 			break;
 
 		case 1:
@@ -967,11 +962,12 @@ public class Utility {
 	 * @return findsqureRoot and return double value
 	 */
 	public static double findSqrt(double number) {
-		double t = number;
+		double t = abs(number);
+		System.out.println("T  : "+t);
 		double e = 1E-15;
 
-		while (Math.abs(t - (number / t)) > (e * t)) {
-			t = ((number / t) + t) / 2.0;
+		while (Math.abs(t - (abs(number) / t)) > (e * t)) {
+			t = ((abs(number) / t) + t) / 2.0;
 		}
 
 		return t;
@@ -1055,15 +1051,26 @@ public class Utility {
 		int i, j = 0;
 		int array1[] = new int[mid];
 		int array2[] = new int[mid];
-
+        System.out.println();
+        System.out.print("First  4 Bit Digit : ");
 		for (i = 0; i < mid; i++) {
 			array1[i] = array[i];
 		}
+		for(int value : array1)
+		{
+		 System.out.print(value+" ");	
+		}
 		int p;
-		for (p = i, j = 0; p < array.length && j <= array2.length; p++, j++) {
+		System.out.println();
+	    System.out.print("second 4 Bit Digit : ");
+	  	for (p = i, j = 0; p < array.length && j <= array2.length; p++, j++) {
 			array2[j] = array[p];
 		}
-
+		for(int value : array2)
+		{
+		 System.out.print(value+" ");	
+		}
+        
 		int r, q, tmp;
 		for (r = 0, q = 0; r < array1.length && q < array2.length; r++, q++) {
 			tmp = array1[r];
@@ -1097,7 +1104,7 @@ public class Utility {
 			}
 		}
 
-		System.out.println("Value : " + value);
+	
 
 		array2 = powerOf(array.length);
 
