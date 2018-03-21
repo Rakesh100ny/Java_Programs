@@ -2,19 +2,19 @@ package com.bridgelab.designpattern.singletonpattern;
 
 public class ThreadSafeSingletonUsingDoubleCheckedLocking
 {
-private static ThreadSafeSingletonUsingDoubleCheckedLocking instance;
+private static ThreadSafeSingletonUsingDoubleCheckedLocking INSTANCE;
     
     private ThreadSafeSingletonUsingDoubleCheckedLocking(){}
     
     public static synchronized ThreadSafeSingletonUsingDoubleCheckedLocking getInstance(){
-    	if(instance == null){
+    	if(INSTANCE == null){
             synchronized (ThreadSafeSingletonUsingDoubleCheckedLocking.class) {
-                if(instance == null){
-                    instance = new ThreadSafeSingletonUsingDoubleCheckedLocking();
+                if(INSTANCE == null){
+                    INSTANCE = new ThreadSafeSingletonUsingDoubleCheckedLocking();
                 }
             }
         }
-        return instance;
+        return INSTANCE;
     }
 
 }

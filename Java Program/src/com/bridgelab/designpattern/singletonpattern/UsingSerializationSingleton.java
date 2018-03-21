@@ -9,10 +9,10 @@ public class UsingSerializationSingleton implements Serializable
 	    private UsingSerializationSingleton(){}
 	    
 	    private static class SingletonHelper{
-	        private static final UsingSerializationSingleton instance = new UsingSerializationSingleton();
+	        private static final UsingSerializationSingleton INSTANCE = new UsingSerializationSingleton();
 	    }
 	    
 	    public static UsingSerializationSingleton getInstance(){
-	        return SingletonHelper.instance;
+	        return SingletonHelper.INSTANCE;
 	    }
 }

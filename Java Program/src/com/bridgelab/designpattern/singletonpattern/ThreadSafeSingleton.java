@@ -2,14 +2,14 @@ package com.bridgelab.designpattern.singletonpattern;
 
 public class ThreadSafeSingleton {
 
-private static ThreadSafeSingleton instance;
+private static ThreadSafeSingleton INSTANCE;
     
     private ThreadSafeSingleton(){}
     
     public static synchronized ThreadSafeSingleton getInstance(){
-        if(instance == null){
-            instance = new ThreadSafeSingleton();
+        if(INSTANCE == null){
+            INSTANCE = new ThreadSafeSingleton();
         }
-        return instance;
+        return INSTANCE;
     }
 }

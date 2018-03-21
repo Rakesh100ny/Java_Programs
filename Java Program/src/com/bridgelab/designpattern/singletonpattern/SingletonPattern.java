@@ -3,6 +3,9 @@ package com.bridgelab.designpattern.singletonpattern;
 import java.io.Serializable;
 
 public class SingletonPattern implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
 	public static void main(String[] args) {
 		System.out.print("\n\t\t\t\t       Eager Initialization Instance");
 		System.out.print("\n\t\t\t\t----------------------------------------");

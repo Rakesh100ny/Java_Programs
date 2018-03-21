@@ -2,14 +2,14 @@ package com.bridgelab.designpattern.singletonpattern;
 
 public class LazyInitialization
 {
-private static LazyInitialization instance;
+private static LazyInitialization INSTANCE;
     
     private LazyInitialization(){}
     
     public static LazyInitialization getInstance(){
-        if(instance == null){
-            instance = new LazyInitialization();
+        if(INSTANCE == null){
+            INSTANCE = new LazyInitialization();
         }
-        return instance;
+        return INSTANCE;
     }
 }
