@@ -1,11 +1,11 @@
 package com.bridgelab.utility;
 
 
-public class Stack 
+public class Stack<T> 
 {
 	 private Node top;
 	 
-	 public void push(int val)
+	 public void push(T val)
 	 {
 	  Node nd=new Node(val);
 	  nd.next=top;
@@ -13,10 +13,10 @@ public class Stack
 	  
 	 }
 		
-	 public int pop()
+	 public T pop()
 	 { 
-	  if(top==null)return -1;
-	  int n=top.val;
+	  if(top==null)return null;
+	  T n=(T)top.val;
 	  top=top.next;
 	  return n;
 	 }
@@ -24,9 +24,9 @@ public class Stack
 	 public void print() 
 	 {
 	  Node forword=top;
-	  int n=forword.val;
+	  T n=(T)forword.val;
 	  
-	  while((n=pop())!=-1)
+	  while((n=pop())!=null)
 	  {
 	   System.out.print(n+" ");	  
 	  }
@@ -46,14 +46,14 @@ public class Stack
 	 } 
 	*/
 
-	class Node
+	class Node<T>
 	 {
-	  public int val;
+	  public T val;
 	  public Node next;
 	  
 	  Node(){}
 	  
-	  Node(int val)
+	  Node(T val)
 	  {
 	   this.val=val;	  
 	  }

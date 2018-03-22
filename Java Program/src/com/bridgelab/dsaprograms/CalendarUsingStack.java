@@ -47,8 +47,8 @@ public class CalendarUsingStack
 		
 		stack2.push(year);
 	
-		int mon=stack1.pop();
-		int y=stack2.pop();
+		int mon=(int)stack1.pop();
+		int y=(int)stack2.pop();
 		
 		String result="";
 		switch (mon) 
