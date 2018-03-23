@@ -51,7 +51,7 @@ public class UnorderListDemo {
 					index = list.index(key);
 					System.out.print("Apply the action after Result : ");
 					System.out.println(key + " Key is Found at the " + index + " index");
-					list.remove(key);
+					list.remove2(key);
 					list.print();
 					System.out.println("After Remove Item Print List  : " + list);
 					Utility.fileUpdate(list, choice);
@@ -87,7 +87,7 @@ public class UnorderListDemo {
 					index2 = list2.index(key2);
 					System.out.print("Apply the action after Result : ");
 					System.out.println(key2 + " Key is Found at the " + index2 + " index");
-					list2.remove(key2);
+					list2.remove2(key2);
 					list2.print();
 					System.out.println("After Remove Item Print List  : " + list2);
 					Utility.fileUpdate(list2, choice);

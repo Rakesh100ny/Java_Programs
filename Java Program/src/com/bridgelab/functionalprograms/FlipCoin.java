@@ -18,6 +18,6 @@ public class FlipCoin {
 		int number = utility.inputInteger();
 
 		Utility.calculatePercentage(number);
-	
+
 	}
 }

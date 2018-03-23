@@ -19,7 +19,7 @@ public class temperaturConversion {
 		System.out.print("Fahrenheit Temperature To Celsius : ");
 		fahrenheit = Utility.FTC(fahrenheit);
 		System.out.print(fahrenheit);
-         System.out.println();
+		System.out.println();
 		System.out.print("Enter the Celsius Temperature     : ");
 		int celsius = utility.inputInteger();
 		System.out.print("Celsius Temperature To Fahrenheit : ");

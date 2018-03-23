@@ -17,6 +17,6 @@ public class Permutation {
 		System.out.print("Enter a String : ");
 		String string = utility.inputString();
 
-		Utility.permutateString("",string);
+		Utility.permutateString("", string);
 	}
 }

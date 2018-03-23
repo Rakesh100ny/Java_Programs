@@ -1,3 +1,14 @@
+/******************************************************************************
+ *  
+ *  Purpose : Making NodeOfUserDefind and Performing OrderLinkedList and
+ *            UnorderLinkedList
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ******************************************************************************/
+
+
 package com.bridgelab.utility;
 
 public class Node<T>
