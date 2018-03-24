@@ -306,8 +306,37 @@ public class AddressBookOperation {
 
 		System.out.println("\n\t\t\t\tAfter Apply Sorting : ");
 		System.out.println("\n\t\t\t\t[ ");
-		for (String x : arr) {
-			System.out.println("\t\t\t\t   " + x);
+		System.out.println("\t\t\t\t                                            D I S P L A Y-B Y-Z I P C O D E");
+		System.out.println(
+				"\t\t\t\t------------------------------------------------------------------------------------------------------------");
+		System.out.println(
+				"\t\t\t\tFirst_Name | Last_Name  |   User_Mobile   |     User_Address     | User_ZipCode |  User_City  |   User_State ");
+
+		for (int i = 0; i < arr.length; i++) {
+			String zip = arr[i];
+			JSONParser parser2 = new JSONParser();
+			Object obj2 = parser2.parse(new FileReader(file));
+			JSONObject object2 = (JSONObject) obj2;
+			JSONArray storeData2 = (JSONArray) object2.get("Book_Data");
+			JSONObject toCheck2 = null;
+			for (int p = 0; p < storeData2.size(); p++) {
+				toCheck2 = (JSONObject) storeData2.get(p);
+				String zipCode = toCheck2.get("User_ZipCode").toString();
+				if (zip.equals(zipCode)) {
+
+					String firstName = (String) toCheck2.get("First_Name");
+					String lastName = (String) toCheck2.get("Last_Name");
+					String userMobileNo = (String) toCheck2.get("User_Mobile");
+					String userAddress = (String) toCheck2.get("User_Address");
+					String userCity = (String) toCheck2.get("User_City");
+					String userState = (String) toCheck2.get("User_State");
+
+					System.out.printf("%40s  %10s  %16s  %14s  %19s  %15s  %11s", firstName, lastName, userMobileNo,
+							userAddress, zipCode, userCity, userState);
+					System.out.println();
+				}
+			}
+
 		}
 		System.out.println("\t\t\t\t]");
 
@@ -320,9 +349,11 @@ public class AddressBookOperation {
 		JSONArray storeData = (JSONArray) object.get("Book_Data");
 		JSONObject toCheck = null;
 		String arr[] = new String[storeData.size()];
+
 		for (int i = 0; i < storeData.size(); i++) {
 			toCheck = (JSONObject) storeData.get(i);
 			arr[i] = (String) toCheck.get("First_Name");
+
 		}
 		System.out.println("\n\t\t\t\tBefore Apply Sorting : ");
 		System.out.println("\n\t\t\t\t[ ");
@@ -337,11 +368,39 @@ public class AddressBookOperation {
 
 		System.out.println("\n\t\t\t\tAfter Apply Sorting : ");
 		System.out.println("\n\t\t\t\t[ ");
-		for (String x : arr) {
-			System.out.println("\t\t\t\t   " + x);
+		System.out.println("\t\t\t\t                                            D I S P L A Y-B Y-N A M E");
+		System.out.println(
+				"\t\t\t\t------------------------------------------------------------------------------------------------------------");
+		System.out.println(
+				"\t\t\t\tFirst_Name | Last_Name  |   User_Mobile   |     User_Address     | User_ZipCode |  User_City  |   User_State ");
+
+		for (int i = 0; i < arr.length; i++) {
+			String name = arr[i];
+			JSONParser parser2 = new JSONParser();
+			Object obj2 = parser2.parse(new FileReader(file));
+			JSONObject object2 = (JSONObject) obj2;
+			JSONArray storeData2 = (JSONArray) object2.get("Book_Data");
+			JSONObject toCheck2 = null;
+			for (int p = 0; p < storeData2.size(); p++) {
+				toCheck2 = (JSONObject) storeData2.get(p);
+				String userName = toCheck2.get("First_Name").toString();
+				if (name.equals(userName)) {
+
+					String lastName = (String) toCheck2.get("Last_Name");
+					String userMobileNo = (String) toCheck2.get("User_Mobile");
+					String userAddress = (String) toCheck2.get("User_Address");
+					String userZip = (String) toCheck2.get("User_ZipCode");
+					String userCity = (String) toCheck2.get("User_City");
+					String userState = (String) toCheck2.get("User_State");
+
+					System.out.printf("%40s  %10s  %16s  %14s  %19s  %15s  %11s", userName, lastName, userMobileNo,
+							userAddress, userZip, userCity, userState);
+					System.out.println();
+				}
+			}
+
 		}
 		System.out.println("\t\t\t\t]");
 
 	}
-
 }

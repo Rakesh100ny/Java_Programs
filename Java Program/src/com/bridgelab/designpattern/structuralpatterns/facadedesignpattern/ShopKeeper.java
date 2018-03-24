@@ -1,25 +1,26 @@
 package com.bridgelab.designpattern.structuralpatterns.facadedesignpattern;
 
 public class ShopKeeper {  
-    private MobileShop iphone;  
-    private MobileShop samsung;  
-    private MobileShop blackberry;  
+    private JewelleryShop ear_ring;  
+    private JewelleryShop nacklace;  
+    private JewelleryShop chain;  
       
     public ShopKeeper(){  
-        iphone= new Iphone();  
-        samsung=new Samsung();  
-        blackberry=new Blackberry();  
+        ear_ring= new EarRings();  
+        nacklace=new Nacklace();  
+        chain=new Chains();  
     }  
-    public void iphoneSale(){  
-        iphone.modelNo();  
-        iphone.price();  
+    
+    public void earRingSale(){  
+        ear_ring.Item();  
+        ear_ring.price();  
     }  
-        public void samsungSale(){  
-        samsung.modelNo();  
-        samsung.price();  
+        public void nacklaceSale(){  
+        nacklace.Item();  
+        nacklace.price();  
     }  
-   public void blackberrySale(){  
-    blackberry.modelNo();  
-    blackberry.price();  
+   public void chainSale(){  
+    chain.Item();  
+    chain.price();  
         }  
 }  

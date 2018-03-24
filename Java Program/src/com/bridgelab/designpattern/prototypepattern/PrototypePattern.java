@@ -15,7 +15,7 @@ public class PrototypePattern
   List<String> list=emp1.getList();
   list.add("Chiku");
   List<String> list1=emp2.getList();
-  list1.remove("Rakesh");
+  list1.remove("Ranu");
   
   
   System.out.println("emp  List : "+emp.getList());
