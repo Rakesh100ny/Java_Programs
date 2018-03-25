@@ -44,7 +44,7 @@ public class UnorderListDemo {
 				System.out.println();
 
 				System.out.print("Enter the Key Which you want  : ");
-				String key = utility.inputString();
+				String key = utility.inputString2();
 				int index = 0;
 				boolean result = list.search(key);
 				if (result) {

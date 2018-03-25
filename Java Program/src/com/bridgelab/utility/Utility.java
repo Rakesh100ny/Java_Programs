@@ -298,6 +298,55 @@ public class Utility {
 			pw.println("\t");
 		}
 	}
+	
+	/**
+	 * @param arr
+	 */
+	public static void display(char[][] arr) {
+		for (char[] row : arr) {
+			System.out.print("\t\t\t      |_" +row[0] + "_|_" +row[1]+  "_|_" + row[2] +"_|");
+			System.out.print("\n");
+		}
+		System.out.print("\n");
+	}
+	/**
+	 * @param arr
+	 * @param xo
+	 * @return
+	 */
+	public static boolean checkCol(char[][] arr,char xo){
+		for(int i=0;i<3;i++){
+			if(arr[0][i] == xo && arr[1][i] == xo && arr[2][i]==xo){
+				return true;
+			}
+		}
+		return false;
+	}
+	/**
+	 * @param arr
+	 * @param xo
+	 * @return
+	 */
+	public static boolean checkRows(char[][] arr,char xo){
+		for(int i=0;i<3;i++){
+			if(arr[i][0] == xo && arr[i][1] == xo && arr[i][2]==xo){
+				return true;
+			}
+		}
+		return false;
+	}
+	/**
+	 * @param arr
+	 * @param xo
+	 * @return
+	 */
+	public static boolean checkDiag(char[][] arr,char xo){
+		if((arr[0][0] == xo && arr[1][1] == xo && arr[2][2]== xo) || (arr[0][2]== xo && arr[1][1] == xo && arr[2][0]==xo)){
+			return true;
+		}else{
+			return false;		
+		}
+	}
 
 	/**
 	 * @param pointX
@@ -821,7 +870,33 @@ public class Utility {
 	public static String[] readListOfWords() {
 		String string[] = null;
 		try {
-			FileReader fr = new FileReader("/home/brideit/doc.txt");
+			FileReader fr = new FileReader("/home/brideit/string.txt");
+			BufferedReader br = new BufferedReader(fr);
+
+			String string2 = "";
+
+			while (true) {
+				string2 = br.readLine();
+				if (string2 == null)
+					break;
+				else
+					string = string2.split(" ");
+			}
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return string;
+	}
+
+	
+	/**
+	 * @return read the data in the file then after return string array
+	 */
+	public static String[] readHashingValue() {
+		String string[] = null;
+		try {
+			FileReader fr = new FileReader("/home/brideit/hashing.txt");
 			BufferedReader br = new BufferedReader(fr);
 
 			String string2 = "";
@@ -1481,6 +1556,7 @@ public class Utility {
 
 	public static void fileUpdate(HashMap<Integer, OrderList> map) {
 		try {
+			System.out.println("HASHMAp : "+map);
 			String string = map.toString();
 			System.out.println(string);
 			FileWriter fw = new FileWriter("/home/brideit/fileupdate.txt");
@@ -1910,6 +1986,78 @@ public class Utility {
 			System.out.println("\n\t\t\tInvalid Date Format...Please Enter Correct Information");
 			return false;
 		}
+
+	}
+
+	public char[][] fill(char[][] arr)
+	{
+
+		for (char[] row : arr)
+		{	
+			Arrays.fill(row, '_');
+		}
+		
+		return arr;
+	}
+
+	public static String[] mergeSort(String[] list) 
+	{
+		String [] sorted = new String[list.length];
+        if (list.length == 1) {
+            sorted = list;
+        } else {
+            int mid = list.length/2;
+            String[] left = null; 
+            String[] right = null;
+            if ((list.length % 2) == 0) {
+                left = new String[list.length/2];
+                right = new String[list.length/2];
+            } else { 
+                left = new String[list.length/2];
+                right = new String[(list.length/2)+1];
+            }
+            int x=0;
+            int y=0;
+            for ( ; x < mid; x++) {
+                left[x] = list[x];
+            }
+            for ( ; x < list.length; x++) {
+                right[y++] = list[x];
+            }
+            left = mergeSort(left);
+            right = mergeSort(right);
+            sorted = mergeArray(left,right);
+        }
+
+        return sorted;
+ 	
+		
+	}
+
+	private static String[] mergeArray(String[] left, String[] right)
+	{
+		   String[] merged = new String[left.length+right.length];
+	        int lIndex = 0;
+	        int rIndex = 0;
+	        int mIndex = 0;
+	        int comp = 0;
+	        while (lIndex < left.length || rIndex < right.length) {
+	            if (lIndex == left.length) {
+	                merged[mIndex++] = right[rIndex++];
+	            } else if (rIndex == right.length) {
+	                merged[mIndex++] = left[lIndex++];
+	            } else {  
+	                comp = left[lIndex].compareTo(right[rIndex]);
+	                if (comp > 0) {
+	                    merged[mIndex++] = right[rIndex++];
+	                } else if (comp < 0) {
+	                    merged[mIndex++] = left[lIndex++];
+	                } else { 
+	                    merged[mIndex++] = left[lIndex++];
+	                }
+	            }   
+	        }
+	        return merged;
 
 	}
 }
