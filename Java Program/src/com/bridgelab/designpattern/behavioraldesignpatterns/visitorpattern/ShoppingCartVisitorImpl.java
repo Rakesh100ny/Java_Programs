@@ -1,8 +1,18 @@
+/******************************************************************************
+ *  
+ *  Purpose : Determine Behavioral Design Pattern and it is ShoppingCartVisitor 
+ *            Class implement ShoppingCartVisitor interface.     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ******************************************************************************/
+
 package com.bridgelab.designpattern.behavioraldesignpatterns.visitorpattern;
 
 public class ShoppingCartVisitorImpl implements ShoppingCartVisitor {
 
-	@Override
+	
 	public int visit(Book book) {
 		int cost=0;
 		//apply 5$ discount if book price is greater than 50
@@ -13,7 +23,7 @@ public class ShoppingCartVisitorImpl implements ShoppingCartVisitor {
 		return cost;
 	}
 
-	@Override
+	
 	public int visit(Fruit fruit) {
 		int cost = fruit.getPricePerKg()*fruit.getWeight();
 		System.out.println(fruit.getName() + " cost = "+cost);

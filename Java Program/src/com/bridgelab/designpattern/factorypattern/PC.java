@@ -1,3 +1,14 @@
+/******************************************************************************
+ *  
+ *  Purpose : Determine Factory Design Pattern and it is My PC Class extends Computer
+ *            Abstract Class.     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ******************************************************************************/
+
+
 package com.bridgelab.designpattern.factorypattern;
 
  class PC extends Computer 

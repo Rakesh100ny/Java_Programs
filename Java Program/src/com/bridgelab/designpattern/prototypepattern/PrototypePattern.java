@@ -1,3 +1,13 @@
+/******************************************************************************
+ *  
+ *  Purpose : Determine Prototype Design Pattern and it is Main Class Taking
+ *            Many Action.     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ******************************************************************************/
+
 package com.bridgelab.designpattern.prototypepattern;
 
 import java.util.List;

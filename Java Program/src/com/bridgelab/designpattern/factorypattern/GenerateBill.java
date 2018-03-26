@@ -1,3 +1,13 @@
+/******************************************************************************
+ *  
+ *  Purpose : Determine Factory Design Pattern and It is Generate Bill Class 
+ *            and Its is Main class and Taking Action.     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ******************************************************************************/
+
 package com.bridgelab.designpattern.factorypattern;
 
 import com.bridgelab.utility.Utility;

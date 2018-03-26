@@ -1,3 +1,13 @@
+/***************************************************************************************
+ *  
+ *  Purpose : Determine Strucral Design Pattern and In AdapterDesignPattern It is 
+ *            Volt Class in this set Volt and also return the volt using setter and geter     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ***************************************************************************************/
+
 package com.bridgelab.designpattern.structuralpatterns.adapterpattern;
 
 public class Volt {

@@ -17,8 +17,8 @@ public class Square {
 		System.out.print("Enter Any Non-Zero Number : ");
 		double number = utility.inputDouble();
 
-		double t = Utility.findSqrt(number);
-		System.out.println("Squre of Number is : " + t);
+		double square = Utility.findSquare(number);
+		System.out.println("Squre of Number is : " + square);
 
 	}
 }

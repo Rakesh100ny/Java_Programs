@@ -14,11 +14,9 @@ import com.bridgelab.utility.Utility;
 public class SearchAndSort {
 	public static void main(String[] args) {
 		Utility utility = new Utility();
-		long start1 = 0, end1 = 0, start2 = 0, end2 = 0, start3 = 0, end3 = 0, start4 = 0, end4 = 0, start5 = 0,
-				end5 = 0, start6 = 0, end6 = 0;
+		long start1 = 0,end1 = 0,start2 = 0,end2 = 0,start3 = 0,end3 = 0,start4 = 0,end4 = 0,start5 = 0,end5 = 0,start6 = 0,end6 = 0;
 		long elapsed1 = 0, elapsed2 = 0, elapsed3 = 0, elapsed4 = 0, elapsed5 = 0, elapsed6 = 0;
 		char input;
-
 		do {
 			System.out.print("\n\t\t\t\t           S O R T & S E A R C H");
 			System.out.print("\n\t\t\t\t--------------------------------------------");
@@ -33,7 +31,7 @@ public class SearchAndSort {
 			System.out.println();
 			System.out.println("\t\t\t\t   Bubble Sort For Integer     : Enter 5 ");
 			System.out.println();
-			System.out.print("\t\t\t\t   Bubble Sort For String      : Enter 6 ");
+			System.out.print("\t\t\t\t     Bubble Sort For String      : Enter 6 ");
 			System.out.println("\n\t\t\t\t---------------------------------------------");
 
 			System.out.print("\n\t\t\t\t    Enter The Choice : ");

@@ -1,3 +1,13 @@
+/**********************************************************************************
+ *  
+ *  Purpose : Determine Strucral Design Pattern and In ProxyDesignPattern It is 
+ *            InternetProxy class implements Internet.     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ***********************************************************************************/
+
 package com.bridgelab.designpattern.structuralpatterns.proxydesignpattern;
 
 import java.util.ArrayList;
@@ -21,7 +31,7 @@ public class InternetProxy implements Internet {
 	        if(!restrictedSites.contains(host.toLowerCase())){
 	            internet.connectTo(host);
 	        }
-	        System.out.println("\n\\t\tMessage...!");
+	        System.out.println("\n\t\tMessage...!");
 	        throw new Exception("Company Restricted  Site View...Please Removed Otherwise the Company Take Action against you");
 	 
 	    }

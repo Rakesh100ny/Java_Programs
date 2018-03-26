@@ -1,3 +1,14 @@
+/**********************************************************************************
+ *  
+ *  Purpose : Determine Strucral Design Pattern and In AdapterDesignPattern Class 
+ *            and Using ClassAdapter and also ObjectAdapter.     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ***********************************************************************************/
+
+
 package com.bridgelab.designpattern.structuralpatterns.adapterpattern;
 
 

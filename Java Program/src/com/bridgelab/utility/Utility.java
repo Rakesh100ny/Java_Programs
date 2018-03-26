@@ -34,7 +34,9 @@ public class Utility {
 	private final static String REGEX_DATE = "<<date>>";
 	private static Scanner scanner;
 	private static Queue queue = new Queue();
-
+	private static JSONObject jsonInventoryObject = new JSONObject();
+	private static JSONArray jsonInventoryArray = new JSONArray();
+	
 	public Utility() {
 		scanner = new Scanner(System.in);
 	}
@@ -889,6 +891,30 @@ public class Utility {
 		return string;
 	}
 
+	/**
+	 * @return read the data in the file then after return string array
+	 */
+	public static String[] readListOfRegexWords() {
+		String string[] = null;
+		try {
+			FileReader fr = new FileReader("/home/brideit/regex.txt");
+			BufferedReader br = new BufferedReader(fr);
+
+			String string2 = "";
+
+			while (true) {
+				string2 = br.readLine();
+				if (string2 == null)
+					break;
+				else
+					string = string2.split(" ");
+			}
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return string;
+	}
 	
 	/**
 	 * @return read the data in the file then after return string array
@@ -1019,7 +1045,7 @@ public class Utility {
 	 * @param number
 	 * @return findsqureRoot and return double value
 	 */
-	public static double findSqrt(double number) {
+	public static double findSquare(double number) {
 		double t = abs(number);
 		System.out.println("T  : " + t);
 		double e = 1E-15;
@@ -1789,11 +1815,27 @@ public class Utility {
 		System.out.println();
 	}
 
-	public static void writeInventory() {
+	public static void writeInventory() throws IOException, ParseException 
+	{
+		FileReader fr = new FileReader("/home/brideit/Inventory.json");
+		BufferedReader br = new BufferedReader(fr);
+
+		if (br.readLine() == null) {
+			addInventoryObject(jsonInventoryArray);
+		} else {
+			jsonInventoryArray = getCurrentInventoryObject();
+			addInventoryObject(jsonInventoryArray);
+		}
+      
+		br.close();
+		
+	}
+
+	private static void addInventoryObject(JSONArray jsonInventoryArray) 
+	{
 		Utility utility = new Utility();
 		JSONObject finalObj = new JSONObject();
-		JSONObject outer = new JSONObject();
-
+		
 		System.out.print("\n\t\t\tEnter the Number that you are want to store Inventory :");
 		int number = utility.inputInteger();
 		String array[] = new String[number];
@@ -1806,7 +1848,6 @@ public class Utility {
 		for (String name : array) {
 			System.out.print("\t\t\tEnter the types of " + name + "  : ");
 			int count = utility.inputInteger();
-			JSONArray jsonArray = new JSONArray();
 			for (int p = 0; p < count; p++) {
 				JSONObject jsonObject = new JSONObject();
 				System.out.print("\t\t\tEnter Name of " + name + "       : ");
@@ -1814,88 +1855,64 @@ public class Utility {
 				jsonObject.put("name", value);
 				System.out.print("\t\t\tEnter Weight of " + name + "     : ");
 				double weight = utility.inputDouble();
-				jsonObject.put("weight", weight);
+				jsonObject.put("weight",weight);
 				System.out.print("\t\t\tEnter Price of " + name + "      : ");
 				double price = utility.inputDouble();
-				jsonObject.put("price", price);
-				jsonObject.put("total", weight * price);
-				jsonArray.add(jsonObject);
+				jsonObject.put("price",price);
+				jsonObject.put("total",weight * price);
+				jsonInventoryArray.add(jsonObject);
 			}
-			finalObj.put(name, jsonArray);
+			
 		}
 
-		outer.put("data", finalObj);
+		jsonInventoryObject.put("Inventory_Data", jsonInventoryArray);
 
 		PrintWriter printWriter = null;
 
 		try {
-			printWriter = new PrintWriter("/home/brideit/info.json");
+			printWriter = new PrintWriter("/home/brideit/Inventory.json");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		printWriter.write(((Object) outer).toString());
+		printWriter.write(jsonInventoryObject.toJSONString());
 		printWriter.close();
+	
+	}
 
+	private static JSONArray getCurrentInventoryObject() throws FileNotFoundException, IOException, ParseException 
+	{
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(new FileReader("/home/brideit/Inventory.json"));
+		JSONObject temp = (JSONObject) obj;
+		JSONArray jsonArray = (JSONArray) temp.get("Inventory_Data");
+		return jsonArray;
 	}
 
 	public static void calculateValueOfInventory() throws FileNotFoundException, IOException, ParseException {
 
 		double totalAmount = 0;
-		JSONParser parser = new JSONParser();
-		Object outer = parser.parse(new FileReader("/home/brideit/info.json"));
-		JSONObject outerobject = (JSONObject) outer;
-		JSONObject jsonObj = (JSONObject) outerobject.get("data");
-
-		JSONArray arr = (JSONArray) jsonObj.get("Rice");
-		JSONObject inner = null;
-
+		JSONParser parse = new JSONParser();
+		Object obj = parse.parse(new FileReader("/home/brideit/Inventory.json"));
+		JSONObject outer = (JSONObject) obj;
+		JSONArray jsonArray = (JSONArray) outer.get("Inventory_Data");
+		JSONObject compareObj;
+		String name = "", price = "", total = "", weight = "";
 		System.out.println();
-		System.out.println("\t\t\t\t            R I C E");
-		System.out.println("\t\t\t\t------------------------------");
-		double riceTotal = 0;
+		System.out.println("\t\t\t                       I N V E N T O R Y -L I S T ");
+		System.out.println("\t\t\t----------------------------------------------------------------------");
+		System.out.println("\t\t\tInventory_Name | Inventory_Weight  | Inventory_Price | Inventory_Total");
 
-		for (int i = 0; i < arr.size(); i++) {
-			inner = (JSONObject) arr.get(i);
-			riceTotal = (double) inner.get("total");
-			totalAmount += riceTotal;
-			System.out.println("\t\t\t\tRice Inventory Name   : " + inner.get("name"));
-			System.out.println("\t\t\t\tRice Inventory Price  : " + inner.get("price"));
-			System.out.println("\t\t\t\tRice Inventory Weight : " + inner.get("weight"));
-			System.out.println("\t\t\t\tRice Total Price      : " + riceTotal);
+		for (int i = 0; i < jsonArray.size(); i++) {
+			compareObj = (JSONObject) jsonArray.get(i);
+			name = (String) compareObj.get("name");
+			weight =  compareObj.get("weight").toString();
+			price = compareObj.get("price").toString();
+			total =  compareObj.get("total").toString();
+			totalAmount += Double.valueOf(total);
+			System.out.printf("  %33s %15s %20s %16s ", name, weight, price, total);
+			System.out.println();
 		}
-		System.out.println();
-		System.out.println("\t\t\t\t            P U L S E ");
-		System.out.println("\t\t\t\t-------------------------------");
-		JSONArray arr2 = (JSONArray) jsonObj.get("Pulse");
-		JSONObject inner2 = null;
-		double pulseTotal = 0;
-		for (int i = 0; i < arr2.size(); i++) {
-			inner2 = (JSONObject) arr2.get(i);
-			pulseTotal = (double) inner2.get("total");
-			totalAmount += pulseTotal;
-			System.out.println("\t\t\t\tPulse Inventory Name   : " + inner2.get("name"));
-			System.out.println("\t\t\t\tPulse Inventory Price  : " + inner2.get("price"));
-			System.out.println("\t\t\t\tPulse Inventory Weight : " + inner2.get("weight"));
-			System.out.println("\t\t\t\tPulse Total Price      : " + pulseTotal);
-		}
-
-		JSONArray arr3 = (JSONArray) jsonObj.get("Wheat");
-		JSONObject inner3 = null;
-		System.out.println();
-		System.out.println("\t\t\t\t            W H E A T ");
-		System.out.println("\t\t\t\t-------------------------------");
-		double wheatTotal = 0;
-		for (int i = 0; i < arr3.size(); i++) {
-			inner3 = (JSONObject) arr3.get(i);
-			wheatTotal = (double) inner3.get("total");
-			totalAmount += wheatTotal;
-			System.out.println("\t\t\t\tWheat Inventory Name   : " + inner3.get("name"));
-			System.out.println("\t\t\t\tWheat Inventory Price  : " + inner3.get("price"));
-			System.out.println("\t\t\t\tWheat Inventory Weight : " + inner3.get("weight"));
-			System.out.println("\t\t\t\tWheat Total Price      : " + wheatTotal);
-		}
-
-		System.out.println("\n\t\t\t\tTotal Amount in the Inventory  : " + totalAmount);
+		System.out.println("\n\t\t\t                 Total Amount in the Inventory  : " + totalAmount);
 
 	}
 
@@ -1927,7 +1944,7 @@ public class Utility {
 		}
 
 		System.out.println();
-		System.out.println("\n\t\t\t\t           STOCK-REPORT");
+		System.out.println("\n\t\t\t\t             STOCK-REPORT");
 		System.out.println("\t\t\t\t-------------------------------------");
 		System.out.printf("\t\t\t\tCompanyName | Shares | Price | Total");
 		System.out.println();
@@ -2059,5 +2076,26 @@ public class Utility {
 	        }
 	        return merged;
 
+	}
+
+	public static UserDetails userDetails()
+	{
+		Utility utility=new Utility();
+		UserDetails information = new UserDetails();
+		System.out.println("\n\t\t\t  U S E R-D E T A I L S");
+		System.out.println("\t\t\t------------------------");
+		System.out.print("\t\t\tEnter the First Name    : ");
+		String firstName =utility.inputString2();
+		information.setFirstName(firstName);
+		System.out.print("\t\t\tEnter the Last Name     : ");
+		String lastName = utility.inputString2();
+		information.setLastName(lastName);
+		System.out.print("\t\t\tEnter the Mobile No     : ");
+		String mobileNo = utility.inputString2();
+		information.setMobileNo(mobileNo);
+		System.out.print("\t\t\tEnter Date [dd-mm-yy]   : ");
+		String date =utility.inputString2();
+		information.setDate(date);
+	    return information;
 	}
 }

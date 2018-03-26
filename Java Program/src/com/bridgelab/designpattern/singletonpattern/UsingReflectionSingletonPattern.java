@@ -1,3 +1,13 @@
+/*************************************************************************************
+ *  
+ *  Purpose : Determine Singleton Design Pattern and it is UsingReflectionSingletonPattern
+ *            Class and Using EagerInitialization Instance.     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ *************************************************************************************/
+
 package com.bridgelab.designpattern.singletonpattern;
 
 import java.lang.reflect.Constructor;

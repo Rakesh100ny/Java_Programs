@@ -1,3 +1,13 @@
+/************************************************************************************
+ *  
+ *  Purpose : Determine Singleton Design Pattern and it is StaticBlockInitialization 
+ *            Using Static Block.     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ************************************************************************************/
+
 package com.bridgelab.designpattern.singletonpattern;
 
 public class StaticBlockInitialization 

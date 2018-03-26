@@ -1,3 +1,13 @@
+/******************************************************************************
+ *  
+ *  Purpose : Determine Prototype Design Pattern and it is ShapeStore Class 
+ *            and It class Support Prototype Pattern    
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ******************************************************************************/
+
 package com.bridgelab.designpattern.prototypepattern;
 
 import java.util.HashMap;

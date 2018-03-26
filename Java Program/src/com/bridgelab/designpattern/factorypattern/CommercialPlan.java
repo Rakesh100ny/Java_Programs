@@ -1,3 +1,13 @@
+/******************************************************************************
+ *  
+ *  Purpose : Determine Factory Design Pattern and it is Commercial Plan Class 
+ *            extends Plan Abstract Class.     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ******************************************************************************/
+
 package com.bridgelab.designpattern.factorypattern;
 
 public class CommercialPlan extends Plan {

@@ -1,3 +1,13 @@
+/******************************************************************************
+ *  
+ *  Purpose : Determine Behavioral Design Pattern and it is RedDress(Item) Class
+ *            implemnt Observable interface.     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ******************************************************************************/
+
 package com.bridgelab.designpattern.behavioraldesignpatterns.observerpattern;
 
 import java.util.ArrayList;

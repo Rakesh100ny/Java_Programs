@@ -44,7 +44,7 @@ public class InventoryDataManagement {
 				System.out.println("\n\t\t\t\tInvalid Choice...!");
 
 			}
-			System.out.print("\n\t\t\t\tDo You Want To Continue (Y/N) : ");
+			System.out.print("\n\t\t\t\t         Do You Want To Continue (Y/N) : ");
 			input = utility.inputCharacter();
 		} while (input == 'Y' || input == 'y');
 

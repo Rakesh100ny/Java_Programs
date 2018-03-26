@@ -1,5 +1,14 @@
-package com.bridgelab.designpattern.structuralpatterns.proxydesignpattern;
+/**********************************************************************************
+ *  
+ *  Purpose : Determine Strucral Design Pattern and In ProxyDesignPattern It is 
+ *            ProxyDemo Main class Taking Action.     
+ *  @author   RakeshSoni
+ *  @version  1.0
+ *  @since    05-03-2018 
+ *    
+ ***********************************************************************************/
 
+package com.bridgelab.designpattern.structuralpatterns.proxydesignpattern;
 
 import com.bridgelab.utility.Utility;
 
