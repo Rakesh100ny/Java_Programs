@@ -1,4 +1,4 @@
-app.controller('homeCtrl', function ($scope, $timeout, $mdSidenav)
+app.controller('homeCtrl', function ($scope, $timeout, $mdSidenav,$state)
 {
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
@@ -7,5 +7,9 @@ app.controller('homeCtrl', function ($scope, $timeout, $mdSidenav)
       return function() {
         $mdSidenav(componentId).toggle();
       };
+    }
+    $scope.sendLogin=function()
+    {
+     $state.go('login');
     }
   });

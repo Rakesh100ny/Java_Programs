@@ -16,6 +16,13 @@ $stateProvider
   controller  : 'homeCtrl'
 })
 
+.state('readJson',
+{
+  url         : '/readJson',
+  templateUrl : 'templates/readingData.html',
+  controller  : 'jsonCtrl'
+})
+
 .state('dashboard',
 {
   url         : '/dashboard',

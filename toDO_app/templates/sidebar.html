@@ -1,28 +1,98 @@
 
-<div layout="column" style="height: 500px;" ng-cloak>
+  <section layout="row">
+    <md-sidenav style="margin-top:4.0em;width:200px;height:790px; "  class="md-sidenav-left" md-component-id="left"  md-disable-backdrop md-whiteframe="4">
+      <md-content  flex layout-padding>
+        <div layout="row" layout-wrap>
 
-  <section layout="row" flex>
+    <div flex="100" layout-align="center" layout="column">
+      <div>
+        <fieldset class="standard">
+          <legend>Manufacturer </legend>
+            <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
+              Apple
+            </md-checkbox>
+            <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
+              Samsung
+            </md-checkbox>
+            <md-checkbox md-no-ink ng-model="hasInk3" aria-label="No Ink Effects">
+              HTC
+            </md-checkbox>
+            <md-checkbox md-no-ink ng-model="hasInk4" aria-label="No Ink Effects">
+              Nokia
+            </md-checkbox>
+            <md-checkbox md-no-ink ng-model="hasInk5" aria-label="No Ink Effects">
+              ZTE
+            </md-checkbox>
+            <md-checkbox md-no-ink ng-model="hasInk6" aria-label="No Ink Effects">
+              Sony
+            </md-checkbox>
+        </fieldset>
+      </div>
+    </div>
+   <div layout-padding>
+   </div>
+    <div flex="100"  layout-align="center" layout="column">
+      <div>
+        <fieldset class="standard">
+          <legend>Screen Size </legend>
+            <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
+              16 GB
+            </md-checkbox>
+            <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
+              32 GB
+            </md-checkbox>
 
-    <md-sidenav class="md-sidenav-left" md-component-id="left"
-                md-disable-backdrop md-whiteframe="4">
+        </fieldset>
+      </div>
+    </div>
 
-      <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
-      </md-toolbar>
 
-      <md-content layout-margin>
-        <p>
-          This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
-        </p>
-        <md-button ng-click="toggleLeft()" class="md-accent">
-          Close this Sidenav
-        </md-button>
+    <div layout-padding>
+    </div>
+     <div flex="100"  layout-align="center" layout="column">
+       <div>
+         <fieldset class="standard">
+           <legend>OS </legend>
+             <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
+               Android
+             </md-checkbox>
+             <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
+               iOS
+             </md-checkbox>
+             <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
+               Windows
+             </md-checkbox>
+
+         </fieldset>
+       </div>
+     </div>
+
+     <div layout-padding>
+     </div>
+      <div flex="100"  layout-align="center" layout="column">
+        <div>
+          <fieldset class="standard">
+            <legend>Camera </legend>
+              <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
+                5 Mpx
+              </md-checkbox>
+              <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
+                8 Mpx
+              </md-checkbox>
+              <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
+                12 Mpx
+              </md-checkbox>
+
+              <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
+                15 Mpx
+              </md-checkbox>
+          </fieldset>
+        </div>
+      </div>
+
+  </div>
+
       </md-content>
+  </md-sidenav>
 
-    </md-sidenav>
-
-
-
-  </section>
-
-</div>
+</section>
