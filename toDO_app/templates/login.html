@@ -31,8 +31,8 @@
     </div>
   </md-input-container>
 </md-content>
-<center><md-button ng-click="sendHome()"  class="md-primary md-raised" ng-disabled="myForm.email.$error ||
-   myForm.password.$error">Login</md-button></center>
+<center><md-button ng-click="sendHome()"  class="md-primary md-raised" ng-disabled="myForm.email.$error.required && myForm.email.$error.email ||
+             myForm.password.$error.required && myForm.password.$error.nd-maxlength && myForm.password.$error.minlength">Login</md-button></center>
 
 </form>
 </md-card>

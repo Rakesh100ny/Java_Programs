@@ -1,4 +1,4 @@
-app.controller('homeCtrl', function ($scope, $timeout, $mdSidenav,$state)
+app.controller('homeCtrl', function ($scope, $timeout, $mdSidenav,$state,readJson)
 {
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
@@ -12,4 +12,9 @@ app.controller('homeCtrl', function ($scope, $timeout, $mdSidenav,$state)
     {
      $state.go('login');
     }
+
+    $scope.getData = readJson.getJson();
+    $scope.getData.then(function(response){
+      $scope.jsonRecord = response;
+    })
   });

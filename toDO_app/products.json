@@ -4,7 +4,7 @@
     "name": "Sony Xperia Z3",
     "price": 899,
     "specs": {
-      "manufacturer": "Sony",
+        "manufacturer": "Sony",
       "storage": 16,
       "os": "Android",
       "camera": 15

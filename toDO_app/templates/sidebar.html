@@ -1,10 +1,22 @@
 
   <section layout="row">
-    <md-sidenav style="margin-top:4.0em;width:200px;height:790px; "  class="md-sidenav-left" md-component-id="left"  md-disable-backdrop md-whiteframe="4">
+    <md-sidenav style="margin-top:4.0em;width:200px;height:790px;position: fixed;z-index: 1;"  class="md-sidenav-left" md-component-id="left"  md-disable-backdrop md-whiteframe="4">
       <md-content  flex layout-padding>
         <div layout="row" layout-wrap>
+          <div>
+            <fieldset class="standard">
+              <legend>Manufacturer </legend>
+                      <md-checkbox md-no-ink ng-value="x" ng-repeat="x in jsonRecord" ng-model="hasInk1" aria-label="No Ink Effects">
+                          {{ x.specs.manufacturer+" " }}
+                    </md-checkbox>
 
-    <div flex="100" layout-align="center" layout="column">
+
+                </fieldset>
+              </div>
+
+            </div>
+
+    <!-- <div flex="100" layout-align="center" layout="column">
       <div>
         <fieldset class="standard">
           <legend>Manufacturer </legend>
@@ -92,7 +104,7 @@
 
   </div>
 
-      </md-content>
+      </md-content> -->
   </md-sidenav>
 
 </section>

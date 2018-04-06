@@ -23,11 +23,10 @@ $stateProvider
   controller  : 'jsonCtrl'
 })
 
-.state('dashboard',
+.state('home.dashboard',
 {
   url         : '/dashboard',
-  templateUrl : 'templates/dashboard.html',
-  controller  : 'dashboardCtrl'
+  templateUrl : 'templates/dashboard.html'
 });
   $urlRouterProvider.otherwise('/login');
 }]);
