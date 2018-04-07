@@ -1,1 +1,78 @@
-vgvcbcvnvbnmvbm
+
+  <div layout="row">
+    <div flex="15" style="background-color:lightyellow;">
+    </div>
+    <div flex="80" layout="row" style="background-color:lightblue;">
+     
+
+      <div flex="40">
+        <md-card>
+          <md-card-header>
+            <md-card-avatar>
+              <img class="md-user-avatar" src="images/galaxy-alpha.jpg">
+            </md-card-avatar>
+            <md-card-header-text>
+              <span class="md-title" ng-value="x" ng-repeat="x in jsonRecord">{{ x.name+" " | filter:'id'}}</span>
+              <span class="md-subhead">Sub header</span>
+            </md-card-header-text>
+          </md-card-header>
+          <img ng-src="images/galaxy-alpha.jpg" class="md-card-image" alt="image caption">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">Card headline</span>
+              <span class="md-subhead">Card subheader</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="start center">
+            <md-button>Action 1</md-button>
+            <md-button>Action 2</md-button>
+            <md-card-icon-actions>
+              <md-button class="md-icon-button" aria-label="icon">
+                <md-icon md-svg-icon="icon"></md-icon>
+              </md-button>
+            </md-card-icon-actions>
+          </md-card-actions>
+          <md-card-content>
+            <p>
+             Card content
+            </p>
+          </md-card-content>
+        </md-card>
+      </div>
+
+      <div flex="40">
+        <md-card>
+          <img class="md-card-image" src="card-image.png" alt="image caption">
+          <md-card-content>
+            <h2>Card headline</h2>
+            <p>Card content</p>
+          </md-card-content>
+          <md-card-footer>
+          Card footer
+          </md-card-footer>
+          <div class="md-actions" layout="row|column" layout-align="start|end|center start|end|center">
+             <md-button>content</md-button>
+           </div>
+        </md-card>
+      </div>
+
+      <div flex="40">
+        <md-card>
+          <img class="md-card-image" src="card-image.png" alt="image caption">
+          <md-card-content>
+            <h2>Card headline</h2>
+            <p>Card content</p>
+          </md-card-content>
+          <md-card-footer>
+          Card footer
+          </md-card-footer>
+          <div class="md-actions" layout="row|column" layout-align="start|end|center start|end|center">
+             <md-button>content</md-button>
+           </div>
+        </md-card>
+      </div>
+    </div>
+    <div flex="20" style="background-color:lightgreen;">
+
+    </div>
+ </div>

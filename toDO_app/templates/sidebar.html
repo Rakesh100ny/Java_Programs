@@ -5,7 +5,7 @@
       <div flex="100" layout-align="center" layout="column">
             <fieldset class="standard">
               <legend>Manufacturer </legend>
-                     <div ng-repeat="x in jsonRecord  | unique:'specs.manufacturer'">
+                     <div ng-repeat="x in jsonRecord  | unique:'specs.manufacturer' | orderBy : 'specs.manufacturer'" >
                        <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
                   </md-checkbox>
                       {{ x.specs.manufacturer+" " }}
@@ -13,8 +13,8 @@
                 </fieldset>
                 <div layout-padding></div>
                 <fieldset  class="standard">
-                  <legend>Screen Size </legend>
-                         <div ng-repeat="x in jsonRecord unique:'specs.storage'">
+                  <legend>Storage </legend>
+                         <div ng-repeat="x in jsonRecord | unique:'specs.storage '">
                            <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
                              {{ x.specs.storage+" " }}
                         </md-checkbox>
@@ -24,7 +24,7 @@
                     <div layout-padding></div>
                     <fieldset class="standard">
                       <legend>OS </legend>
-                             <div ng-repeat="x in jsonRecord">
+                             <div ng-repeat="x in jsonRecord | unique:'specs.os'">
                                <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
                                  {{ x.specs.os+" " }}
                             </md-checkbox>
@@ -34,7 +34,7 @@
                         <div layout-padding></div>
                         <fieldset class="standard">
                           <legend>Camera </legend>
-                                 <div ng-repeat="x in jsonRecord">
+                                 <div ng-repeat="x in jsonRecord| unique:'specs.camera' | orderBy : 'specs.camera'">
                                    <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
                                      {{ x.specs.camera+" " }}
                                 </md-checkbox>

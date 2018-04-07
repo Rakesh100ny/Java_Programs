@@ -1,7 +1,16 @@
-var app=angular.module('myApp',['ui.router','ngMaterial','ngMessages']);
+var app=
+angular.module('myApp',['ui.router','ngMaterial','ngMessages','angular.filter']);
 app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider)
 {
 $stateProvider
+
+.state('test',
+{
+  url         : '/test',
+  templateUrl : 'templates/test.html',
+  controller  : 'mainController'
+})
+
 .state('login',
 {
   url         : '/login',
@@ -26,7 +35,8 @@ $stateProvider
 .state('home.dashboard',
 {
   url         : '/dashboard',
-  templateUrl : 'templates/dashboard.html'
+  templateUrl : 'templates/dashboard.html',
+  controller  : 'dashboardCtrl'
 });
   $urlRouterProvider.otherwise('/login');
 }]);

@@ -12,48 +12,15 @@ app.controller('homeCtrl', function ($scope, $timeout, $mdSidenav,$state,readJso
     {
      $state.go('login');
     }
-
+    var arr=[];
     $scope.getData = readJson.getJson();
     $scope.getData.then(function(response){
       $scope.jsonRecord = response;
+      angular.forEach($scope.jsonRecord, function(value, key) {
+    // console.log("VALUE",value.specs.os);
+    arr.push(value.specs.os)
+    console.log(arr);
+  });
+      // console.log("$scope.jsonRecord",$scope.jsonRecord);
     })
   });
-
-app.filter('unique', function () {
-
-  return function (items, filterOn) {
-
-    if (filterOn === false) {
-      return items;
-    }
-
-    if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
-      var hashCheck = {}, newItems = [];
-
-      var extractValueToCompare = function (item) {
-        if (angular.isObject(item) && angular.isString(filterOn)) {
-          return item[filterOn];
-        } else {
-          return item;
-        }
-      };
-
-      angular.forEach(items, function (item) {
-        var valueToCheck, isDuplicate = false;
-
-        for (var i = 0; i < newItems.length; i++) {
-          if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
-            isDuplicate = true;
-            break;
-          }
-        }
-        if (!isDuplicate) {
-          newItems.push(item);
-        }
-
-      });
-      items = newItems;
-    }
-    return items;
-  };
-});
