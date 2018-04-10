@@ -91,6 +91,7 @@ public class AddressBookOperation {
 	}
 
 	public void edit() throws FileNotFoundException, IOException, ParseException {
+		displayAddressBook();
 		System.out.println("\n\t\t\t\tEnter the Full-Name Which You are want to edit Details...!");
 		System.out.print("\t\t\t\tEnter the First Name : ");
 		String firstName = utility.inputString2();
@@ -199,6 +200,35 @@ public class AddressBookOperation {
 		}
 	}
 
+	private void displayAddressBook() throws FileNotFoundException, IOException, ParseException 
+	{
+		JSONParser parse = new JSONParser();
+		Object obj = parse.parse(new FileReader(file));
+		JSONObject outer = (JSONObject) obj;
+		JSONArray jsonArray = (JSONArray) outer.get("Book_Data");
+		JSONObject compareObj;
+		String firstName = "", lastName = "", address = "", city = "", state = "", zip = "", mobileNo = "";
+		System.out.println();
+		System.out.println("\t\t\t\t                          A D D R E S S -L I S T ");
+		System.out.println("\t\t\t\t--------------------------------------------------------------------------------------------------");
+		System.out.println("\t\t\t\tDisplay_First_Name | Last_Name  | User_Address | User_City | User_State | User_Zip | User_MobileNo");
+
+		for (int i = 0; i < jsonArray.size(); i++) {
+			compareObj = (JSONObject) jsonArray.get(i);
+			firstName = (String) compareObj.get("First_Name");
+			lastName = (String) compareObj.get("Last_Name");
+			address = (String) compareObj.get("User_Address");
+			city = (String) compareObj.get("User_City");
+			state = (String) compareObj.get("User_State");
+			zip = (String) compareObj.get("User_ZipCode");
+			mobileNo = (String) compareObj.get("User_Mobile");
+
+			System.out.printf("  %40s %18s %13s %14s %9s %12s %15s", firstName, lastName, address, city, state, zip, mobileNo);
+			System.out.println();
+		}
+	}
+
+
 	private boolean isfindDetails(String firstName, String lastName)
 			throws FileNotFoundException, IOException, ParseException {
 		JSONParser parser = new JSONParser();
@@ -218,6 +248,7 @@ public class AddressBookOperation {
 	}
 
 	public void delete() throws FileNotFoundException, IOException, ParseException {
+		displayAddressBook();
 		System.out.print("\n\t\t\t\tEnter the Full-Name Which You are want to edit Details...!");
 		System.out.print("\n\t\t\t\tEnter First Name Who's Record You Want to Delete : ");
 		String firstName = utility.inputString2();

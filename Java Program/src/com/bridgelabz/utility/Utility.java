@@ -18,16 +18,23 @@ import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import com.bridgelabz.oop.addressBookUsingOOP.Person;
+
 import static java.lang.Math.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.awt.Toolkit;
 
 public class Utility {
+	
 	private final static String REGEX_NAME = "<<name>>";
 	private final static String REGEX_FULLNAME = "<<full name>> ";
 	private final static String REGEX_MOBILE_NO = "xxxxxxxxxx";
@@ -36,11 +43,11 @@ public class Utility {
 	private static Queue queue = new Queue();
 	private static JSONObject jsonInventoryObject = new JSONObject();
 	private static JSONArray jsonInventoryArray = new JSONArray();
-	
-	public Utility() {
-		scanner = new Scanner(System.in);
-	}
 
+	public Utility()
+	{
+	 scanner=new Scanner(System.in);	
+	}
 	/**
 	 * @return string input given by the user
 	 */
@@ -2097,5 +2104,17 @@ public class Utility {
 		String date =utility.inputString2();
 		information.setDate(date);
 	    return information;
+	}
+
+	
+	public ArrayList<Person> readJsonDataConvertIntoList(File fileName) throws IOException 
+	{
+		FileReader fr=new FileReader(fileName);
+		BufferedReader br=new BufferedReader(fr);
+		String data=br.readLine();
+		ObjectMapper objectMapper = new ObjectMapper();
+		ArrayList<Person> arrayList = objectMapper.readValue(data, new TypeReference<ArrayList<Person>>(){});
+        System.out.println("list : "+arrayList);
+		return arrayList;
 	}
 }
