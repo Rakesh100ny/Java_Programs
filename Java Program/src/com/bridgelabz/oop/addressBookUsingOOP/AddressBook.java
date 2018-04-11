@@ -17,14 +17,14 @@ import org.json.simple.parser.ParseException;
 import java.io.File;
 import com.bridgelabz.utility.Utility;
 
-public class AddressBook {
+public class AddressBook{
 	static File file;
 	static String fname;
 	static String filePath = "/home/brideit/files/AddressBook/";
-	static ArrayList<Person> arrayList = new ArrayList<>();
+	static ArrayList<Person> arrayList=AddressManager.getList();
 	
 	public static void main(String[] args) throws ParseException, IOException {
-		AddressManager action = new AddressManager();
+		AddressBookInterface action = new AddressManager();
 		Utility utility = new Utility();
 		char input = ' ';
 		do {
@@ -61,7 +61,7 @@ public class AddressBook {
 					System.out.printf("%45s %8d Bytes", fileName.getName(), fileName.length());
 					System.out.println();
 				}
-				System.out.print("\n\t\tEnter the File Name Where you want to Add Information :");
+				System.out.print("\n\t\t\tEnter the File Name Where you want to Add Information :");
 				fname = utility.inputString2();
 				arrayList = action.openAddressBook(fname);
 				break;
@@ -81,7 +81,7 @@ public class AddressBook {
 			default:
 				System.out.println("\n\t\t\t\tInvalid Choice...!");
 			}
-			System.out.print("\n\t\t\t\tDo you Want close AddressBook Menu(Y/N) : ");
+			System.out.print("\n\t\t\t\tDo you want to continue AddressBook Menu(Y/N) : ");
 			input = utility.inputCharacter();
 		} while (input == 'Y' || input == 'y');
 	}

@@ -1,24 +1,30 @@
 package com.bridgelabz.oop.addressBookUsingOOP;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import com.bridgelabz.utility.Utility;
 
-public class AddressManager {
+public class AddressManager implements AddressBookInterface {
 	ObjectMapper mapper = new ObjectMapper();
 	File file;
 	String filePath = "/home/brideit/files/AddressBook/";
 	Utility utility = new Utility();
-	ArrayList<Person> arrayList = new ArrayList<Person>();
-
-	public void createNewAddressBook() throws IOException {
+	
+	static ArrayList<Person> arrayList=new ArrayList<Person>();
+	
+	public static ArrayList<Person> getList()
+	{
+     return arrayList;		
+	}
+	
+    public void createNewAddressBook() throws IOException {
 		System.out.print("\n\t\t\t\tEnter the File Name : ");
 		String fileName = utility.inputString2();
 		file = new File(filePath + fileName + ".json");
@@ -27,7 +33,7 @@ public class AddressManager {
 					"\n\t\tThe name " + fileName + " is already used in this location. Please use a different name.");
 		} else {
 			file.createNewFile();
-			mapper.writeValue(file, arrayList);
+			mapper.writeValue(file,arrayList);
 			System.out.println("\n\t\t\t\tFile is Create Successfully...!");
 		}
 	}
@@ -36,8 +42,23 @@ public class AddressManager {
 		file = new File(filePath + fileName + ".json");
 
 		if (file.exists()) {
+			
+			FileReader fr=new FileReader(file);
+			BufferedReader br=new BufferedReader(fr);
+			
+			if(br.readLine()!=null)
+			{
+			 arrayList = utility.readJsonDataConvertIntoList(file);
+             System.out.println("\n\t\t\t\t\tList : "+arrayList);
+			}
+			else
+			{
+			 System.out.println("File is Empty");	
+			}
+			
+			br.close();
 			char info = ' ';
-			PersonManger mangerOperation = new PersonManger();
+			PersonInterface mangerOperation = new PersonManger();
 
 			char input = ' ';
 			do {
@@ -54,23 +75,23 @@ public class AddressManager {
 
 				System.out.print("\n\t\t\t\tEnter Choice : ");
 				int choice = utility.inputInteger();
-
+                 
 				switch (choice) {
 				case 1:
-					arrayList = mangerOperation.add(file);
+					arrayList = mangerOperation.add(arrayList);
 					break;
 
 				case 2:
-					arrayList = mangerOperation.edit(file);
+					arrayList = mangerOperation.edit(arrayList);
 					break;
 
 				case 3:
-					 arrayList = mangerOperation.delete(file);
+					 arrayList = mangerOperation.delete(arrayList);
 										
 					break;
 
 				case 4:
-					arrayList=mangerOperation.sort(file);
+					arrayList=mangerOperation.sort(arrayList);
 					break;
 
 				default:
@@ -105,16 +126,27 @@ public class AddressManager {
 			System.out.printf("%45s %8d Bytes", fileName.getName(), fileName.length());
 			System.out.println();
 		}
-		System.out.print("\n\t\tEnter the File Name Where you want to Add Information :");
+		System.out.print("\n\t\tEnter the File Name Which You want to Save As :");
 		String fname = utility.inputString2();
 		file =new File(filePath+fname+".json");
 			
 		for(File fileName : fileList)
 		{
-         if(file.getName().equals(fileName.getName()))
+	     if(file.getName().equals(fileName.getName()))
          {
-          arrayList = utility.readJsonDataConvertIntoList(fileName);
-           	 
+		  arrayList = utility.readJsonDataConvertIntoList(file);
+
+          System.out.println("\n\t\t\t\tEnter the New File Name  : ");
+          String newFileName=utility.inputString2();
+          System.out.println("\n\t\t\t\tEnter the File Extension : ");
+          String extension=utility.inputString2();
+          
+          file=new File(filePath+newFileName+extension);
+          file.createNewFile();
+          
+          mapper.writeValue(new FileOutputStream(file), arrayList);
+          System.out.println("File is Save As with new Name in the Directory"); 
+       
          }
 		}		
 
@@ -139,7 +171,7 @@ public class AddressManager {
 			System.out.println();
 		}
 
-		System.out.print("\n\t\tEnter the File Name Which you want to Delete :");
+		System.out.print("\n\t\t\tEnter the File Name Which you want to Delete :");
 		String fname = utility.inputString2();
 		file =new File(filePath+fname+".json");
 			
@@ -149,7 +181,7 @@ public class AddressManager {
 		 {
 		  file.delete();
 		  
-		  System.out.println("File is Deleted..!");
+		  System.out.println("\n\t\t\tFile is Deleted..!");
 		 }
 		}
 		

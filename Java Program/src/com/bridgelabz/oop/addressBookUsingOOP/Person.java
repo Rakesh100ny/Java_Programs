@@ -1,5 +1,7 @@
 package com.bridgelabz.oop.addressBookUsingOOP;
 
+import java.util.Comparator;
+
 public class Person
 {
 	private String firstName;
@@ -11,15 +13,6 @@ public class Person
 	private int zip;
 	
 	public Person() {
-	}
-
-	public void Update(String address,long mobileNo,String city,String state,int zip)
-	{
-	 this.address=address;
-	 this.mobileNo=mobileNo;
-	 this.city=city;
-	 this.state=state;
-	 this.zip=zip;
 	}
 	
 	public void setFirstName(String firstName) {
@@ -77,6 +70,36 @@ public class Person
 	public int getZip() {
 		return zip;
 	}
+	
+	public static Comparator<Person> byNameComparator = new Comparator<Person>()
+	{
+			@Override
+			public int compare(Person p1, Person p2) {
+				   String person1 = p1.getLastName().toUpperCase();
+				   String person2 = p2.getLastName().toUpperCase();
+
+				   //ascending order
+				   return person1.compareTo(person2);
+
+				   //descending order
+				   //return StudentName2.compareTo(StudentName1);
+			}
+	};
+	
+	public static Comparator<Person> byZipComparator = new Comparator<Person>()
+	 {
+			@Override
+			public int compare(Person p1, Person p2) {
+				  int person1 = p1.getZip();
+				  int person2 = p2.getZip();
+
+				   /*For ascending order*/
+				   return person1-person2;
+
+				   /*For descending order*/
+				   //rollno2-rollno1;
+			}
+	};
 
 	@Override
 	public String toString() {

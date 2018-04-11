@@ -1,29 +1,24 @@
 package com.bridgelabz.oop.addressBookUsingOOP;
 
 
-import java.io.File;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Collections;
 
 import com.bridgelabz.utility.Utility;
 
-public class PersonManger 
+public class PersonManger implements PersonInterface
 {
-
-
 	AddressManager addressManager = new AddressManager();
 	String filePath = "/home/brideit/files/AddressBook/";
 	private Utility utility = new Utility();
-	Person person = new Person();
-	ArrayList<Person> arrayList=new ArrayList<Person>();
-	public ArrayList<Person> add(File fileName) throws IOException {
-
-		ArrayList<Person> arrayList;
-		arrayList = utility.readJsonDataConvertIntoList(fileName);
-
-		System.out.println("List : " + arrayList);
+	
+	
+	
+	public ArrayList<Person> add(ArrayList<Person> arrayList) throws IOException 
+	{
+		Person person = new Person();
 
 		System.out.println("\n\t\t\t\tP E R S O N-D E T A I L S");
 		System.out.println("\t\t\t\t----------------------------");
@@ -50,13 +45,13 @@ public class PersonManger
 		person.setMobileNo(mobileNo);
 
 		arrayList.add(person);
-		System.out.println(arrayList);
-		;
+		System.out.println();
+		System.out.println("List : "+arrayList);
+		
 		return arrayList;
 	}
 
-	public ArrayList<Person> edit(File fileName) throws IOException {
-		ArrayList<Person> arrayList = utility.readJsonDataConvertIntoList(fileName);
+	public ArrayList<Person> edit(ArrayList<Person> arrayList) throws IOException {
 		System.out.println("\n\t\t\t\tEnter the Full-Name Which You are want to edit Details!");
 		System.out.println();
 		System.out.print("\t\t\t\tEnter the First Name : ");
@@ -65,10 +60,7 @@ public class PersonManger
 		String lastName = utility.inputString2();
 
 		for (int i = 0; i < arrayList.size(); i++) {
-			System.out.println("r1");
-			System.out.println("name : " + arrayList.get(i).getFirstName());
 			if (firstName.equals(arrayList.get(i).getFirstName()) && lastName.equals(arrayList.get(i).getLastName())) {
-				System.out.println("r2");
 				System.out.println("\n\t\t\t\t   E D I T-D E T A I L S");
 				System.out.println("\t\t\t\t--------------------------------");
 				System.out.print("\n\t\t\t\tEdit User   Address : Enter 1");
@@ -87,7 +79,6 @@ public class PersonManger
 				switch (key) {
 
 				case 1:
-					System.out.println("r3");
 					System.out.print("\n\t\t\t\tEnter New User Address   : ");
 					newAddress = utility.inputString2();
 					arrayList.get(i).setAddress(newAddress);
@@ -124,16 +115,15 @@ public class PersonManger
 					System.out.print("\n\t\t\t\tInvalid Key ...Please Enter Valid Key");
 
 				}
-				
+				System.out.println();
 				System.out.println("List : " + arrayList);
 			}
 		}
        return arrayList;
 	}
 
-	public ArrayList<Person> delete(File fileName) throws IOException 
+	public ArrayList<Person> delete(ArrayList<Person> arrayList) throws IOException 
 	{
-		ArrayList<Person> arrayList = utility.readJsonDataConvertIntoList(fileName);
 		System.out.println("\n\t\t\t\tEnter the Full-Name Which You are want to edit Details!");
 		System.out.println();
 		System.out.print("\t\t\t\tEnter the First Name : ");
@@ -142,18 +132,16 @@ public class PersonManger
 		String lastName = utility.inputString2();
 
 		for (int i = 0; i < arrayList.size(); i++) {
-			System.out.println("r1");
-			System.out.println("name : " + arrayList.get(i).getFirstName());
 			if (firstName.equals(arrayList.get(i).getFirstName()) && lastName.equals(arrayList.get(i).getLastName())) {
-				System.out.println("r2");
 			 	arrayList.remove(i);
 			}
-			System.out.println("List : " + arrayList);
 		}
+		System.out.println();
+		System.out.println("List : " + arrayList);
 		return arrayList;
 	}
 
-	public ArrayList<Person> sort(File fileName) throws IOException {
+	public ArrayList<Person> sort(ArrayList<Person> arrayList) throws IOException {
 		System.out.println("\n\t\t\t\t         S O R T-M E N U");
 		System.out.println("\t\t\t\t------------------------------");
 		System.out.print("\n\t\t\t\tSort By Name     : Enter 1");
@@ -164,11 +152,11 @@ public class PersonManger
 
 		switch (choice) {
 		case 1:
-			arrayList=sortByName(fileName);
+			arrayList=sortByName(arrayList);
 			System.out.println("\n\t\t\t\tSuccessfully Sort By Name !");
 			break;
 		case 2:
-			arrayList=sortByZip(fileName);
+			arrayList=sortByZip(arrayList);
 			System.out.println("\n\t\t\t\tSuccessfully Sort By Zip  !");
 			break;
 		default:
@@ -178,48 +166,27 @@ public class PersonManger
 		return arrayList;
 	}
 
-	private ArrayList<Person> sortByZip(File fileName) throws IOException 
+	private ArrayList<Person> sortByZip(ArrayList<Person> arrayList) throws IOException 
 	{
-		arrayList = utility.readJsonDataConvertIntoList(fileName);
-		
-		String array[] = new String[arrayList.size()];              
-		for(int j =0;j<arrayList.size();j++){
-		  array[j] = arrayList.get(j).toString();
-		}
-		
-		
-		System.out.println("\n\t\t\t\tBefore Apply Sorting : ");
-		System.out.println("\n\t\t\t\t[ ");
-		for (String x : array) {
-			System.out.println("\t\t\t\t   " + x);
-		}
-		System.out.println("\t\t\t\t]");
+		 /* Sorting on Rollno property*/
+		   System.out.println("Sorting Accounting to Person ZipCode : ");
+		   Collections.sort(arrayList, Person.byZipComparator);
+		   for(Person str: arrayList){
+				System.out.println(str);
+		   }
 
-		System.out.println();
-
-	/*	array = utility.bubbleSort(array);
-
-		System.out.println("\n\t\t\t\tAfter Apply Sorting : ");
-		System.out.println("\n\t\t\t\t[ ");
-		System.out.println("\t\t\t\t                                            D I S P L A Y-B Y-N A M E");
-		System.out.println(
-				"\t\t\t\t------------------------------------------------------------------------------------------------------------");
-		System.out.println(
-				"\t\t\t\tFirst_Name | Last_Name  |   User_Mobile   |     User_Address     | User_ZipCode |  User_City  |   User_State ");
-
-		for(int i=0;i<array.length;i++)
-		{
-			System.out.printf("%40s  %10s  %16s  %14s  %19s  %15s  %11s", array[i], array[i], array[i],
-					array[i], array[i], array[i], array[i]);	
-		}
-*/		
 		return arrayList;
 	}
 
-	private ArrayList<Person> sortByName(File fileName) 
+	private ArrayList<Person> sortByName(ArrayList<Person> arrayList) 
 	{
-		// TODO Auto-generated method stub
-		return arrayList;
+		 System.out.println("Sorting Accounting to Person Name : ");
+		 Collections.sort(arrayList, Person.byNameComparator);
+
+		   for(Person str: arrayList){
+				System.out.println(str);
+		   }
+	     return arrayList;	  
 	}
 
 	

@@ -25,8 +25,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import com.bridgelabz.oop.addressBookUsingOOP.Person;
+import com.bridgelabz.oop.cliniqueUsingOOP.Patient;
 
 import static java.lang.Math.*;
 import java.io.*;
@@ -2115,6 +2115,7 @@ public class Utility {
 		ObjectMapper objectMapper = new ObjectMapper();
 		ArrayList<Person> arrayList = objectMapper.readValue(data, new TypeReference<ArrayList<Person>>(){});
         System.out.println("list : "+arrayList);
+        br.close();
 		return arrayList;
 	}
 }
