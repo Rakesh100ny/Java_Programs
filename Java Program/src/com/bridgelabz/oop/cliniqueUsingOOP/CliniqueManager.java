@@ -1,29 +1,29 @@
 package com.bridgelabz.oop.cliniqueUsingOOP;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.Signature;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import com.bridgelabz.utility.Utility;
 
-public class CliniqueManager implements ManagerInterface 
+public class CliniqueManager implements ManagerInterface,SubManagerInterface 
 { 
-	ObjectMapper mapper = new ObjectMapper();
-	String doctorFile = "/home/brideit/files/Clinique/doctor.json";
-	String patientFile = "/home/brideit/files/Clinique/patient.json";
-	String appointmentFile = "/home/brideit/files/Clinique/appointment.json";
-    ArrayList<Doctor> doctorList=new ArrayList<Doctor>();
-    ArrayList<Patient> patientList=new ArrayList<Patient>(); 
-	ObjectMapper objectMapper = new ObjectMapper();
-    Utility utility=new Utility();
+	private static String doctorFile = "/home/brideit/files/Clinique/doctor.json";
+	private static String patientFile = "/home/brideit/files/Clinique/patient.json";
+	private static String appointmentFile = "/home/brideit/files/Clinique/appointment.json";
+    private ArrayList<Doctor> doctorList=new ArrayList<Doctor>();
+    private ArrayList<Patient> patientList=new ArrayList<Patient>(); 
+    private ArrayList<Appointment> appointmentList=new ArrayList<Appointment>(); 
+    ObjectMapper mapper = new ObjectMapper();
 	@Override
 	public void add() throws IOException {
 		System.out.print("\n\t\t\t\t           A D D-D E T A I L S");
@@ -31,7 +31,7 @@ public class CliniqueManager implements ManagerInterface
 		System.out.println("\t\t\t\t          Add Doctor  : Enter 1 ");
 		System.out.println("\t\t\t\t          Add Patient : Enter 2 ");
 		System.out.print("\n\t\t\t       Enter the Choice Which You Want to Add : ");
-		int choice = utility.inputInteger();
+		int choice = SingletonOfUtility.getInstance().inputInteger();
 
 		switch (choice) {
 
@@ -48,75 +48,84 @@ public class CliniqueManager implements ManagerInterface
 		
 	}
 
-	private void addPatient() throws IOException 
+	public void addPatient() throws IOException 
 	{
-		FileReader fr=new FileReader(patientFile);
-		BufferedReader br=new BufferedReader(fr);
-		String data=br.readLine();
-		if(data!=null)
-		{
-		 patientList = objectMapper.readValue(data, new TypeReference<ArrayList<Patient>>(){});
-	    }
-		else
-		{
-		 System.out.println("\n\t\t\t\tFile is Empty");	
-		}
-		
-		br.close();
-		
-		Patient patient=new Patient();
-		System.out.println("\n\t\t\t\t    P A T I E N T-D E T A I L S");
-		System.out.println("\t\t\t\t---------------------------------");
-		System.out.print("\n\t\t\t\tEnter Patient Name          : ");
-		patient.setPatientName(utility.inputString2());
-		System.out.print("\n\t\t\t\tEnter Patient ID            : ");
-		patient.setPatientId(utility.inputString2());
-		System.out.print("\n\t\t\t\tEnter Patient Mobile Number : ");
-		patient.setPatientMobileNo(utility.inputString2());
-		System.out.print("\n\t\t\t\tEnter Patient Age           : ");
-		patient.setPatientAge(utility.inputString2());
-		
-		patientList.add(patient);
-		System.out.println();
-		System.out.println("Patient List : "+patientList);
-		
+		 patientList = SingletonOfUtility.getInstance().readFile(patientFile,Patient[].class);
+
+			Patient patient=new Patient();
+			System.out.println("\n\t\t\t\t    P A T I E N T-D E T A I L S");
+			System.out.println("\t\t\t\t---------------------------------");
+			System.out.print("\t\t\t\tEnter Patient Name          : ");
+			patient.setPatientName(SingletonOfUtility.getInstance().inputString2());
+			patient.setPatientId(patientList.size()+1);
+			System.out.print("\t\t\t\tEnter Patient Mobile Number : ");
+			patient.setPatientMobileNo(SingletonOfUtility.getInstance().inputLong());
+			System.out.print("\t\t\t\tEnter Patient Age           : ");
+			patient.setPatientAge(SingletonOfUtility.getInstance().inputInteger());
+
+			boolean flag=false;
+	   	    for(int i=0;i<patientList.size();i++)
+		    {
+		     if(patientList.get(i).getPatientName().equals(patient.getPatientName()) && patientList.get(i).getPatientMobileNo()==patient.getPatientMobileNo())
+		     {
+		      flag=true; 	  
+		     }
+		    }
+		 
+	   	    
+	   	    if(flag==false)
+	   	    {
+	   			patientList.add(patient);
+	   			System.out.println();
+	   			System.out.println("Patient List : "+patientList);
+  	   	    }
+	   	    else
+	   	    {
+	   	     System.out.println("\n\t\t\t\tPatient is already exists in the Clinique...!");	
+	   	    }
+	 			
 		mapper.writeValue(new FileOutputStream(patientFile), patientList);
 	}
 
 
-	private void addDoctor() throws JsonParseException, JsonMappingException, IOException 
+	public void addDoctor() throws JsonParseException, JsonMappingException, IOException 
 	{
-		FileReader fr=new FileReader(doctorFile);
-		BufferedReader br=new BufferedReader(fr);
-		String data=br.readLine();
-		if(data!=null)
-		{
-		 doctorList = objectMapper.readValue(data, new TypeReference<ArrayList<Doctor>>(){});
-	    }   
-		else
-		{
-		 System.out.println("File is Empty");	
-		}
-		
-		br.close();
+		 doctorList = SingletonOfUtility.getInstance().readFile(doctorFile,Doctor[].class);
 
-		Doctor doctor=new Doctor();
-		System.out.println("\n\t\t\t\t    D O C T O R-D E T A I L S");
-		System.out.println("\t\t\t\t--------------------------------");
-		System.out.print("\n\t\t\t\tEnter Doctor Name              : ");
-		doctor.setDoctorName(utility.inputString2());
-		System.out.print("\n\t\t\t\tEnter Doctor ID                : ");
-		doctor.setDoctorId(utility.inputString2());
-		System.out.print("\n\t\t\t\tEnter Doctor Specialization    : ");
-		doctor.setDoctorSpecialization(utility.inputString2());
-		System.out.print("\n\t\t\t\tEnter Doctor Availability Time : ");
-		doctor.setDoctorAvailability(utility.inputString2());
+			Doctor doctor=new Doctor();
+			System.out.println("\n\t\t\t\t    D O C T O R-D E T A I L S");
+			System.out.println("\t\t\t\t--------------------------------");
+			System.out.print("\t\t\t\tEnter Doctor Name              : ");
+			doctor.setDoctorName(SingletonOfUtility.getInstance().inputString2());
+	        doctor.setDoctorId(doctorList.size()+1);
+			System.out.print("\t\t\t\tEnter Doctor Specialization    : ");
+			doctor.setDoctorSpecialization(SingletonOfUtility.getInstance().inputString2());
+			System.out.print("\t\t\t\tEnter Doctor Availability Time : ");
+			doctor.setDoctorAvailability(SingletonOfUtility.getInstance().inputString2());
+	        doctor.setCount(0);  
+			
+			boolean flag=false;
+	   	    for(int i=0;i<doctorList.size();i++)
+		    {
+		     if(doctorList.get(i).getDoctorName().equals(doctor.getDoctorName()) && doctorList.get(i).getDoctorAvailability().equals(doctor.getDoctorAvailability()))
+		     {
+		      flag=true; 	  
+		     }
+		    }
+		 
+	   	    
+	   	    if(flag==false)
+	   	    {
+	   	     doctorList.add(doctor);	  
+			 System.out.println();
+			 System.out.println("DoctorList : "+doctorList);
+  	   	    }
+	   	    else
+	   	    {
+	   	     System.out.println("Doctor is already exists in the clinique...Please Change Availability Time!");	
+	   	    }
 		
-		doctorList.add(doctor);
-		System.out.println();
-		System.out.println("DoctorList : "+doctorList);
-
-		mapper.writeValue(new FileOutputStream(doctorFile), doctorList);
+			mapper.writeValue(new FileOutputStream(doctorFile), doctorList);
 		
 	}
 
@@ -128,7 +137,7 @@ public class CliniqueManager implements ManagerInterface
 		System.out.println("\t\t\t\t          To Doctor  : Enter 1 ");
 		System.out.println("\t\t\t\t          To Patient : Enter 2 ");
 		System.out.print("\n\t\t\t       Enter the Choice Which You Want to Search : ");
-		int choice = utility.inputInteger();
+		int choice = SingletonOfUtility.getInstance().inputInteger();
 
 		switch (choice) {
 
@@ -144,7 +153,7 @@ public class CliniqueManager implements ManagerInterface
 	
 	}
 
-	private void patientDetails() throws IOException 
+	public ArrayList<Patient> patientDetails() throws IOException 
 	{
 		System.out.println("\n\t\t\t\t        P A T I E N T-D E T A I L S");
 		System.out.println("\t\t\t\t      -------------------------------");
@@ -152,42 +161,51 @@ public class CliniqueManager implements ManagerInterface
 		System.out.println("\t\t\t\t        By Id             : Enter 2");
 		System.out.println("\t\t\t\t        By Mobile Number  : Enter 3");
 		System.out.print("\n\t\t\t\tEnter the Choice Which You want to Serach : ");
-		int choice = utility.inputInteger();
+		int choice = SingletonOfUtility.getInstance().inputInteger();
 		String name = "", id = "", mobile = "", result = "";
 
 		switch (choice) {
 
 		case 1:
 			System.out.print("\n\t\t\t\tEnter Name of the Patient     : ");
-			name = utility.inputString2();
+			name = SingletonOfUtility.getInstance().inputString2();
 			result = name;
 			break;
 		case 2:
 			System.out.print("\n\t\t\t\tEnter Id of the Patient       : ");
-			id = utility.inputString2();
+			id = SingletonOfUtility.getInstance().inputString2();
 			result = id;
 			break;
 		case 3:
 			System.out.print("\n\t\t\t\tEnter MobileNo of the Patient : ");
-			mobile = utility.inputString2();
+			mobile = SingletonOfUtility.getInstance().inputString2();
 			result = mobile;
 			break;
 		default:
 			System.out.println("\n\t\t\t\tInvalid Choice...Please Try Again!");
 		}
 
+
+		patientList = SingletonOfUtility.getInstance().readFile(patientFile,Patient[].class);
+		
+		boolean flag=SingletonOfUtility.getInstance().toCheckPatientDetails(patientList, result);
+           
+		patientList=printPatientList(patientList,result,flag,choice);
+
+		return patientList; 
+		}
+
+	private ArrayList<Patient> printPatientList(ArrayList<Patient> patientList, String result, boolean flag,
+			int choice)
+	{
+		if(flag)
+		{
 		System.out.println();
 
 		System.out.println("\t\t\t\t                 P A T I E N T-L I S T");
 		System.out.println("\t\t\t\t----------------------------------------------------");
 		System.out.println("\t\t\t\tPatient_Name | Patient_Id  | Patient_Mobile_Number");
 
-		FileReader fr=new FileReader(patientFile);
-		BufferedReader br=new BufferedReader(fr);
-		String data=br.readLine();
-		if(data!=null)
-		{
-		 patientList = objectMapper.readValue(data, new TypeReference<ArrayList<Patient>>(){});
 		 for(int i=0;i<patientList.size();i++)
 		 {
 				switch (choice) {
@@ -221,21 +239,41 @@ public class CliniqueManager implements ManagerInterface
 				}
 
 		 }
-
 		}
 		else
 		{
-		 System.out.println("\n\t\t\t\tFile is Empty");	
+			Patient patient=new Patient();
+			switch (choice) {
+			case 1:
+				if (!result.equals(patient.getPatientName())) {
+					System.out.print("\n\t\t\t\t   The Patient Name is not Valid...!");
+
+				}
+				break;
+
+			case 2:
+				if (!result.equals(patient.getPatientId())) {
+					System.out.print("\n\t\t\t\t  The Patient Id is not Valid...! ");
+				}
+				break;
+
+			case 3:
+				if (!result.equals(patient.getPatientMobileNo())) {
+					System.out.print("\n\t\t\t\t   The Patient Mobile Number is not Valid...! ");
+				}
+				break;
+
+			default:
+				System.out.println("Invalid Choice...Please Try Again!");
+			}
+	
 		}
+		return patientList;
 		
 
-		br.close();
-		
-
-		
 	}
 
-	private void doctorDetails() throws IOException 
+	public ArrayList<Doctor> doctorDetails() throws IOException 
 	{
 		System.out.println("\n\t\t\t\t      D O C T O R-D E T A I L S");
 		System.out.println("\t\t\t\t    -----------------------------");
@@ -244,28 +282,29 @@ public class CliniqueManager implements ManagerInterface
 		System.out.println("\t\t\t\t     By Specialization : Enter 3");
 		System.out.println("\t\t\t\t     By Availability   : Enter 4");
 		System.out.print("\n\t\t\t\tEnter the Choice Which You want to Serach : ");
-		int choice = utility.inputInteger();
-		String name = "", id = "", specialization = "", availability = "";
+		int choice = SingletonOfUtility.getInstance().inputInteger();
+		String name = "",specialization = "", availability = "";
+		int id = 0;
 		String result = "";
 		switch (choice) {
 		case 1:
 			System.out.print("\n\t\t\t\tEnter Name of the Doctor           : ");
-			name = utility.inputString2();
+			name = SingletonOfUtility.getInstance().inputString2();
 			result = name;
 			break;
 		case 2:
 			System.out.print("\n\t\t\t\tEnter Id of the Doctor             : ");
-			id = utility.inputString2();
-			result = id;
+			id = SingletonOfUtility.getInstance().inputInteger();
+			result = id+"";
 			break;
 		case 3:
 			System.out.print("\n\t\t\t\tEnter Specialization of the Doctor : ");
-			specialization = utility.inputString2();
+			specialization = SingletonOfUtility.getInstance().inputString2();
 			result = specialization;
 			break;
 		case 4:
 			System.out.print("\n\t\t\t\tEnter Availability of the Doctor   : ");
-			availability = utility.inputString2();
+			availability = SingletonOfUtility.getInstance().inputString2();
 			result = availability;
 			break;
 
@@ -273,71 +312,109 @@ public class CliniqueManager implements ManagerInterface
 			System.out.print("\n\t\t\t\tInvalid Choice...!");
 		}
 
+		doctorList = SingletonOfUtility.getInstance().readFile(doctorFile,Doctor[].class);
+
+		
+		boolean flag=SingletonOfUtility.getInstance().toCheckDoctorDetails(doctorList,result);
+
+		doctorList=printDoctorList(doctorList,result,choice,flag);
+
+		return doctorList;
+	}
+
+	private ArrayList<Doctor> printDoctorList(ArrayList<Doctor> doctorList, String result, int choice, boolean flag)
+	{
+		if(flag)
+		{
 		System.out.println();
 		System.out.println("\t\t\t\t                         D O C T O R -L I S T");
 		System.out.println("\t\t\t\t----------------------------------------------------------------------");
 		System.out.println("\t\t\t\tDoctor_Name    | Doctor_Id  | Doctor_Specialization | Doctor_Availability");
 
-		FileReader fr=new FileReader(doctorFile);
-		BufferedReader br=new BufferedReader(fr);
-		String data=br.readLine();
-		if(data!=null)
-		{
-		 doctorList = objectMapper.readValue(data, new TypeReference<ArrayList<Doctor>>(){});
-		 for(int i=0;i<doctorList.size();i++)
-		 {
-				switch (choice) {
-				case 1:
-					if (result.equals(doctorList.get(i).getDoctorName())) {
-						System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(), doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
-								doctorList.get(i).getDoctorAvailability());
-						System.out.println();
-					}
 
-					break;
+		for(int i=0;i<doctorList.size();i++)
+ 		 {
+			switch (choice) {
+			case 1:
+				if (result.equals(doctorList.get(i).getDoctorName())) {
+					System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(), doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
+							doctorList.get(i).getDoctorAvailability());
+					System.out.println();
+				} 
+				break;
 
-				case 2:
-					if (result.equals(doctorList.get(i).getDoctorId())) {
-						System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(), doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
-								doctorList.get(i).getDoctorAvailability());
-						System.out.println();
-					}
-
-					break;
-
-				case 3:
-					if (result.equals(doctorList.get(i).getDoctorSpecialization())) {
-
-						System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(), doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
-								doctorList.get(i).getDoctorAvailability());
-						System.out.println();
-					}
-
-					break;
-
-				case 4:
-					if (result.equals(doctorList.get(i).getDoctorAvailability())) {
-						System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(), doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
-								doctorList.get(i).getDoctorAvailability());
-						System.out.println();
-					}
-
-					break;
-
-				default:
-					System.out.println("Invalid Choice...Please Try Again!");
-
+			case 2:
+				if (result.equals(doctorList.get(i).getDoctorId())) {
+					System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(), doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
+							doctorList.get(i).getDoctorAvailability());
+					System.out.println();
 				}
-	 
-		 }
-	    }   
-		else
-		{
-		 System.out.println("File is Empty");	
-		}
-		
-		br.close();
 
+				break;
+
+			case 3:
+				if (result.equals(doctorList.get(i).getDoctorSpecialization())) {
+
+					System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(), doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
+							doctorList.get(i).getDoctorAvailability());
+					System.out.println();
+				}
+
+				break;
+
+			case 4:
+				if (result.equals(doctorList.get(i).getDoctorAvailability())) {
+					System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(), doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
+							doctorList.get(i).getDoctorAvailability());
+					System.out.println();
+				}
+
+				break;
+
+			default:
+				System.out.println("Invalid Choice...Please Try Again!");
+
+			}
+ 
+	 }
+		return doctorList;
+    }   
+	else
+	{
+		Doctor doctor=new Doctor();
+		switch (choice) {
+		case 1:
+			if (!result.equals(doctor.getDoctorName())) {
+				System.out.print("\n\t\t\t\t  The Doctor Name is not Valid...!");
+
+			}
+			break;
+
+		case 2:
+			if (!result.equals(doctor.getDoctorId())) {
+				System.out.print("\n\t\t\t\t  The Doctor Id is not Valid...! ");
+			}
+			break;
+
+		case 3:
+			if (!result.equals(doctor.getDoctorSpecialization())) {
+				System.out.print("\n\t\t\t\t  The Doctor Specialization is not Valid...! ");
+			}
+			break;
+
+		case 4:
+			if (!result.equals(doctor.getDoctorAvailability())) {
+				System.out.print("\n\t\t\t\t  The Doctor Availability is not Valid...! ");
+			}
+			break;
+
+		default: System.out.println("Invalid Choice Please Enter correct Choice...!");
+		}
+
+	 	
+	}
+		return doctorList;
+		
 	}
 
 	@Override
@@ -347,7 +424,7 @@ public class CliniqueManager implements ManagerInterface
 		System.out.println("\t\t\t\t        Dispaly Doctor  : Enter 1 ");
 		System.out.println("\t\t\t\t        Display Patient : Enter 2 ");
 		System.out.print("\n\t\t\t       Enter the Choice Which You Want to Display : ");
-		int choice = utility.inputInteger();
+		int choice = SingletonOfUtility.getInstance().inputInteger();
 
 		switch (choice) {
 
@@ -364,19 +441,14 @@ public class CliniqueManager implements ManagerInterface
 		
 	}
 
-	private void displayPatient() throws IOException 
+	public void displayPatient() throws IOException 
 	{
 		System.out.println();
 		System.out.println("\t\t\t\t               P A T I E N T -L I S T");
 		System.out.println("\t\t\t\t--------------------------------------------------");
 		System.out.println("\t\t\t\tPatient_Name | Patient_Id  | Patient_Mobile_Number");
 	
-		FileReader fr=new FileReader(patientFile);
-		BufferedReader br=new BufferedReader(fr);
-		String data=br.readLine();
-		if(data!=null)
-		{
-		 patientList = objectMapper.readValue(data, new TypeReference<ArrayList<Patient>>(){});
+		 patientList = SingletonOfUtility.getInstance().readFile(patientFile,Patient[].class);
 		 for(int i=0;i<patientList.size();i++)
 		 {
 			 System.out.printf("%40s %10s %20s ", patientList.get(i).getPatientName(), patientList.get(i).getPatientId(), patientList.get(i).getPatientMobileNo());
@@ -384,20 +456,15 @@ public class CliniqueManager implements ManagerInterface
 			 
 		 }	
 		}
-	}
+	
 
-	private void displayDoctor() throws IOException 
+	public void displayDoctor() throws IOException 
 	{
 		System.out.println();
 		System.out.println("\t\t\t\t                          D O C T O R -L I S T ");
 		System.out.println("\t\t\t\t-----------------------------------------------------------------------------");
 		System.out.println("\t\t\t\tDisplay_Doctor_Name | Doctor_Id  | Doctor_Specialization | Doctor_Availability");
-		FileReader fr=new FileReader(doctorFile);
-		BufferedReader br=new BufferedReader(fr);
-		String data=br.readLine();
-		if(data!=null)
-		{
-		 doctorList = objectMapper.readValue(data, new TypeReference<ArrayList<Doctor>>(){});
+		 doctorList = SingletonOfUtility.getInstance().readFile(doctorFile,Doctor[].class);
 		 for(int i=0;i<doctorList.size();i++)
 		 {
 			 
@@ -405,9 +472,10 @@ public class CliniqueManager implements ManagerInterface
 						doctorList.get(i).getDoctorAvailability());
 				System.out.println(); 
 		 }
-		}
-
+		 
 	}
+
+	
 
 	@Override
 	public void popularDoctor() 
@@ -416,9 +484,84 @@ public class CliniqueManager implements ManagerInterface
 	}
 
 	@Override
-	public void takeAppointment() {
-		// TODO Auto-generated method stub
+	public void takeAppointment() throws IOException 
+	{
+	 Appointment appointment=new Appointment();
 		
+		
+		displayDoctor();
+		System.out.println();
+		System.out.print("\n\t\t\t\tEnter the Patient Name : ");
+	    appointment.setPatientName(SingletonOfUtility.getInstance().inputString2());
+	    patientList=SingletonOfUtility.getInstance().readFile(patientFile,Patient[].class);
+	    for(int i=0;i<patientList.size();i++)
+	    {
+	     if(appointment.getPatientName().equals(patientList.get(i).getPatientName()))
+	     {
+	      appointment.setPatientId(patientList.get(i).getPatientId());
+	     }
+	    }
+	    
+		boolean flag=SingletonOfUtility.getInstance().toCheckPatientDetails(patientList,appointment.getPatientName());
+		
+		if(flag)
+		{
+		 doctorList=doctorDetails();
+		 System.out.println();
+		 System.out.println("Doctor : "+doctorList);
+		 System.out.print("\n\t\t\t\tEnter the id Which Doctor you want to Appointment : ");
+		 appointment.setDoctorId(SingletonOfUtility.getInstance().inputInteger());
+		 for(int i=0;i<doctorList.size();i++)
+		 {
+		  if(appointment.getDoctorId()==doctorList.get(i).getDoctorId())
+		  {
+		   appointment.setDoctorName(doctorList.get(i).getDoctorName());
+		   appointment.setDoctorAvailability(doctorList.get(i).getDoctorAvailability());
+		  }
+		 }
+	 
+		 appointmentList=SingletonOfUtility.getInstance().readFile(appointmentFile,Appointment[].class);
+		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		 Date date = new Date();
+		
+	     appointment.setDate(simpleDateFormat.format(date));
+	
+	     int count=0;
+		 for(int i=0;i<doctorList.size();i++)
+		 {
+		  if(appointment.getDoctorId()==doctorList.get(i).getDoctorId() && appointment.getDoctorName().equals(doctorList.get(i).getDoctorName()))
+		  {
+		   count=doctorList.get(i).getCount();
+           if(count<5)
+           {
+    		   count++;
+    		   doctorList.get(i).setCount(count);
+    		   mapper.writeValue(new FileOutputStream(doctorFile), doctorList);  
+     		     appointmentList.add(appointment);
+    		     System.out.println("\n\t\t\t\tAppointment is successfully Done...!");
+    		     mapper.writeValue(new FileOutputStream(appointmentFile), appointmentList);
+   		  
+           }
+           else
+           {
+        	 System.out.print("\n\t\t\t\tDoctor is Already has 5 Appointment....To Check Another Doctor(Y/N) "); 
+        	 displayDoctor();
+        	 doctorDetails();
+        	 count=0;
+        	 doctorList.get(i).setCount(count);
+       		           		     
+           }
+		  }
+	
+		 }
+		 
+		}
+		else
+		{
+		 displayPatient();	
+		 System.out.print("\n\t\t\t\tPatient is not Available...To Add Patient First then Take Appointment(Y/N) ");
+		 addPatient();
+		}
 	}
 
 }

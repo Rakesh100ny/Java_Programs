@@ -3,14 +3,12 @@ package com.bridgelabz.oop.cliniqueUsingOOP;
 
 import java.io.IOException;
 
-import com.bridgelabz.utility.Utility;
 
 public class CliniqueManagement 
 {
  public static void main(String[] args) throws IOException 
  {
 		ManagerInterface action = new CliniqueManager();
-		Utility utility = new Utility();
 		char input = ' ';
 		do {
 
@@ -24,7 +22,7 @@ public class CliniqueManagement
 			System.out.print("\n\t\t\t\t  -----------------------------------\n");
 
 			System.out.print("\n\t\t\t\t \t  Enter Choice : ");
-			int choice = utility.inputInteger();
+			int choice = SingletonOfUtility.getInstance().inputInteger();
 
 			switch (choice) {
 			case 1:
@@ -52,7 +50,7 @@ public class CliniqueManagement
 			}
 			System.out.println();
 			System.out.print("\n\t\t\t\t   Do you Want to continue (Y/N) : ");
-			input = utility.inputCharacter();
+			input = SingletonOfUtility.getInstance().inputCharacter();
 		} while (input == 'Y' || input == 'y');
 	}
 }

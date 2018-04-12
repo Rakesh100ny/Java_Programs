@@ -3,9 +3,10 @@ package com.bridgelabz.oop.cliniqueUsingOOP;
 public class Doctor 
 {
 	private String doctorName;
-	 private String doctorId;
+	 private int doctorId;
 	 private String doctorSpecialization;
-	 private String doctorAvailability;	
+	 private String doctorAvailability;
+	 private int count=0;
  /**
 	 * @return the doctorName
 	 */
@@ -18,16 +19,31 @@ public class Doctor
 	public void setDoctorName(String doctorName) {
 		this.doctorName = doctorName;
 	}
+	
+	/**
+	 * @param doctorCount the doctorCount to set
+	 */
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	/**
 	 * @return the doctorId
 	 */
-	public String getDoctorId() {
+	public int getCount() {
+		return count;
+	}
+
+	/**
+	 * @return the doctorId
+	 */
+	public int getDoctorId() {
 		return doctorId;
 	}
 	/**
 	 * @param doctorId the doctorId to set
 	 */
-	public void setDoctorId(String doctorId) {
+	public void setDoctorId(int doctorId) {
 		this.doctorId = doctorId;
 	}
 	/**

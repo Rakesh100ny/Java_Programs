@@ -3,9 +3,9 @@ package com.bridgelabz.oop.cliniqueUsingOOP;
 public class Patient 
 {
 	private String patientName;
-	 private String patientId;
-	 private String patientMobileNo;
-	 private String patientAge;	
+	 private int patientId;
+	 private long patientMobileNo;
+	 private int patientAge;	
 
 	/**
 	 * @return the patientName
@@ -22,37 +22,37 @@ public class Patient
 	/**
 	 * @return the patientId
 	 */
-	public String getPatientId() {
+	public int getPatientId() {
 		return patientId;
 	}
 	/**
 	 * @param patientId the patientId to set
 	 */
-	public void setPatientId(String patientId) {
+	public void setPatientId(int patientId) {
 		this.patientId = patientId;
 	}
 	/**
 	 * @return the patientMobileNo
 	 */
-	public String getPatientMobileNo() {
+	public long getPatientMobileNo() {
 		return patientMobileNo;
 	}
 	/**
 	 * @param patientMobileNo the patientMobileNo to set
 	 */
-	public void setPatientMobileNo(String patientMobileNo) {
+	public void setPatientMobileNo(long patientMobileNo) {
 		this.patientMobileNo = patientMobileNo;
 	}
 	/**
 	 * @return the patientAge
 	 */
-	public String getPatientAge() {
+	public int getPatientAge() {
 		return patientAge;
 	}
 	/**
 	 * @param patientAge the patientAge to set
 	 */
-	public void setPatientAge(String patientAge) {
+	public void setPatientAge(int patientAge) {
 		this.patientAge = patientAge;
 	}
 	
