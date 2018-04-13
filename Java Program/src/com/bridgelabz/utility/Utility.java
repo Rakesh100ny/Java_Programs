@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
@@ -2158,6 +2159,289 @@ public class Utility {
 		arrayList = new ArrayList<T>(list);
 		br.close();
 		return arrayList;
+		
+	}
+	public void ticTacToe(int moves, boolean player1, boolean player2, boolean switchTurn, char[][] arr)
+	{
+		while (moves < 9 && !player1 && !player2) {
+			display(arr);
+			if (switchTurn) {
+				boolean isEmpty = false;
+				Random random = new Random();
+				while (!isEmpty) {
+					int pick = random.nextInt(9);
+					switch (pick) {
+					case 0:
+						if (arr[0][0] == '_') {
+							arr[0][0] = 'O';
+							isEmpty = true;
+						}
+						break;
+					case 1:
+						if (arr[0][1] == '_') {
+							arr[0][1] = 'O';
+							isEmpty = true;
+						}
+						break;
+					case 2:
+						if (arr[0][2] == '_') {
+							arr[0][2] = 'O';
+							isEmpty = true;
+						}
+						break;
+					case 3:
+						if (arr[1][0] == '_') {
+							arr[1][0] = 'O';
+							isEmpty = true;
+						}
+						break;
+					case 4:
+						if (arr[1][1] == '_') {
+							arr[1][1] = 'O';
+							isEmpty = true;
+						}
+						break;
+					case 5:
+						if (arr[1][2] == '_') {
+							arr[1][2] = 'O';
+							isEmpty = true;
+						}
+						break;
+					case 6:
+						if (arr[2][0] == '_') {
+							arr[2][0] = 'O';
+							isEmpty = true;
+						}
+						break;
+					case 7:
+						if (arr[2][1] == '_') {
+							arr[2][1] = 'O';
+							isEmpty = true;
+						}
+						break;
+					case 8:
+						if (arr[2][2] == '_') {
+							arr[2][2] = 'O';
+							isEmpty = true;
+						}
+						break;
+					}
+				}
+				switchTurn = false;
+			} else {
+				System.out.println("\t\t\tInsert '0' Position : Enter 0");
+				System.out.println("\t\t\tInsert '1' Position : Enter 1");
+				System.out.println("\t\t\tInsert '2' Position : Enter 2");
+				System.out.println("\t\t\tInsert '3' Position : Enter 3");
+				System.out.println("\t\t\tInsert '4' Position : Enter 4");
+				System.out.println("\t\t\tInsert '5' Position : Enter 5");
+				System.out.println("\t\t\tInsert '6' Position : Enter 6");
+				System.out.println("\t\t\tInsert '7' Position : Enter 7");
+				System.out.println("\t\t\tInsert '8' Position : Enter 8");
+				System.out.print("\n\t\t  Enter the Position which you want to mark : ");
+				int userTurn = inputInteger();
+				switch (userTurn) {
+				case 0:
+					if (arr[0][0] == '_') {
+						arr[0][0] = 'X';
+
+					}
+					break;
+				case 1:
+					if (arr[0][1] == '_') {
+						arr[0][1] = 'X';
+
+					}
+					break;
+				case 2:
+					if (arr[0][2] == '_') {
+						arr[0][2] = 'X';
+
+					}
+					break;
+				case 3:
+					if (arr[1][0] == '_') {
+						arr[1][0] = 'X';
+
+					}
+					break;
+				case 4:
+					if (arr[1][1] == '_') {
+						arr[1][1] = 'X';
+
+					}
+					break;
+				case 5:
+					if (arr[1][2] == '_') {
+						arr[1][2] = 'X';
+
+					}
+					break;
+				case 6:
+					if (arr[2][0] == '_') {
+						arr[2][0] = 'X';
+
+					}
+					break;
+				case 7:
+					if (arr[2][1] == '_') {
+						arr[2][1] = 'X';
+
+					}
+					break;
+				case 8:
+					if (arr[2][2] == '_') {
+						arr[2][2] = 'X';
+
+					}
+					break;
+				}
+				switchTurn = true;
+			}
+			moves++;
+			if (checkCol(arr, 'X') || checkRows(arr, 'X') || checkDiag(arr, 'X')) {
+				player1 = true;
+			} else {
+				if (checkCol(arr, 'O') || checkRows(arr, 'O') || checkDiag(arr, 'O')) {
+					player2 = true;
+				}
+			}
+		}
+
+		
+	}
+	public void decision(boolean player1, boolean player2) 
+	{
+		if (player1) {
+			System.out.println("\n\t\t\t\tYou win");
+		} else {
+			if (player2) {
+				System.out.println("\n\t\t\t\t Computer Wins");
+			} else {
+				System.out.println("\n\t\t\t\t Game Draw");
+			}
+		}
+	}
+	public void searchAndSort() 
+	{
+		
+		long start1 = 0,end1 = 0,start2 = 0,end2 = 0,start3 = 0,end3 = 0,start4 = 0,end4 = 0,start5 = 0,end5 = 0,start6 = 0,end6 = 0;
+		long elapsed1 = 0, elapsed2 = 0, elapsed3 = 0, elapsed4 = 0, elapsed5 = 0, elapsed6 = 0;
+		char input;
+		do {
+			System.out.print("\n\t\t\t\t           S O R T & S E A R C H");
+			System.out.print("\n\t\t\t\t--------------------------------------------");
+			System.out.println();
+			System.out.println("\t\t\t\t   Binary Search For Integer   : Enter 1 ");
+			System.out.println();
+			System.out.println("\t\t\t\t   Binary Search For String    : Enter 2 ");
+			System.out.println();
+			System.out.println("\t\t\t\t   Inseration Sort For Integer : Enter 3 ");
+			System.out.println();
+			System.out.println("\t\t\t\t   Inseration Sort For String  : Enter 4 ");
+			System.out.println();
+			System.out.println("\t\t\t\t   Bubble Sort For Integer     : Enter 5 ");
+			System.out.println();
+			System.out.print("\t\t\t\t     Bubble Sort For String      : Enter 6 ");
+			System.out.println("\n\t\t\t\t---------------------------------------------");
+
+			System.out.print("\n\t\t\t\t    Enter The Choice : ");
+			int choice = inputInteger();
+
+			switch (choice) {
+
+			case 1:
+				start1 = System.currentTimeMillis();
+				Integer array1[] = Utility.takeInputInteger();
+				System.out.print("\n\t\t\t\tEnter the Key                 : ");
+				int key1 = inputInteger();
+				System.out.print("\n\t\t\t\tPrint The Item Before Sorting : ");
+				Utility.print(array1);
+				System.out.print("\n\t\t\t\tPrint The Item After Sorting  : ");
+				Utility.printSort(array1);
+				array1 = Utility.binarySearch(array1, key1);
+				end1 = System.currentTimeMillis();
+				elapsed1 = (end1 - start1) / 1000;
+				break;
+
+			case 2:
+				start2 = System.currentTimeMillis();
+				String[] string1 = Utility.takeInputString();
+				System.out.print("\n\t\t\t\tEnter the Key                  : ");
+				String key2 = inputString2();
+				System.out.print("\n\t\t\t\tPrint The Item Before Sorting  : ");
+				Utility.print(string1);
+				System.out.print("\n\t\t\t\tPrint The Item After Sorting   : ");
+				Utility.printSort(string1);
+				string1 = Utility.binarySearch(string1, key2);
+				end2 = System.currentTimeMillis();
+				elapsed2 = (end2 - start2) / 1000;
+				break;
+
+			case 3:
+				start3 = System.currentTimeMillis();
+				Integer array2[] = Utility.takeInputInteger();
+				System.out.print("\n\t\t\t\tPrint The Item Before Sorting  : ");
+				Utility.print(array2);
+
+				System.out.print("\n\t\t\t\tPrint The Item After Sorting   : ");
+				array2 = Utility.inserationSort(array2);
+
+				end3 = System.currentTimeMillis();
+				elapsed3 = (end3 - start3) / 1000;
+				break;
+
+			case 4:
+				start4 = System.currentTimeMillis();
+				String[] string2 = Utility.takeInputString();
+				System.out.print("\n\t\t\t\tPrint The Item Before Sorting  : ");
+				Utility.print(string2);
+
+				System.out.print("\n\t\t\t\tPrint The Item After Sorting   : ");
+				string2 = Utility.inserationSort(string2);
+				end4 = System.currentTimeMillis();
+				elapsed4 = (end4 - start4) / 1000;
+				break;
+
+			case 5:
+				start5 = System.currentTimeMillis();
+				Integer array3[] = Utility.takeInputInteger();
+				System.out.print("\n\t\t\t\tPrint The Item Before Sorting  : ");
+				Utility.print(array3);
+
+				System.out.print("\n\t\t\t\tPrint The Item After Sorting   : ");
+				array3 = Utility.bubbleSort(array3);
+				end5 = System.currentTimeMillis();
+				elapsed5 = (end5 - start5) / 1000;
+				break;
+
+			case 6:
+				start6 = System.currentTimeMillis();
+				String[] string3 = Utility.takeInputString();
+
+				System.out.print("\n\t\t\t\tPrint The Item Before Sorting  : ");
+				Utility.print(string3);
+
+				System.out.print("\n\t\t\t\tPrint The Item After Sorting   : ");
+				string3 = Utility.bubbleSort(string3);
+				end6 = System.currentTimeMillis();
+				elapsed6 = (end6 - start6) / 1000;
+				break;
+
+			default:
+				System.out.println("\n\t\t\t\tInvalid Choice Input...!");
+
+			}
+			System.out.print("\t\t\t\tUser Want To Continue (Y/N) : ");
+			input = inputCharacter();
+		} while (input == 'Y' || input == 'y');
+
+		System.out.println("\n\t\t\t\tBinary Search For Integer   : " + elapsed1);
+		System.out.println("\n\t\t\t\tBinary Search For String    : " + elapsed2);
+		System.out.println("\n\t\t\t\tInseration Sort For Integer : " + elapsed3);
+		System.out.println("\n\t\t\t\tInseration Sort For String  : " + elapsed4);
+		System.out.println("\n\t\t\t\tBubble Sort For Integer     : " + elapsed5);
+		System.out.println("\n\t\t\t\tBubble Sort For String      : " + elapsed6);
 		
 	}
 }

@@ -434,6 +434,7 @@ public class CliniqueManagementOperation {
 		System.out.println("\t\t\t\t     By Specialization : Enter 3");
 		System.out.println("\t\t\t\t     By Availability   : Enter 4");
 		System.out.print("\n\t\t\t\tEnter the Choice Which You want to Serach : ");
+
 		int choice = utility.inputInteger();
 		String name = "", id = "", specialization = "", availability = "";
 		String result = "";
@@ -462,9 +463,17 @@ public class CliniqueManagementOperation {
 		default:
 			System.out.print("\n\t\t\t\tInvalid Choice...!");
 		}
-		String doctorName = "", doctorId = "", doctorSpecialization = "", doctorAvailability = "";
 
 		boolean isFind = toCheckDoctorDetails(result);
+
+		displayDoctorList(isFind,choice,result,name,id,specialization,availability);
+
+
+	}
+
+	private void displayDoctorList(boolean isFind,int choice,String result,String name,String id,String specialization,String availability) throws FileNotFoundException, IOException, ParseException
+	{
+		String doctorName = "", doctorId = "", doctorSpecialization = "", doctorAvailability = "";
 
 		if (isFind) {
 
@@ -559,8 +568,11 @@ public class CliniqueManagementOperation {
 			default:
 				System.out.println("Invalid Choice...Please Try Again!");
 			}
-		}
-
+		}		
+	}
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 	private boolean toCheckDoctorDetails(String result) throws FileNotFoundException, IOException, ParseException {

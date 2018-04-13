@@ -5,17 +5,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import com.bridgelabz.oop.addressBookUsingOOP.Person;
+
 
 
 public class CliniqueManager implements ManagerInterface,SubManagerInterface 
