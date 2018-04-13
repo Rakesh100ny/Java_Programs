@@ -19,6 +19,7 @@ public class CliniqueManagement
 			System.out.print("\n\t\t\t\t    Display Doctor/Patient : Enter 3");
 			System.out.print("\n\t\t\t\t    Take    Appointment    : Enter 4");
 			System.out.print("\n\t\t\t\t    Popular Specialization : Enter 5");
+			System.out.print("\n\t\t\t\t    Popular Doctor         : Enter 6");
 			System.out.print("\n\t\t\t\t  -----------------------------------\n");
 
 			System.out.print("\n\t\t\t\t \t  Enter Choice : ");
@@ -43,7 +44,7 @@ public class CliniqueManagement
 
 			case 5:
 				action.popularDoctor();
-				break;
+				break;	
 
 			default:
 				System.out.println("\n\t\t\t\tInvalid Choice...!");

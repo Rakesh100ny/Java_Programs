@@ -29,7 +29,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import com.bridgelabz.oop.addressBookUsingOOP.Person;
-import com.bridgelabz.oop.cliniqueUsingOOP.Appointment;
 import com.bridgelabz.oop.cliniqueUsingOOP.Doctor;
 import com.bridgelabz.oop.cliniqueUsingOOP.Patient;
 import static java.lang.Math.*;

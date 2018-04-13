@@ -1,18 +1,21 @@
 package com.bridgelabz.oop.cliniqueUsingOOP;
 
-import java.io.BufferedReader;
+
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.security.Signature;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
+
+import com.bridgelabz.oop.addressBookUsingOOP.Person;
 
 
 public class CliniqueManager implements ManagerInterface,SubManagerInterface 
@@ -98,12 +101,12 @@ public class CliniqueManager implements ManagerInterface,SubManagerInterface
 			System.out.print("\t\t\t\tEnter Doctor Name              : ");
 			doctor.setDoctorName(SingletonOfUtility.getInstance().inputString2());
 	        doctor.setDoctorId(doctorList.size()+1);
-			System.out.print("\t\t\t\tEnter Doctor Specialization    : ");
+	      	System.out.print("\t\t\t\tEnter Doctor Specialization    : ");
 			doctor.setDoctorSpecialization(SingletonOfUtility.getInstance().inputString2());
 			System.out.print("\t\t\t\tEnter Doctor Availability Time : ");
 			doctor.setDoctorAvailability(SingletonOfUtility.getInstance().inputString2());
-	        doctor.setCount(0);  
-			
+	        doctor.setCount(0); 
+			doctor.setpatientCount(0);
 			boolean flag=false;
 	   	    for(int i=0;i<doctorList.size();i++)
 		    {
@@ -478,9 +481,30 @@ public class CliniqueManager implements ManagerInterface,SubManagerInterface
 	
 
 	@Override
-	public void popularDoctor() 
+	public void popularDoctor() throws JsonParseException, JsonMappingException, IOException 
 	{
-	
+		String doctorName="",specialization="";
+		int numberOfPatient=0;
+	    doctorList=SingletonOfUtility.getInstance().readFile(doctorFile,Doctor[].class);
+	    
+	    int max=doctorList.get(0).getpatientCount();	 
+        for(int i=1;i<doctorList.size();i++)
+		 {
+		  if(max<doctorList.get(i).getpatientCount())
+		  {
+		   max=doctorList.get(i).getpatientCount();
+		   doctorName=doctorList.get(i).getDoctorName();
+		   specialization=doctorList.get(i).getDoctorSpecialization();
+		   numberOfPatient=doctorList.get(i).getpatientCount();
+		  }
+		 }
+			System.out.println();
+			System.out.println("\t\t\t\t                    F A M O U S-D O C T O R");
+			System.out.println("\t\t\t\t---------------------------------------------------------------");
+			System.out.println("\t\t\t\tDisplay_Doctor_Name | Doctor_Specialization | Number_oF_Patient");
+			System.out.printf("%46s %20s %18d ", doctorName,specialization,numberOfPatient);
+			System.out.println(); 
+		
 	}
 
 	@Override
@@ -510,10 +534,11 @@ public class CliniqueManager implements ManagerInterface,SubManagerInterface
 		 System.out.println();
 		 System.out.println("Doctor : "+doctorList);
 		 System.out.print("\n\t\t\t\tEnter the id Which Doctor you want to Appointment : ");
-		 appointment.setDoctorId(SingletonOfUtility.getInstance().inputInteger());
+		 int doctorId=SingletonOfUtility.getInstance().inputInteger();
+		 appointment.setDoctorId(doctorId);
 		 for(int i=0;i<doctorList.size();i++)
 		 {
-		  if(appointment.getDoctorId()==doctorList.get(i).getDoctorId())
+		  if(doctorId==doctorList.get(i).getDoctorId())
 		  {
 		   appointment.setDoctorName(doctorList.get(i).getDoctorName());
 		   appointment.setDoctorAvailability(doctorList.get(i).getDoctorAvailability());
@@ -523,7 +548,12 @@ public class CliniqueManager implements ManagerInterface,SubManagerInterface
 		 appointmentList=SingletonOfUtility.getInstance().readFile(appointmentFile,Appointment[].class);
 		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		 Date date = new Date();
-		
+		 System.out.println("\n\t\t\t\tToday's Date      : "+date);
+/*		 int MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
+		 String nextDate = simpleDateFormat.format(date.getTime() + MILLIS_IN_DAY);
+
+		 System.out.println("Next Date : "+nextDate);
+*/		 
 	     appointment.setDate(simpleDateFormat.format(date));
 	
 	     int count=0;
@@ -532,9 +562,11 @@ public class CliniqueManager implements ManagerInterface,SubManagerInterface
 		  if(appointment.getDoctorId()==doctorList.get(i).getDoctorId() && appointment.getDoctorName().equals(doctorList.get(i).getDoctorName()))
 		  {
 		   count=doctorList.get(i).getCount();
+		   
            if(count<5)
            {
     		   count++;
+    		   doctorList.get(i).setpatientCount(doctorList.get(i).getpatientCount()+1);
     		   doctorList.get(i).setCount(count);
     		   mapper.writeValue(new FileOutputStream(doctorFile), doctorList);  
      		     appointmentList.add(appointment);
@@ -545,11 +577,19 @@ public class CliniqueManager implements ManagerInterface,SubManagerInterface
            else
            {
         	 System.out.print("\n\t\t\t\tDoctor is Already has 5 Appointment....To Check Another Doctor(Y/N) "); 
+             System.out.println();
         	 displayDoctor();
+        	 System.out.println();
         	 doctorDetails();
-        	 count=0;
-        	 doctorList.get(i).setCount(count);
-       		           		     
+        	 if(doctorId==appointment.getDoctorId() && simpleDateFormat.format(date).equals(appointment.getDate()))
+        	 {
+        	  System.out.println("\n\t\t\t\tDoctor is Already has 5 Appointment...!");	 
+        	 }
+        	 else
+        	 {
+          	  count=0;
+        	  doctorList.get(i).setCount(count);
+        	 }
            }
 		  }
 	
@@ -560,8 +600,10 @@ public class CliniqueManager implements ManagerInterface,SubManagerInterface
 		{
 		 displayPatient();	
 		 System.out.print("\n\t\t\t\tPatient is not Available...To Add Patient First then Take Appointment(Y/N) ");
+		 System.out.println();
 		 addPatient();
 		}
 	}
+
 
 }

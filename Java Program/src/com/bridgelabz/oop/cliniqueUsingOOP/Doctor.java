@@ -7,6 +7,9 @@ public class Doctor
 	 private String doctorSpecialization;
 	 private String doctorAvailability;
 	 private int count=0;
+	 private int patientCount=0;
+
+	 
  /**
 	 * @return the doctorName
 	 */
@@ -34,6 +37,22 @@ public class Doctor
 		return count;
 	}
 
+	
+	/**
+	 * @param patientCount the patientCount to set
+	 */
+	public void setpatientCount(int patientCount) {
+		this.patientCount = patientCount;
+	}
+
+	/**
+	 * @return the patientCount
+	 */
+	public int getpatientCount() {
+		return patientCount;
+	}
+
+	
 	/**
 	 * @return the doctorId
 	 */
