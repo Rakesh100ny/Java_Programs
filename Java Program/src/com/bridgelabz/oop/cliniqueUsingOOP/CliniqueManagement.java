@@ -8,7 +8,7 @@ public class CliniqueManagement
 {
  public static void main(String[] args) throws IOException 
  {
-		ManagerInterface action = new CliniqueManager();
+		CliniqueManager action = new CliniqueManager();
 		char input = ' ';
 		do {
 

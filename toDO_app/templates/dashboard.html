@@ -1,34 +1,38 @@
+<div layout="row" layout-margin layout-padding>
+</div>
+
 <div layout="row">
-    <div flex="80"  flex-offset="15"  style="background-color:lightblue;">
-      <div layout="row" layout-wrap>
-       <div flex="33 " layout-wrap  ng-repeat="x in jsonRecord">
+    <div flex>
+    <div>
+      <div layout="row" layout-xs="column"  layout-wrap>
+       <div flex-gt-md="33" flex-sm='100' layout-wrap  ng-repeat="x in jsonRecord">
         <md-card>
           <md-card-header>
             <md-card-avatar>
               <img class="md-user-avatar" src="{{ x.image.small }}">
             </md-card-avatar>
-            <md-card-header-text>
+             <md-card-header-text>
               <span class="md-title"><b>{{ x.name+" "}}</b></span>
-              <span class="md-subhead">Sub header</span>
-            </md-card-header-text>
+             </md-card-header-text>
           </md-card-header>
           <img ng-src="{{x.image.small}}" class="md-card-image" alt="image caption">
 
           <md-card-title>
             <md-card-title-text>
-              <span class="md-headline"><strong>Manufacturer :</strong> {{ x.specs.manufacturer+" " }}</span>
-              <span class="md-subhead"><strong>Storage &nbsp;: </strong> {{ x.specs.storage+" " }}<span><strong>OS: </strong> {{ x.specs.os+" " }}</span></span>
-              <span><strong>Camera :</strong> {{ x.specs.camera+" " }}Mpx</span>
+              <span>Manufacturer : {{ x.specs.manufacturer+" " }}</span>
+              <span>Storage &nbsp;:  {{ x.specs.storage+" " }}</span>
+              <span>OS:  {{ x.specs.os+" " }}</span>
+              <span>Camera : {{ x.specs.camera+" " }}Mpx</span>
             </md-card-title-text>
           </md-card-title>
-          <md-card-actions layout="row" layout-align="start center">
+          <md-card-actions>
             <md-button class="md-primary md-raised">Buy Now!</md-button>
-            <span layout-padding> {{ x.price+" " }}$</span>
+            <span flex> </span>
+             {{ x.price+" " }}$
           </md-card-actions>
         </md-card>
       </div>
     </div>
-    </div>
-    <div flex style="background-color:lightgreen;">
+    <div flex>
     </div>
   </div>

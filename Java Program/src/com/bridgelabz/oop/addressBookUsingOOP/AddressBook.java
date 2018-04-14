@@ -12,7 +12,8 @@
 package com.bridgelabz.oop.addressBookUsingOOP;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
+
 import org.json.simple.parser.ParseException;
 import java.io.File;
 import com.bridgelabz.utility.Utility;
@@ -21,10 +22,10 @@ public class AddressBook{
 	static File file;
 	static String fname;
 	static String filePath = "/home/brideit/files/AddressBook/";
-	static ArrayList<Person> arrayList=AddressManager.getList();
+	static List<Person> arrayList=AddressManager.getList();
 	
 	public static void main(String[] args) throws ParseException, IOException {
-		AddressBookInterface action = new AddressManager();
+		AddressManager action = new AddressManager();
 		Utility utility = new Utility();
 		char input = ' ';
 		do {

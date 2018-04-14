@@ -6,7 +6,7 @@
             <fieldset class="standard">
               <legend>Manufacturer </legend>
                      <div ng-repeat="x in jsonRecord  | unique:'specs.manufacturer' | orderBy : 'specs.manufacturer'" >
-                       <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
+                       <md-checkbox  md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
                   </md-checkbox>
                       {{ x.specs.manufacturer+" " }}
                       </div>

@@ -3,12 +3,12 @@ package com.bridgelabz.oop.addressBookUsingOOP;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import com.bridgelabz.utility.Utility;
 
-public class PersonManger implements PersonInterface
+public class PersonManger
 {
 	AddressManager addressManager = new AddressManager();
 	String filePath = "/home/brideit/files/AddressBook/";
@@ -16,7 +16,7 @@ public class PersonManger implements PersonInterface
 	
 	
 	
-	public ArrayList<Person> add(ArrayList<Person> arrayList) throws IOException 
+	public List<Person> add(List<Person> arrayList) throws IOException 
 	{
 		Person person = new Person();
 
@@ -51,7 +51,7 @@ public class PersonManger implements PersonInterface
 		return arrayList;
 	}
 
-	public ArrayList<Person> edit(ArrayList<Person> arrayList) throws IOException {
+	public List<Person> edit(List<Person> arrayList) throws IOException {
 		System.out.println("\n\t\t\t\tEnter the Full-Name Which You are want to edit Details!");
 		System.out.println();
 		System.out.print("\t\t\t\tEnter the First Name : ");
@@ -122,7 +122,7 @@ public class PersonManger implements PersonInterface
        return arrayList;
 	}
 
-	public ArrayList<Person> delete(ArrayList<Person> arrayList) throws IOException 
+	public List<Person> delete(List<Person> arrayList) throws IOException 
 	{
 		System.out.println("\n\t\t\t\tEnter the Full-Name Which You are want to edit Details!");
 		System.out.println();
@@ -141,7 +141,7 @@ public class PersonManger implements PersonInterface
 		return arrayList;
 	}
 
-	public ArrayList<Person> sort(ArrayList<Person> arrayList) throws IOException {
+	public List<Person> sort(List<Person> arrayList) throws IOException {
 		System.out.println("\n\t\t\t\t         S O R T-M E N U");
 		System.out.println("\t\t\t\t------------------------------");
 		System.out.print("\n\t\t\t\tSort By Name     : Enter 1");
@@ -166,7 +166,7 @@ public class PersonManger implements PersonInterface
 		return arrayList;
 	}
 
-	private ArrayList<Person> sortByZip(ArrayList<Person> arrayList) throws IOException 
+	private List<Person> sortByZip(List<Person> arrayList) throws IOException 
 	{
 		 /* Sorting on Rollno property*/
 		   System.out.println("Sorting Accounting to Person ZipCode : ");
@@ -178,7 +178,7 @@ public class PersonManger implements PersonInterface
 		return arrayList;
 	}
 
-	private ArrayList<Person> sortByName(ArrayList<Person> arrayList) 
+	private List<Person> sortByName(List<Person> arrayList) 
 	{
 		 System.out.println("Sorting Accounting to Person Name : ");
 		 Collections.sort(arrayList, Person.byNameComparator);

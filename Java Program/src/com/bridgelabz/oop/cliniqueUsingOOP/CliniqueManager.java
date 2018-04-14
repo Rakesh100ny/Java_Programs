@@ -5,21 +5,21 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class CliniqueManager implements ManagerInterface, SubManagerInterface {
+public class CliniqueManager  {
 	private static String doctorFile = "/home/brideit/files/Clinique/doctor.json";
 	private static String patientFile = "/home/brideit/files/Clinique/patient.json";
 	private static String appointmentFile = "/home/brideit/files/Clinique/appointment.json";
-	private ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
-	private ArrayList<Patient> patientList = new ArrayList<Patient>();
-	private ArrayList<Appointment> appointmentList = new ArrayList<Appointment>();
+	private List<Doctor> doctorList = new ArrayList<Doctor>();
+	private List<Patient> patientList = new ArrayList<Patient>();
+	private List<Appointment> appointmentList = new ArrayList<Appointment>();
 	ObjectMapper mapper = new ObjectMapper();
 
-	@Override
 	public void add() throws IOException {
 		System.out.print("\n\t\t\t\t           A D D-D E T A I L S");
 		System.out.println("\n\t\t\t\t     -----------------------------");
@@ -42,7 +42,6 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 
 	}
 
-	@Override
 	public void addPatient() throws IOException {
 		patientList = SingletonOfUtility.getInstance().readFile(patientFile, Patient[].class);
 
@@ -120,7 +119,6 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 
 	}
 
-	@Override
 	public void search() throws IOException {
 		System.out.print("\n\t\t\t\t       S E A R C H-D E T A I L S");
 		System.out.println("\n\t\t\t\t     -----------------------------");
@@ -143,7 +141,7 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 
 	}
 
-	public ArrayList<Patient> patientDetails() throws IOException {
+	public List<Patient> patientDetails() throws IOException {
 		System.out.println("\n\t\t\t\t        P A T I E N T-D E T A I L S");
 		System.out.println("\t\t\t\t      -------------------------------");
 		System.out.println("\t\t\t\t        By Name           : Enter 1");
@@ -183,7 +181,7 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 		return patientList;
 	}
 
-	private ArrayList<Patient> printPatientList(ArrayList<Patient> patientList, String result, boolean flag,
+	private List<Patient> printPatientList(List<Patient> patientList2, String result, boolean flag,
 			int choice) {
 		if (flag) {
 			System.out.println();
@@ -192,30 +190,30 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 			System.out.println("\t\t\t\t----------------------------------------------------");
 			System.out.println("\t\t\t\tPatient_Name | Patient_Id  | Patient_Mobile_Number");
 
-			for (int i = 0; i < patientList.size(); i++) {
+			for (int i = 0; i < patientList2.size(); i++) {
 				switch (choice) {
 				case 1:
-					if (result.equals(patientList.get(i).getPatientName())) {
-						System.out.printf("%40s %10s %20s ", patientList.get(i).getPatientName(),
-								patientList.get(i).getPatientId(), patientList.get(i).getPatientMobileNo());
+					if (result.equals(patientList2.get(i).getPatientName())) {
+						System.out.printf("%40s %10s %20s ", patientList2.get(i).getPatientName(),
+								patientList2.get(i).getPatientId(), patientList2.get(i).getPatientMobileNo());
 						System.out.println();
 					}
 					break;
 
 				case 2:
-					if (result.equals(String.valueOf(patientList.get(i).getPatientId()))) {
-						System.out.printf("%40s %10s %20s ", patientList.get(i).getPatientName(),
-								patientList.get(i).getPatientId(), patientList.get(i).getPatientMobileNo());
+					if (result.equals(String.valueOf(patientList2.get(i).getPatientId()))) {
+						System.out.printf("%40s %10s %20s ", patientList2.get(i).getPatientName(),
+								patientList2.get(i).getPatientId(), patientList2.get(i).getPatientMobileNo());
 						System.out.println();
 					}
 
 					break;
 
 				case 3:
-					if (result.equals(String.valueOf(patientList.get(i).getPatientMobileNo()))) {
+					if (result.equals(String.valueOf(patientList2.get(i).getPatientMobileNo()))) {
 
-						System.out.printf("%40s %10s %20s ", patientList.get(i).getPatientName(),
-								patientList.get(i).getPatientId(), patientList.get(i).getPatientMobileNo());
+						System.out.printf("%40s %10s %20s ", patientList2.get(i).getPatientName(),
+								patientList2.get(i).getPatientId(), patientList2.get(i).getPatientMobileNo());
 						System.out.println();
 					}
 
@@ -246,11 +244,11 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 			}
 
 		}
-		return patientList;
+		return patientList2;
 
 	}
 
-	public ArrayList<Doctor> doctorDetails() throws IOException {
+	public List<Doctor> doctorDetails() throws IOException {
 		System.out.println("\n\t\t\t\t      D O C T O R-D E T A I L S");
 		System.out.println("\t\t\t\t    -----------------------------");
 		System.out.println("\t\t\t\t     By Name           : Enter 1");
@@ -297,50 +295,50 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 		return doctorList;
 	}
 
-	private ArrayList<Doctor> printDoctorList(ArrayList<Doctor> doctorList, String result, int choice, boolean flag) {
+	private List<Doctor> printDoctorList(List<Doctor> doctorList2, String result, int choice, boolean flag) {
 		if (flag) {
 			System.out.println();
 			System.out.println("\t\t\t\t                         D O C T O R -L I S T");
 			System.out.println("\t\t\t\t----------------------------------------------------------------------");
 			System.out.println("\t\t\t\tDoctor_Name    | Doctor_Id  | Doctor_Specialization | Doctor_Availability");
 
-			for (int i = 0; i < doctorList.size(); i++) {
+			for (int i = 0; i < doctorList2.size(); i++) {
 				switch (choice) {
 				case 1:
-					if (result.equals(doctorList.get(i).getDoctorName())) {
-						System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(),
-								doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
-								doctorList.get(i).getDoctorAvailability());
+					if (result.equals(doctorList2.get(i).getDoctorName())) {
+						System.out.printf("%46s %8s %20s %20s ", doctorList2.get(i).getDoctorName(),
+								doctorList2.get(i).getDoctorId(), doctorList2.get(i).getDoctorSpecialization(),
+								doctorList2.get(i).getDoctorAvailability());
 						System.out.println();
 					}
 					break;
 
 				case 2:
-					if (result.equals(String.valueOf(doctorList.get(i).getDoctorId()))) {
-						System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(),
-								doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
-								doctorList.get(i).getDoctorAvailability());
+					if (result.equals(String.valueOf(doctorList2.get(i).getDoctorId()))) {
+						System.out.printf("%46s %8s %20s %20s ", doctorList2.get(i).getDoctorName(),
+								doctorList2.get(i).getDoctorId(), doctorList2.get(i).getDoctorSpecialization(),
+								doctorList2.get(i).getDoctorAvailability());
 						System.out.println();
 					}
 
 					break;
 
 				case 3:
-					if (result.equals(doctorList.get(i).getDoctorSpecialization())) {
+					if (result.equals(doctorList2.get(i).getDoctorSpecialization())) {
 
-						System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(),
-								doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
-								doctorList.get(i).getDoctorAvailability());
+						System.out.printf("%46s %8s %20s %20s ", doctorList2.get(i).getDoctorName(),
+								doctorList2.get(i).getDoctorId(), doctorList2.get(i).getDoctorSpecialization(),
+								doctorList2.get(i).getDoctorAvailability());
 						System.out.println();
 					}
 
 					break;
 
 				case 4:
-					if (result.equals(doctorList.get(i).getDoctorAvailability())) {
-						System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(),
-								doctorList.get(i).getDoctorId(), doctorList.get(i).getDoctorSpecialization(),
-								doctorList.get(i).getDoctorAvailability());
+					if (result.equals(doctorList2.get(i).getDoctorAvailability())) {
+						System.out.printf("%46s %8s %20s %20s ", doctorList2.get(i).getDoctorName(),
+								doctorList2.get(i).getDoctorId(), doctorList2.get(i).getDoctorSpecialization(),
+								doctorList2.get(i).getDoctorAvailability());
 						System.out.println();
 					}
 
@@ -352,7 +350,7 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 				}
 
 			}
-			return doctorList;
+			return doctorList2;
 		} else {
 			switch (choice) {
 			case 1:
@@ -376,11 +374,10 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 			}
 
 		}
-		return doctorList;
+		return doctorList2;
 
 	}
 
-	@Override
 	public void display() throws IOException {
 		System.out.print("\n\t\t\t\t       D I S P L A Y-D E T A I L S");
 		System.out.println("\n\t\t\t\t      -----------------------------");
@@ -433,7 +430,6 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 
 	}
 
-	@Override
 	public void popularDoctor() throws JsonParseException, JsonMappingException, IOException {
 		String doctorName = "", specialization = "";
 		int numberOfPatient = 0;
@@ -457,7 +453,6 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 
 	}
 
-	@Override
 	public void takeAppointment() throws IOException {
 		Appointment appointment = new Appointment();
 		doctorList = doctorDetails();
@@ -491,13 +486,7 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 			appointmentList = SingletonOfUtility.getInstance().readFile(appointmentFile, Appointment[].class);
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			Date date = new Date();
-			// System.out.println("\n\t\t\t\tToday's Date : " + date);
-			/*
-			 * int MILLIS_IN_DAY = 1000 * 60 * 60 * 24; String nextDate =
-			 * simpleDateFormat.format(date.getTime() + MILLIS_IN_DAY);
-			 * 
-			 * System.out.println("Next Date : "+nextDate);
-			 */
+			
 			appointment.setDate(simpleDateFormat.format(date));
 
 			int count = 0;
@@ -517,20 +506,42 @@ public class CliniqueManager implements ManagerInterface, SubManagerInterface {
 
 					} else {
 
-						for (int p = 0; p < appointmentList.size(); p++) {
-							if (doctorId == appointmentList.get(i).getDoctorId()
-									&& !simpleDateFormat.format(date).equals(appointmentList.get(i).getDate())) {
+							System.out.println("id    : "+appointment.getDoctorId());
+							System.out.println("date1 : "+appointment.getDate());
+							System.out.println("date2 : "+simpleDateFormat.format(date));
+							if (doctorId == appointment.getDoctorId()
+									&& simpleDateFormat.format(date).equals(appointment.getDate())) {
 								count = 0;
 								doctorList.get(i).setCount(count);
+								System.out.println("r1");
 								mapper.writeValue(new FileOutputStream(doctorFile), doctorList);
-							}
+							
 						}
+						 boolean status=false;	
+						 for(int p=0;p<doctorList.size();p++)
+						 {
+						  if(doctorId==doctorList.get(p).getDoctorId() && doctorList.get(p).getCount()==0)
+						  {
+						   status=true;	
+						   doctorList.get(i).setpatientCount(doctorList.get(i).getpatientCount() + 1);
+						doctorList.get(i).setCount(count);
+							
+						  }
+						 }
+						 
+						 if(status)
+						 {
+							 
+						 }
+						 else
+						 {
 						System.out.print(
 								"\n\t\t\t\tDoctor is Already has 5 Appointment....To Check Another Doctor(Y/N) ");
 						System.out.println();
 						displayDoctor();
 						System.out.println();
 						doctorDetails();
+						 }
 					}
 				}
 

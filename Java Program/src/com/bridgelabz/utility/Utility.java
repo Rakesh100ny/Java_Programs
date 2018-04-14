@@ -22,7 +22,7 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.json.simple.JSONArray;
@@ -2124,7 +2124,7 @@ public class Utility {
 		return arrayList;
 	}
 
-	public boolean toCheckDoctorDetails(ArrayList<Doctor> doctorList,String result) 
+	public boolean toCheckDoctorDetails(List<Doctor> doctorList,String result) 
 	{
 		for(int i=0;i<doctorList.size();i++)
 	    {
@@ -2136,7 +2136,7 @@ public class Utility {
    	    return false;
 	}
 	
-	public boolean toCheckPatientDetails(ArrayList<Patient> patientList, String result) {
+	public boolean toCheckPatientDetails(List<Patient> patientList, String result) {
 		for(int i=0;i<patientList.size();i++)
 		{
 		 if(patientList.get(i).getPatientName().equals(result) || String.valueOf(patientList.get(i).getPatientId()).equals(result) || String.valueOf(patientList.get(i).getPatientMobileNo()).equals(result))
@@ -2147,7 +2147,7 @@ public class Utility {
 		return false;
 	}
 	
-	public static <T>ArrayList<T> readFile(String fileName,Class<T[]>className) throws JsonParseException, JsonMappingException, IOException
+	public static <T>ArrayList<T> readFile(String fileName,Class<T[]>className) throws JsonParseException,IOException
 	{
 		List<T>list=null;
 		ArrayList<T> arrayList=null;

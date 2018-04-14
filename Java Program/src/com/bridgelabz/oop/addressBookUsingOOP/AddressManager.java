@@ -6,20 +6,23 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import com.bridgelabz.utility.Utility;
 
-public class AddressManager implements AddressBookInterface {
+public class AddressManager 
+{
 	ObjectMapper mapper = new ObjectMapper();
 	File file;
 	String filePath = "/home/brideit/files/AddressBook/";
 	Utility utility = new Utility();
 	
-	static ArrayList<Person> arrayList=new ArrayList<Person>();
+	static List<Person> arrayList=new ArrayList<Person>();
 	
-	public static ArrayList<Person> getList()
+	public static List<Person> getList()
 	{
      return arrayList;		
 	}
@@ -38,7 +41,7 @@ public class AddressManager implements AddressBookInterface {
 		}
 	}
 
-	public ArrayList<Person> openAddressBook(String fileName) throws IOException {
+	public List<Person> openAddressBook(String fileName) throws IOException {
 		file = new File(filePath + fileName + ".json");
 
 		if (file.exists()) {
@@ -58,7 +61,7 @@ public class AddressManager implements AddressBookInterface {
 			
 			br.close();
 			char info = ' ';
-			PersonInterface mangerOperation = new PersonManger();
+			PersonManger mangerOperation = new PersonManger();
 
 			char input = ' ';
 			do {
@@ -107,7 +110,7 @@ public class AddressManager implements AddressBookInterface {
 		return arrayList;
 	}
 
-	public void save(ArrayList<Person> arrayList) throws JsonGenerationException, JsonMappingException, IOException {
+	public void save(List<Person> arrayList) throws JsonGenerationException, JsonMappingException, IOException {
 		
 		mapper.writeValue(new FileOutputStream(file), arrayList);
 
