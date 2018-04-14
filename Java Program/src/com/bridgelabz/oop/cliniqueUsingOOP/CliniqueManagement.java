@@ -12,15 +12,14 @@ public class CliniqueManagement
 		char input = ' ';
 		do {
 
-			System.out.print("\n\n\n\n\t\t\t\t       Clinique Management System ");
-			System.out.print("\n\t\t\t\t  -----------------------------------");
-			System.out.print("\n\t\t\t\t    Add     Doctor/Patient : Enter 1");
-			System.out.print("\n\t\t\t\t    Serach  Doctor/Patient : Enter 2");
-			System.out.print("\n\t\t\t\t    Display Doctor/Patient : Enter 3");
-			System.out.print("\n\t\t\t\t    Take    Appointment    : Enter 4");
-			System.out.print("\n\t\t\t\t    Popular Specialization : Enter 5");
-			System.out.print("\n\t\t\t\t    Popular Doctor         : Enter 6");
-			System.out.print("\n\t\t\t\t  -----------------------------------\n");
+			System.out.print("\n\n\n\n\t\t\t\t       	     Clinique Management System ");
+			System.out.print("\n\t\t\t\t   ----------------------------------------");
+			System.out.print("\n\t\t\t\t    Add     Doctor/Patient        : Enter 1");
+			System.out.print("\n\t\t\t\t    Serach  Doctor/Patient        : Enter 2");
+			System.out.print("\n\t\t\t\t    Display Doctor/Patient        : Enter 3");
+			System.out.print("\n\t\t\t\t    Take    Appointment           : Enter 4");
+			System.out.print("\n\t\t\t\t    Popular Doctor/Specialization : Enter 5");
+			System.out.print("\n\t\t\t\t   ----------------------------------------\n");
 
 			System.out.print("\n\t\t\t\t \t  Enter Choice : ");
 			int choice = SingletonOfUtility.getInstance().inputInteger();

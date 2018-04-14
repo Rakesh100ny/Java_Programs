@@ -2128,7 +2128,7 @@ public class Utility {
 	{
 		for(int i=0;i<doctorList.size();i++)
 	    {
-	     if(doctorList.get(i).getDoctorName().equals(result) || doctorList.get(i).getDoctorAvailability().equals(result) || result.equals(doctorList.get(i).getDoctorId()))
+	     if(doctorList.get(i).getDoctorName().equals(result) || doctorList.get(i).getDoctorAvailability().equals(result) || doctorList.get(i).getDoctorSpecialization().equals(result)|| String.valueOf(doctorList.get(i).getDoctorId()).equals(result))
 	     {
 	      return true; 	  
 	     }
@@ -2139,7 +2139,7 @@ public class Utility {
 	public boolean toCheckPatientDetails(ArrayList<Patient> patientList, String result) {
 		for(int i=0;i<patientList.size();i++)
 		{
-		 if(patientList.get(i).getPatientName().equals(result) || result.equals(patientList.get(i).getPatientId()) || result.equals(patientList.get(i).getPatientMobileNo()))
+		 if(patientList.get(i).getPatientName().equals(result) || String.valueOf(patientList.get(i).getPatientId()).equals(result) || String.valueOf(patientList.get(i).getPatientMobileNo()).equals(result))
 		 {
 		  return true; 	  
 		 }
