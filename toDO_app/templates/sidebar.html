@@ -1,138 +1,37 @@
+<md-sidenav class="md-sidenav-left"  md-component-id="left" md-disable-backdrop md-whiteframe="4">
+  <md-content layout-margin>
+    <md-subheader class="md-no-sticky">Manufacturer</md-subheader>
+    <md-list-item ng-repeat="x in jsonRecord  | unique:'specs.manufacturer' | orderBy : 'specs.manufacturer'">
+      <p>{{ x.specs.manufacturer+" " }}</p>
+      <md-checkbox class="md-secondary" ng-click="" aria-label="Manufacturer">
+      </md-checkbox>
 
-  <section layout="row">
-    <md-sidenav style="margin-top:4.0em;width:200px;position: fixed;z-index: 1;"  class="md-sidenav-left" md-component-id="left"  md-disable-backdrop md-whiteframe="4">
-      <md-content  flex layout-padding>
-      <div flex="100" layout-align="center" layout="column">
-            <fieldset class="standard">
-              <legend>Manufacturer </legend>
-                     <div ng-repeat="x in jsonRecord  | unique:'specs.manufacturer' | orderBy : 'specs.manufacturer'" >
-                       <md-checkbox  md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
-                  </md-checkbox>
-                      {{ x.specs.manufacturer+" " }}
-                      </div>
-                </fieldset>
-                <div layout-padding></div>
-                <fieldset  class="standard">
-                  <legend>Storage </legend>
-                         <div ng-repeat="x in jsonRecord | unique:'specs.storage '">
-                           <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
-                             {{ x.specs.storage+" " }}
-                        </md-checkbox>
+    </md-list-item>
+    <md-subheader class="md-no-sticky">storage</md-subheader>
+    <md-list-item ng-repeat="x in jsonRecord | unique:'specs.storage '">
+      <p>{{ x.specs.storage+" " }}</p>
+      <md-checkbox class="md-secondary" md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
 
-                          </div>
-                    </fieldset>
-                    <div layout-padding></div>
-                    <fieldset class="standard">
-                      <legend>OS </legend>
-                             <div ng-repeat="x in jsonRecord | unique:'specs.os'">
-                               <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
-                                 {{ x.specs.os+" " }}
-                            </md-checkbox>
+      </md-checkbox>
 
-                              </div>
-                        </fieldset>
-                        <div layout-padding></div>
-                        <fieldset class="standard">
-                          <legend>Camera </legend>
-                                 <div ng-repeat="x in jsonRecord| unique:'specs.camera' | orderBy : 'specs.camera'">
-                                   <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
-                                     {{ x.specs.camera+" " }}
-                                </md-checkbox>
+    </md-list-item>
+    <md-subheader class="md-no-sticky">OS</md-subheader>
+    <md-list-item ng-repeat="x in jsonRecord | unique:'specs.os'">
+      <p>{{ x.specs.os+" " }}</p>
+      <md-checkbox class="md-secondary" ng-model="hasInk1" aria-label="No Ink Effects">
 
-                                  </div>
-                            </fieldset>
+      </md-checkbox>
 
-            </div>
+    </md-list-item>
+    <md-subheader class="md-no-sticky">Camera</md-subheader>
+    <md-list-item ng-repeat="x in jsonRecord| unique:'specs.camera' | orderBy : 'specs.camera'">
+      <p>{{ x.specs.camera+" " }}</p>
+      <md-checkbox class="md-secondary" ng-model="hasInk1" aria-label="No Ink Effects">
 
-    <!-- <div flex="100" layout-align="center" layout="column">
-      <div>
-        <fieldset class="standard">
-          <legend>Manufacturer </legend>
-            <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
-              Apple
-            </md-checkbox>
-            <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
-              Samsung
-            </md-checkbox>
-            <md-checkbox md-no-ink ng-model="hasInk3" aria-label="No Ink Effects">
-              HTC
-            </md-checkbox>
-            <md-checkbox md-no-ink ng-model="hasInk4" aria-label="No Ink Effects">
-              Nokia
-            </md-checkbox>
-            <md-checkbox md-no-ink ng-model="hasInk5" aria-label="No Ink Effects">
-              ZTE
-            </md-checkbox>
-            <md-checkbox md-no-ink ng-model="hasInk6" aria-label="No Ink Effects">
-              Sony
-            </md-checkbox>
-        </fieldset>
-      </div>
-    </div>
-   <div layout-padding>
-   </div>
-    <div flex="100"  layout-align="center" layout="column">
-      <div>
-        <fieldset class="standard">
-          <legend>Screen Size </legend>
-            <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
-              16 GB
-            </md-checkbox>
-            <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
-              32 GB
-            </md-checkbox>
+      </md-checkbox>
 
-        </fieldset>
-      </div>
-    </div>
+    </md-list-item>
 
 
-    <div layout-padding>
-    </div>
-     <div flex="100"  layout-align="center" layout="column">
-       <div>
-         <fieldset class="standard">
-           <legend>OS </legend>
-             <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
-               Android
-             </md-checkbox>
-             <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
-               iOS
-             </md-checkbox>
-             <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
-               Windows
-             </md-checkbox>
-
-         </fieldset>
-       </div>
-     </div>
-
-     <div layout-padding>
-     </div>
-      <div flex="100"  layout-align="center" layout="column">
-        <div>
-          <fieldset class="standard">
-            <legend>Camera </legend>
-              <md-checkbox md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
-                5 Mpx
-              </md-checkbox>
-              <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
-                8 Mpx
-              </md-checkbox>
-              <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
-                12 Mpx
-              </md-checkbox>
-
-              <md-checkbox md-no-ink ng-model="hasInk2" aria-label="No Ink Effects">
-                15 Mpx
-              </md-checkbox>
-          </fieldset>
-        </div>
-      </div>
-
-  </div>
-
-      </md-content> -->
-  </md-sidenav>
-
-</section>
+  </md-content>
+</md-sidenav>

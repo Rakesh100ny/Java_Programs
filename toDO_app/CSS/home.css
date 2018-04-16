@@ -1,0 +1,51 @@
+.md-sidenav-left, md-sidenav
+{
+  margin-top: 64px;
+  position: fixed;
+}
+
+.card,i
+{
+ align-self: center;
+}
+
+@media(max-width:300px) portrait {
+  .card, i{
+    border: red solid;
+    }
+}
+
+@media(max-width:959px) and (orientation: portrait){
+  .md-sidenav-left, md-sidenav{
+    margin-top: 56px;
+    position: fixed;
+  }
+}
+
+
+@media(max-width:959px) and (orientation: landscape){
+  .md-sidenav-left, md-sidenav{
+    margin-top: 48px;
+    position: fixed;
+  }
+}
+#toolbar
+{
+ position: fixed;
+}
+
+
+.dashboard
+{
+ padding-top: 4%;
+}
+
+
+.card img
+{
+  height: 300px;
+  width: 350px;
+  background-color: lightblue;
+  align-self: center;
+  border: black solid;
+}

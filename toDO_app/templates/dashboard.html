@@ -1,7 +1,41 @@
-<div layout="row" layout-margin layout-padding>
+
+ <div class="dashboard">
+  <md-content layout="row"  layout-padding layout-xs="column" layout-wrap layout-align-gt-md="start center" layout-align-md="space-around center" layout-align-sm="space-around center" >
+   <md-card  class="md-card-start"  ng-repeat="data in jsonRecord">
+     <md-card-header>
+       <md-card-avatar>
+         <img class="md-user-avatar" src="{{ data.image.small }}">
+       </md-card-avatar>
+        <md-card-header-text>
+         <span class="md-title"><b>{{ data.name+" "}}</b></span>
+        </md-card-header-text>
+     </md-card-header>
+     <i class="card">
+     <img ng-src="{{data.image.small}}" class="md-card-image" alt="image caption">
+   </i>
+     <md-card-title>
+       <md-card-title-text>
+         <span class="md-headline">{{item.name}}</span>
+       </md-card-title-text>
+     </md-card-title>
+     <md-divider></md-divider>
+     <md-card-content>
+       <p><b>Manufacturer:</b>{{item.specs.manufacturer}}</p>
+       <p><b>Storage:</b>{{item.specs.storage}} <b>OS:</b>{{item.specs.os}}
+         <p><b>Camera:</b>{{item.specs.camera}}</p>
+     </md-card-content>
+     <md-divider></md-divider>
+     <md-card-actions layout="row" layout-align="space-between center">
+       <md-button class='md-raised md-accent' ng-click='showDialog($event,item)'>Buy Now!</md-button>
+       <p><b>$ {{data.price}}</b></p>
+     </md-card-actions>
+   </md-card>
+
+  </md-content>
 </div>
 
-<div layout="row">
+
+  <!-- <div layout="row">
     <div flex>
     <div>
       <div layout="row" layout-xs="column"  layout-wrap>
@@ -35,4 +69,4 @@
     </div>
     <div flex>
     </div>
-  </div>
+  </div> -->
