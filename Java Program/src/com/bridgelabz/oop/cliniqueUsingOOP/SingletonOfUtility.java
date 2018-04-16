@@ -1,6 +1,6 @@
 package com.bridgelabz.oop.cliniqueUsingOOP;
 
-import com.bridgelabz.utility.Utility;
+
 
 public class SingletonOfUtility
 {

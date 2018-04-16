@@ -11,7 +11,7 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class CliniqueManager  {
+public class CliniqueManager {
 	private static String doctorFile = "/home/brideit/files/Clinique/doctor.json";
 	private static String patientFile = "/home/brideit/files/Clinique/patient.json";
 	private static String appointmentFile = "/home/brideit/files/Clinique/appointment.json";
@@ -111,7 +111,8 @@ public class CliniqueManager  {
 			System.out.println();
 			System.out.println("DoctorList : " + doctorList);
 		} else {
-			System.out.println("\n\t\t\t\tDoctor is Already exists in the clinique...Please Check Doctor List then After Add Doctor!");
+			System.out.println(
+					"\n\t\t\t\tDoctor is Already exists in the clinique...Please Check Doctor List then After Add Doctor!");
 			displayDoctor();
 		}
 
@@ -181,8 +182,7 @@ public class CliniqueManager  {
 		return patientList;
 	}
 
-	private List<Patient> printPatientList(List<Patient> patientList2, String result, boolean flag,
-			int choice) {
+	private List<Patient> printPatientList(List<Patient> patientList2, String result, boolean flag, int choice) {
 		if (flag) {
 			System.out.println();
 
@@ -486,66 +486,95 @@ public class CliniqueManager  {
 			appointmentList = SingletonOfUtility.getInstance().readFile(appointmentFile, Appointment[].class);
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			Date date = new Date();
-			
-			appointment.setDate(simpleDateFormat.format(date));
+			String currentDate = simpleDateFormat.format(date);
+			appointment.setDate(currentDate);
 
 			int count = 0;
 			for (int i = 0; i < doctorList.size(); i++) {
 				if (appointment.getDoctorId() == doctorList.get(i).getDoctorId()
 						&& appointment.getDoctorName().equals(doctorList.get(i).getDoctorName())) {
-					count = doctorList.get(i).getCount();
 
-					if (count < 5) {
+					count = doctorList.get(i).getCount();
+					boolean status = SingletonOfUtility.getInstance().checkAppointmentDate(appointmentList, currentDate,
+							doctorId, appointment.getDoctorName());
+					if (count <= 5 && status) {
+
+						count = 0;
+						doctorList.get(i).setCount(count);
 						count++;
 						doctorList.get(i).setpatientCount(doctorList.get(i).getpatientCount() + 1);
 						doctorList.get(i).setCount(count);
 						mapper.writeValue(new FileOutputStream(doctorFile), doctorList);
 						appointmentList.add(appointment);
-						System.out.println("\n\t\t\t\tAppointment is successfully Done...!");
+						System.out.println("\n\t\t\t\tAppointment is successfully Done1...!");
 						mapper.writeValue(new FileOutputStream(appointmentFile), appointmentList);
 
 					} else {
 
-							System.out.println("id    : "+appointment.getDoctorId());
-							System.out.println("date1 : "+appointment.getDate());
-							System.out.println("date2 : "+simpleDateFormat.format(date));
-							if (doctorId == appointment.getDoctorId()
-									&& simpleDateFormat.format(date).equals(appointment.getDate())) {
-								count = 0;
-								doctorList.get(i).setCount(count);
-								System.out.println("r1");
-								mapper.writeValue(new FileOutputStream(doctorFile), doctorList);
-							
-						}
-						 boolean status=false;	
-						 for(int p=0;p<doctorList.size();p++)
-						 {
-						  if(doctorId==doctorList.get(p).getDoctorId() && doctorList.get(p).getCount()==0)
-						  {
-						   status=true;	
-						   doctorList.get(i).setpatientCount(doctorList.get(i).getpatientCount() + 1);
-						doctorList.get(i).setCount(count);
-							
-						  }
-						 }
-						 
-						 if(status)
-						 {
-							 
-						 }
-						 else
-						 {
-						System.out.print(
-								"\n\t\t\t\tDoctor is Already has 5 Appointment....To Check Another Doctor(Y/N) ");
-						System.out.println();
-						displayDoctor();
-						System.out.println();
-						doctorDetails();
-						 }
-					}
-				}
+						count = doctorList.get(i).getCount();
 
+						if (count < 5) {
+							count++;
+							doctorList.get(i).setpatientCount(doctorList.get(i).getpatientCount() + 1);
+							doctorList.get(i).setCount(count);
+							mapper.writeValue(new FileOutputStream(doctorFile), doctorList);
+							appointmentList.add(appointment);
+							System.out.println("\n\t\t\t\tAppointment is successfully Done2...!");
+							mapper.writeValue(new FileOutputStream(appointmentFile), appointmentList);
+
+						} else {
+							System.out.print(
+									"\n\t\t\t\tDoctor is Already has 5 Appointment....To Check Another Doctor(Y/N) ");
+							System.out.println();
+							displayDoctor();
+							System.out.println();
+							takeAppointment();
+
+						}
+					}
+
+				}
 			}
+			/*
+			 * for (int i = 0; i < doctorList.size(); i++) { if (appointment.getDoctorId()
+			 * == doctorList.get(i).getDoctorId() &&
+			 * appointment.getDoctorName().equals(doctorList.get(i).getDoctorName())) {
+			 * count = doctorList.get(i).getCount();
+			 * 
+			 * if (count < 5) { count++;
+			 * doctorList.get(i).setpatientCount(doctorList.get(i).getpatientCount() + 1);
+			 * doctorList.get(i).setCount(count); mapper.writeValue(new
+			 * FileOutputStream(doctorFile), doctorList); appointmentList.add(appointment);
+			 * System.out.println("\n\t\t\t\tAppointment is successfully Done...!");
+			 * mapper.writeValue(new FileOutputStream(appointmentFile), appointmentList);
+			 * 
+			 * } else {
+			 * 
+			 * System.out.println("id    : "+appointment.getDoctorId());
+			 * System.out.println("date1 : "+appointment.getDate());
+			 * System.out.println("date2 : "+simpleDateFormat.format(date)); if (doctorId ==
+			 * appointment.getDoctorId() &&
+			 * simpleDateFormat.format(date).equals(appointment.getDate())) { count = 0;
+			 * doctorList.get(i).setCount(count); System.out.println("r1");
+			 * mapper.writeValue(new FileOutputStream(doctorFile), doctorList);
+			 * 
+			 * } boolean status=false; for(int p=0;p<doctorList.size();p++) {
+			 * if(doctorId==doctorList.get(p).getDoctorId() &&
+			 * doctorList.get(p).getCount()==0) { status=true;
+			 * doctorList.get(i).setpatientCount(doctorList.get(i).getpatientCount() + 1);
+			 * doctorList.get(i).setCount(count);
+			 * 
+			 * } }
+			 * 
+			 * if(status) {
+			 * 
+			 * } else { System.out.print(
+			 * "\n\t\t\t\tDoctor is Already has 5 Appointment....To Check Another Doctor(Y/N) "
+			 * ); System.out.println(); displayDoctor(); System.out.println();
+			 * doctorDetails(); } } }
+			 * 
+			 * }
+			 */
 
 		} else {
 			displayPatient();

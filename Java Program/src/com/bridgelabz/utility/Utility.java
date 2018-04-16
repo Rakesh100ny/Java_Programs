@@ -30,6 +30,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import com.bridgelabz.oop.addressBookUsingOOP.Person;
+import com.bridgelabz.oop.cliniqueUsingOOP.Appointment;
 import com.bridgelabz.oop.cliniqueUsingOOP.Doctor;
 import com.bridgelabz.oop.cliniqueUsingOOP.Patient;
 import static java.lang.Math.*;
@@ -2443,5 +2444,27 @@ public class Utility {
 		System.out.println("\n\t\t\t\tBubble Sort For Integer     : " + elapsed5);
 		System.out.println("\n\t\t\t\tBubble Sort For String      : " + elapsed6);
 		
+	}
+	public boolean checkAppointmentDate(List<Appointment> appointmentList,String date,int id,String doctorName) 
+	{
+     for(int i=appointmentList.size()-1;i>=0;i--)
+     {
+      if(id==appointmentList.get(i).getDoctorId() && doctorName.equals(appointmentList.get(i).getDoctorName()) )
+      {
+       
+       if(date.equals(appointmentList.get(i).getDate()))
+       {
+    	   return false;   
+       }
+       else
+       {
+    	  return true; 
+       }
+       	
+      }
+      System.out.println("iCount : "+i);
+     
+     }
+ 	 return false;
 	}
 }

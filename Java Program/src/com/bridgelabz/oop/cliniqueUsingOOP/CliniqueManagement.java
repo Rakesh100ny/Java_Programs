@@ -1,13 +1,9 @@
 package com.bridgelabz.oop.cliniqueUsingOOP;
 
-
 import java.io.IOException;
 
-
-public class CliniqueManagement 
-{
- public static void main(String[] args) throws IOException 
- {
+public class CliniqueManagement {
+	public static void main(String[] args) throws IOException {
 		CliniqueManager action = new CliniqueManager();
 		char input = ' ';
 		do {
@@ -43,7 +39,7 @@ public class CliniqueManagement
 
 			case 5:
 				action.popularDoctor();
-				break;	
+				break;
 
 			default:
 				System.out.println("\n\t\t\t\tInvalid Choice...!");
