@@ -14,14 +14,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.codehaus.jackson.JsonParseException;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
@@ -30,9 +27,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import com.bridgelabz.oop.addressBookUsingOOP.Person;
-import com.bridgelabz.oop.cliniqueUsingOOP.Appointment;
-import com.bridgelabz.oop.cliniqueUsingOOP.Doctor;
-import com.bridgelabz.oop.cliniqueUsingOOP.Patient;
 import static java.lang.Math.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -48,7 +42,6 @@ public class Utility {
 	private static Queue queue = new Queue();
 	private static JSONObject jsonInventoryObject = new JSONObject();
 	private static JSONArray jsonInventoryArray = new JSONArray();
-	private static ObjectMapper objectMapper = new ObjectMapper();
 
 	public Utility()
 	{
@@ -2114,7 +2107,7 @@ public class Utility {
 
 	
 	public ArrayList<Person> readJsonDataConvertIntoList(File fileName) throws IOException 
-	{
+	{	
 		FileReader fr=new FileReader(fileName);
 		BufferedReader br=new BufferedReader(fr);
 		String data=br.readLine();
@@ -2125,43 +2118,9 @@ public class Utility {
 		return arrayList;
 	}
 
-	public boolean toCheckDoctorDetails(List<Doctor> doctorList,String result) 
-	{
-		for(int i=0;i<doctorList.size();i++)
-	    {
-	     if(doctorList.get(i).getDoctorName().equals(result) || doctorList.get(i).getDoctorAvailability().equals(result) || doctorList.get(i).getDoctorSpecialization().equals(result)|| String.valueOf(doctorList.get(i).getDoctorId()).equals(result))
-	     {
-	      return true; 	  
-	     }
-	    }
-   	    return false;
-	}
+
 	
-	public boolean toCheckPatientDetails(List<Patient> patientList, String result) {
-		for(int i=0;i<patientList.size();i++)
-		{
-		 if(patientList.get(i).getPatientName().equals(result) || String.valueOf(patientList.get(i).getPatientId()).equals(result) || String.valueOf(patientList.get(i).getPatientMobileNo()).equals(result))
-		 {
-		  return true; 	  
-		 }
-		}
-		return false;
-	}
-	
-	public static <T>ArrayList<T> readFile(String fileName,Class<T[]>className) throws JsonParseException,IOException
-	{
-		List<T>list=null;
-		ArrayList<T> arrayList=null;
-		
-		FileReader fr=new FileReader(fileName);
-		BufferedReader br=new BufferedReader(fr);
-		String data=br.readLine();
-		list = new LinkedList<T>(Arrays.asList(objectMapper.readValue(data, className)));
-		arrayList = new ArrayList<T>(list);
-		br.close();
-		return arrayList;
-		
-	}
+
 	public void ticTacToe(int moves, boolean player1, boolean player2, boolean switchTurn, char[][] arr)
 	{
 		while (moves < 9 && !player1 && !player2) {
@@ -2445,26 +2404,5 @@ public class Utility {
 		System.out.println("\n\t\t\t\tBubble Sort For String      : " + elapsed6);
 		
 	}
-	public boolean checkAppointmentDate(List<Appointment> appointmentList,String date,int id,String doctorName) 
-	{
-     for(int i=appointmentList.size()-1;i>=0;i--)
-     {
-      if(id==appointmentList.get(i).getDoctorId() && doctorName.equals(appointmentList.get(i).getDoctorName()) )
-      {
-       
-       if(date.equals(appointmentList.get(i).getDate()))
-       {
-    	   return false;   
-       }
-       else
-       {
-    	  return true; 
-       }
-       	
-      }
-      System.out.println("iCount : "+i);
-     
-     }
- 	 return false;
-	}
+
 }

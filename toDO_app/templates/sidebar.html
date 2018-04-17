@@ -1,32 +1,32 @@
 <md-sidenav class="md-sidenav-left"  md-component-id="left" md-disable-backdrop md-whiteframe="4">
   <md-content layout-margin>
-    <md-subheader class="md-no-sticky">Manufacturer</md-subheader>
-    <md-list-item ng-repeat="x in jsonRecord  | unique:'specs.manufacturer' | orderBy : 'specs.manufacturer'">
-      <p>{{ x.specs.manufacturer+" " }}</p>
-      <md-checkbox class="md-secondary" ng-click="" aria-label="Manufacturer">
+    <md-subheader class="md-no-sticky"><strong class="color">Manufacturer</strong></md-subheader>
+    <md-list-item ng-repeat="item in jsonRecord  | unique:'specs.manufacturer' | orderBy : 'specs.manufacturer'">
+      <p>{{ item.specs.manufacturer+" " }}</p>
+      <md-checkbox class="md-secondary"  ng-click="toggle(item.specs.manufacturer)" aria-label="Manufacturer">
       </md-checkbox>
 
     </md-list-item>
-    <md-subheader class="md-no-sticky">storage</md-subheader>
-    <md-list-item ng-repeat="x in jsonRecord | unique:'specs.storage '">
-      <p>{{ x.specs.storage+" " }}</p>
-      <md-checkbox class="md-secondary" md-no-ink ng-model="hasInk1" aria-label="No Ink Effects">
-
-      </md-checkbox>
-
-    </md-list-item>
-    <md-subheader class="md-no-sticky">OS</md-subheader>
-    <md-list-item ng-repeat="x in jsonRecord | unique:'specs.os'">
-      <p>{{ x.specs.os+" " }}</p>
-      <md-checkbox class="md-secondary" ng-model="hasInk1" aria-label="No Ink Effects">
+    <md-subheader class="md-no-sticky"><strong class="color">Storage</strong></md-subheader>
+    <md-list-item ng-repeat="item in jsonRecord | unique:'specs.storage '">
+      <p>{{ item.specs.storage+" " }}</p>
+      <md-checkbox class="md-secondary"  ng-click="toggle(item.specs.storage)" aria-label="Storage">
 
       </md-checkbox>
 
     </md-list-item>
-    <md-subheader class="md-no-sticky">Camera</md-subheader>
-    <md-list-item ng-repeat="x in jsonRecord| unique:'specs.camera' | orderBy : 'specs.camera'">
-      <p>{{ x.specs.camera+" " }}</p>
-      <md-checkbox class="md-secondary" ng-model="hasInk1" aria-label="No Ink Effects">
+    <md-subheader class="md-no-sticky"><strong class="color">OS</strong></md-subheader>
+    <md-list-item ng-repeat="item in jsonRecord | unique:'specs.os'">
+      <p>{{ item.specs.os+" " }}</p>
+      <md-checkbox class="md-secondary"  ng-click="toggle(item.specs.os)" aria-label="OS">
+
+      </md-checkbox>
+
+    </md-list-item>
+    <md-subheader class="md-no-sticky"><strong class="color">Camera</strong>  </md-subheader>
+    <md-list-item ng-repeat="item in jsonRecord| unique:'specs.camera' | orderBy : 'specs.camera'">
+      <p>{{ item.specs.camera+" " }}</p>
+      <md-checkbox class="md-secondary"  ng-click="toggle(item.specs.camera)" aria-label="Camera">
 
       </md-checkbox>
 

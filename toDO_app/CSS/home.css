@@ -1,18 +1,49 @@
+#toolbar
+{
+ position: fixed;
+}
+
+.dashboard
+{
+ padding-top: 4%;
+}
+
+.content,md-card
+{
+ padding-left:  5%;
+}
+
+.md-user-avatar
+{
+   height: 50px;
+   width: 50px;
+   border-radius: 50%;
+   border-top: red solid 1px;
+   border-bottom: blue solid 1px;
+}
+
+.md-title
+{
+ margin:auto;
+ color: tan;
+}
+
+.img
+{
+  height: 300px;
+  width: 350px;
+  align-self: center;
+}
+.photo
+{
+  align-self: center;
+  width: 100%;
+}
+
 .md-sidenav-left, md-sidenav
 {
   margin-top: 64px;
   position: fixed;
-}
-
-.card,i
-{
- align-self: center;
-}
-
-@media(max-width:300px) portrait {
-  .card, i{
-    border: red solid;
-    }
 }
 
 @media(max-width:959px) and (orientation: portrait){
@@ -22,6 +53,12 @@
   }
 }
 
+.carddemoBasicUsage .card-media {
+  background-color: #999999;
+
+ }
+
+
 
 @media(max-width:959px) and (orientation: landscape){
   .md-sidenav-left, md-sidenav{
@@ -29,23 +66,21 @@
     position: fixed;
   }
 }
-#toolbar
-{
- position: fixed;
+
+@media(max-width:500px) and (orientation: portrait){
+  .img{
+    width: 280px;
+  }
 }
 
-
-.dashboard
+.color
 {
- padding-top: 4%;
-}
+ color:rebeccapurple;
+ }
 
-
-.card img
-{
-  height: 300px;
-  width: 350px;
-  background-color: lightblue;
-  align-self: center;
-  border: black solid;
+@media(max-width:496px) and (orientation: portrait){
+  .text
+  {
+    font-size: 13px;
+  }
 }

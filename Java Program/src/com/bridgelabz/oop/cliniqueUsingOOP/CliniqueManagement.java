@@ -18,7 +18,7 @@ public class CliniqueManagement {
 			System.out.print("\n\t\t\t\t   ----------------------------------------\n");
 
 			System.out.print("\n\t\t\t\t \t  Enter Choice : ");
-			int choice = SingletonOfUtility.getInstance().inputInteger();
+			int choice = Utility.getInstance().inputInteger();
 
 			switch (choice) {
 			case 1:
@@ -46,7 +46,7 @@ public class CliniqueManagement {
 			}
 			System.out.println();
 			System.out.print("\n\t\t\t\t   Do you Want to continue (Y/N) : ");
-			input = SingletonOfUtility.getInstance().inputCharacter();
+			input = Utility.getInstance().inputCharacter();
 		} while (input == 'Y' || input == 'y');
 	}
 }

@@ -26,7 +26,7 @@ public class CliniqueManager {
 		System.out.println("\t\t\t\t          Add Doctor  : Enter 1 ");
 		System.out.println("\t\t\t\t          Add Patient : Enter 2 ");
 		System.out.print("\n\t\t\t       Enter the Choice Which You Want to Add : ");
-		int choice = SingletonOfUtility.getInstance().inputInteger();
+		int choice = Utility.getInstance().inputInteger();
 
 		switch (choice) {
 
@@ -43,7 +43,7 @@ public class CliniqueManager {
 	}
 
 	public void addPatient() throws IOException {
-		patientList = SingletonOfUtility.getInstance().readFile(patientFile, Patient[].class);
+		patientList = Utility.getInstance().readFile(patientFile, Patient[].class);
 
 		System.out.println("\n\t\t\t\t    P A T I E N T-D E T A I L S");
 		System.out.println("\t\t\t\t---------------------------------");
@@ -52,13 +52,13 @@ public class CliniqueManager {
 		patient.setPatientId(patientList.size() + 1);
 
 		System.out.print("\t\t\t\tEnter Patient Name          : ");
-		patient.setPatientName(SingletonOfUtility.getInstance().inputString2());
+		patient.setPatientName(Utility.getInstance().inputString2());
 
 		System.out.print("\t\t\t\tEnter Patient Mobile Number : ");
-		patient.setPatientMobileNo(SingletonOfUtility.getInstance().inputLong());
+		patient.setPatientMobileNo(Utility.getInstance().inputLong());
 
 		System.out.print("\t\t\t\tEnter Patient Age           : ");
-		patient.setPatientAge(SingletonOfUtility.getInstance().inputInteger());
+		patient.setPatientAge(Utility.getInstance().inputInteger());
 
 		boolean flag = false;
 		for (int i = 0; i < patientList.size(); i++) {
@@ -80,7 +80,7 @@ public class CliniqueManager {
 	}
 
 	public void addDoctor() throws JsonParseException, JsonMappingException, IOException {
-		doctorList = SingletonOfUtility.getInstance().readFile(doctorFile, Doctor[].class);
+		doctorList = Utility.getInstance().readFile(doctorFile, Doctor[].class);
 
 		System.out.println("\n\t\t\t\t    D O C T O R-D E T A I L S");
 		System.out.println("\t\t\t\t--------------------------------");
@@ -89,13 +89,13 @@ public class CliniqueManager {
 		doctor.setDoctorId(doctorList.size() + 1);
 
 		System.out.print("\t\t\t\tEnter Doctor Name              : ");
-		doctor.setDoctorName(SingletonOfUtility.getInstance().inputString2());
+		doctor.setDoctorName(Utility.getInstance().inputString2());
 
 		System.out.print("\t\t\t\tEnter Doctor Specialization    : ");
-		doctor.setDoctorSpecialization(SingletonOfUtility.getInstance().inputString2());
+		doctor.setDoctorSpecialization(Utility.getInstance().inputString2());
 
 		System.out.print("\t\t\t\tEnter Doctor Availability Time : ");
-		doctor.setDoctorAvailability(SingletonOfUtility.getInstance().inputString2());
+		doctor.setDoctorAvailability(Utility.getInstance().inputString2());
 		doctor.setCount(0);
 		doctor.setpatientCount(0);
 		boolean flag = false;
@@ -126,7 +126,7 @@ public class CliniqueManager {
 		System.out.println("\t\t\t\t          To Doctor  : Enter 1 ");
 		System.out.println("\t\t\t\t          To Patient : Enter 2 ");
 		System.out.print("\n\t\t\t       Enter the Choice Which You Want to Search : ");
-		int choice = SingletonOfUtility.getInstance().inputInteger();
+		int choice = Utility.getInstance().inputInteger();
 
 		switch (choice) {
 
@@ -149,33 +149,33 @@ public class CliniqueManager {
 		System.out.println("\t\t\t\t        By Id             : Enter 2");
 		System.out.println("\t\t\t\t        By Mobile Number  : Enter 3");
 		System.out.print("\n\t\t\t\tEnter the Choice Which You want to Serach : ");
-		int choice = SingletonOfUtility.getInstance().inputInteger();
+		int choice = Utility.getInstance().inputInteger();
 		String name = "", id = "", mobile = "", result = "";
 
 		switch (choice) {
 
 		case 1:
 			System.out.print("\n\t\t\t\tEnter Name of the Patient     : ");
-			name = SingletonOfUtility.getInstance().inputString2();
+			name = Utility.getInstance().inputString2();
 			result = name;
 			break;
 		case 2:
 			System.out.print("\n\t\t\t\tEnter Id of the Patient       : ");
-			id = SingletonOfUtility.getInstance().inputString2();
+			id = Utility.getInstance().inputString2();
 			result = id;
 			break;
 		case 3:
 			System.out.print("\n\t\t\t\tEnter MobileNo of the Patient : ");
-			mobile = SingletonOfUtility.getInstance().inputString2();
+			mobile = Utility.getInstance().inputString2();
 			result = mobile;
 			break;
 		default:
 			System.out.println("\n\t\t\t\tInvalid Choice...Please Try Again!");
 		}
 
-		patientList = SingletonOfUtility.getInstance().readFile(patientFile, Patient[].class);
+		patientList = Utility.getInstance().readFile(patientFile, Patient[].class);
 
-		boolean flag = SingletonOfUtility.getInstance().toCheckPatientDetails(patientList, result);
+		boolean flag = Utility.getInstance().toCheckPatientDetails(patientList, result);
 
 		patientList = printPatientList(patientList, result, flag, choice);
 
@@ -256,29 +256,29 @@ public class CliniqueManager {
 		System.out.println("\t\t\t\t     By Specialization : Enter 3");
 		System.out.println("\t\t\t\t     By Availability   : Enter 4");
 		System.out.print("\n\t\t\t\tEnter the Choice Which You want to Serach : ");
-		int choice = SingletonOfUtility.getInstance().inputInteger();
+		int choice = Utility.getInstance().inputInteger();
 		String name = "", specialization = "", availability = "";
 		int id = 0;
 		String result = "";
 		switch (choice) {
 		case 1:
 			System.out.print("\n\t\t\t\tEnter Name of the Doctor           : ");
-			name = SingletonOfUtility.getInstance().inputString2();
+			name = Utility.getInstance().inputString2();
 			result = name;
 			break;
 		case 2:
 			System.out.print("\n\t\t\t\tEnter Id of the Doctor             : ");
-			id = SingletonOfUtility.getInstance().inputInteger();
+			id = Utility.getInstance().inputInteger();
 			result = id + "";
 			break;
 		case 3:
 			System.out.print("\n\t\t\t\tEnter Specialization of the Doctor : ");
-			specialization = SingletonOfUtility.getInstance().inputString2();
+			specialization = Utility.getInstance().inputString2();
 			result = specialization;
 			break;
 		case 4:
 			System.out.print("\n\t\t\t\tEnter Availability of the Doctor   : ");
-			availability = SingletonOfUtility.getInstance().inputString2();
+			availability = Utility.getInstance().inputString2();
 			result = availability;
 			break;
 
@@ -286,9 +286,9 @@ public class CliniqueManager {
 			System.out.print("\n\t\t\t\tInvalid Choice...!");
 		}
 
-		doctorList = SingletonOfUtility.getInstance().readFile(doctorFile, Doctor[].class);
+		doctorList = Utility.getInstance().readFile(doctorFile, Doctor[].class);
 
-		boolean flag = SingletonOfUtility.getInstance().toCheckDoctorDetails(doctorList, result);
+		boolean flag = Utility.getInstance().toCheckDoctorDetails(doctorList, result);
 
 		doctorList = printDoctorList(doctorList, result, choice, flag);
 
@@ -384,7 +384,7 @@ public class CliniqueManager {
 		System.out.println("\t\t\t\t        Dispaly Doctor  : Enter 1 ");
 		System.out.println("\t\t\t\t        Display Patient : Enter 2 ");
 		System.out.print("\n\t\t\t       Enter the Choice Which You Want to Display : ");
-		int choice = SingletonOfUtility.getInstance().inputInteger();
+		int choice = Utility.getInstance().inputInteger();
 
 		switch (choice) {
 
@@ -406,7 +406,7 @@ public class CliniqueManager {
 		System.out.println("\t\t\t\t--------------------------------------------------");
 		System.out.println("\t\t\t\tPatient_Name | Patient_Id  | Patient_Mobile_Number");
 
-		patientList = SingletonOfUtility.getInstance().readFile(patientFile, Patient[].class);
+		patientList = Utility.getInstance().readFile(patientFile, Patient[].class);
 		for (int i = 0; i < patientList.size(); i++) {
 			System.out.printf("%40s %10s %20s ", patientList.get(i).getPatientName(), patientList.get(i).getPatientId(),
 					patientList.get(i).getPatientMobileNo());
@@ -420,7 +420,7 @@ public class CliniqueManager {
 		System.out.println("\t\t\t\t                          D O C T O R -L I S T ");
 		System.out.println("\t\t\t\t-----------------------------------------------------------------------------");
 		System.out.println("\t\t\t\tDisplay_Doctor_Name | Doctor_Id  | Doctor_Specialization | Doctor_Availability");
-		doctorList = SingletonOfUtility.getInstance().readFile(doctorFile, Doctor[].class);
+		doctorList = Utility.getInstance().readFile(doctorFile, Doctor[].class);
 		for (int i = 0; i < doctorList.size(); i++) {
 
 			System.out.printf("%46s %8s %20s %20s ", doctorList.get(i).getDoctorName(), doctorList.get(i).getDoctorId(),
@@ -433,7 +433,7 @@ public class CliniqueManager {
 	public void popularDoctor() throws JsonParseException, JsonMappingException, IOException {
 		String doctorName = "", specialization = "";
 		int numberOfPatient = 0;
-		doctorList = SingletonOfUtility.getInstance().readFile(doctorFile, Doctor[].class);
+		doctorList = Utility.getInstance().readFile(doctorFile, Doctor[].class);
 
 		int max = doctorList.get(0).getpatientCount();
 		for (int i = 1; i < doctorList.size(); i++) {
@@ -459,22 +459,22 @@ public class CliniqueManager {
 
 		System.out.println();
 		System.out.print("\n\t\t\t\tEnter the Patient Name : ");
-		appointment.setPatientName(SingletonOfUtility.getInstance().inputString2());
-		patientList = SingletonOfUtility.getInstance().readFile(patientFile, Patient[].class);
+		appointment.setPatientName(Utility.getInstance().inputString2());
+		patientList = Utility.getInstance().readFile(patientFile, Patient[].class);
 		for (int i = 0; i < patientList.size(); i++) {
 			if (appointment.getPatientName().equals(patientList.get(i).getPatientName())) {
 				appointment.setPatientId(patientList.get(i).getPatientId());
 			}
 		}
 
-		boolean flag = SingletonOfUtility.getInstance().toCheckPatientDetails(patientList,
+		boolean flag = Utility.getInstance().toCheckPatientDetails(patientList,
 				appointment.getPatientName());
 
 		if (flag) {
 			System.out.println();
 			System.out.println("Doctor : " + doctorList);
 			System.out.print("\n\t\t\t\tEnter the id Which Doctor you want to Appointment : ");
-			int doctorId = SingletonOfUtility.getInstance().inputInteger();
+			int doctorId = Utility.getInstance().inputInteger();
 			appointment.setDoctorId(doctorId);
 			for (int i = 0; i < doctorList.size(); i++) {
 				if (doctorId == doctorList.get(i).getDoctorId()) {
@@ -483,7 +483,7 @@ public class CliniqueManager {
 				}
 			}
 
-			appointmentList = SingletonOfUtility.getInstance().readFile(appointmentFile, Appointment[].class);
+			appointmentList = Utility.getInstance().readFile(appointmentFile, Appointment[].class);
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			Date date = new Date();
 			String currentDate = simpleDateFormat.format(date);
@@ -495,7 +495,7 @@ public class CliniqueManager {
 						&& appointment.getDoctorName().equals(doctorList.get(i).getDoctorName())) {
 
 					count = doctorList.get(i).getCount();
-					boolean status = SingletonOfUtility.getInstance().checkAppointmentDate(appointmentList, currentDate,
+					boolean status = Utility.getInstance().checkAppointmentDate(appointmentList, currentDate,
 							doctorId, appointment.getDoctorName());
 					if (count <= 5 && status) {
 
@@ -535,46 +535,6 @@ public class CliniqueManager {
 
 				}
 			}
-			/*
-			 * for (int i = 0; i < doctorList.size(); i++) { if (appointment.getDoctorId()
-			 * == doctorList.get(i).getDoctorId() &&
-			 * appointment.getDoctorName().equals(doctorList.get(i).getDoctorName())) {
-			 * count = doctorList.get(i).getCount();
-			 * 
-			 * if (count < 5) { count++;
-			 * doctorList.get(i).setpatientCount(doctorList.get(i).getpatientCount() + 1);
-			 * doctorList.get(i).setCount(count); mapper.writeValue(new
-			 * FileOutputStream(doctorFile), doctorList); appointmentList.add(appointment);
-			 * System.out.println("\n\t\t\t\tAppointment is successfully Done...!");
-			 * mapper.writeValue(new FileOutputStream(appointmentFile), appointmentList);
-			 * 
-			 * } else {
-			 * 
-			 * System.out.println("id    : "+appointment.getDoctorId());
-			 * System.out.println("date1 : "+appointment.getDate());
-			 * System.out.println("date2 : "+simpleDateFormat.format(date)); if (doctorId ==
-			 * appointment.getDoctorId() &&
-			 * simpleDateFormat.format(date).equals(appointment.getDate())) { count = 0;
-			 * doctorList.get(i).setCount(count); System.out.println("r1");
-			 * mapper.writeValue(new FileOutputStream(doctorFile), doctorList);
-			 * 
-			 * } boolean status=false; for(int p=0;p<doctorList.size();p++) {
-			 * if(doctorId==doctorList.get(p).getDoctorId() &&
-			 * doctorList.get(p).getCount()==0) { status=true;
-			 * doctorList.get(i).setpatientCount(doctorList.get(i).getpatientCount() + 1);
-			 * doctorList.get(i).setCount(count);
-			 * 
-			 * } }
-			 * 
-			 * if(status) {
-			 * 
-			 * } else { System.out.print(
-			 * "\n\t\t\t\tDoctor is Already has 5 Appointment....To Check Another Doctor(Y/N) "
-			 * ); System.out.println(); displayDoctor(); System.out.println();
-			 * doctorDetails(); } } }
-			 * 
-			 * }
-			 */
 
 		} else {
 			displayPatient();

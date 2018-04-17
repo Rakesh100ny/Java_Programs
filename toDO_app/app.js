@@ -1,6 +1,6 @@
 var app =
   angular.module('myApp', ['ui.router', 'ngMaterial', 'ngMessages', 'angular.filter']);
-app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider,$mdThemingProvider) {
   $stateProvider
 
     .state('test', {
@@ -21,6 +21,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'homeCtrl'
     })
 
+    .state('checkbox', {
+      url: '/checkbox',
+      templateUrl: 'templates/filterUsingChechbox.html',
+      controller: 'angularController'
+    })
+
     .state('readJson', {
       url: '/readJson',
       templateUrl: 'templates/readingData.html',
@@ -33,4 +39,6 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'dashboardCtrl'
     });
   $urlRouterProvider.otherwise('/login');
+
+
 }]);
