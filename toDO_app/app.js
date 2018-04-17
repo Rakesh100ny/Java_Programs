@@ -9,6 +9,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'mainController'
     })
 
+    .state('checkbox', {
+      url: '/checkbox',
+      templateUrl: 'templates/checkboxAction.html',
+      controller: 'checkboxCtrl'
+    })
+
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
@@ -21,11 +27,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'homeCtrl'
     })
 
-    .state('checkbox', {
-      url: '/checkbox',
-      templateUrl: 'templates/filterUsingChechbox.html',
-      controller: 'angularController'
-    })
+    
 
     .state('readJson', {
       url: '/readJson',
