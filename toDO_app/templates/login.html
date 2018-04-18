@@ -1,18 +1,13 @@
-<div layout="row">
-  <div flex="30">
 
-  </div>
-  <div flex="40" style="padding:0px;margin:120px 0 0 0;">
-    <div flex="50" style="background-color:red">
-    </div>
-<md-card >
+<div style="background-color:yellow;" layout="row" layout-xs="column" ng-cloak="">
+<md-card style="background-color:lightblue;" layout-align='center center' flex-gt-md='50' flex-md='60' flex-sm='50'>
   <md-toolbar md-colors="{color:'yellow-A100', 'border-color': 'primary-100'}">
-     <h2 class="md-toolbar-tools">
-       <span>Login</span>
-     </h2>
-  </md-toolbar>
+       <h2 class="md-toolbar-tools">
+         <span>Login</span>
+       </h2>
+    </md-toolbar>
+
   <form name="myForm">
-  <md-content style="overflow:hidden">
    <md-input-container class="md-block">
      <md-icon ><i class="material-icons" >email</i></md-icon>
     <input ng-model="email" name="email" type="email" placeholder="Emai (required)" required>
@@ -30,13 +25,8 @@
       <div ng-message="minlength">Password is too short...!</div>
     </div>
   </md-input-container>
-</md-content>
-<center><md-button ng-click="sendHome()"  class="md-primary md-raised" ng-disabled="myForm.email.$error.required && myForm.email.$error.email ||
-             myForm.password.$error.required && myForm.password.$error.nd-maxlength && myForm.password.$error.minlength">Login</md-button></center>
-
+<md-button ng-click="sendHome()"  class="md-primary md-raised" ng-disabled='myForm.$invalid'>Login</md-button>
 </form>
+
 </md-card>
-  </div>
-  <div flex="30" >
-  </div>
 </div>

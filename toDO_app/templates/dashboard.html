@@ -1,7 +1,8 @@
 
- <div class="dashboard" ng-cloak="" class="carddemoBasicUsage">
-  <md-content class="content " layout="row"  layout-padding layout-xs="column" layout-wrap layout-align-gt-md="start center" layout-align-md="space-around center" layout-align-sm="space-around center" >
-   <md-card class="md-card-start animated fadeInLeft" ng-model="selectedItems"  ng-repeat="item in jsonRecord" md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch="">
+ <div class="dashboard"  id="dashboard" ng-cloak="" class="carddemoBasicUsage">
+  <md-content class="content" layout="row"  layout-padding layout-xs="column" layout-wrap layout-align-gt-md="start center" layout-align-md="space-around center" layout-align-sm="space-around center" >
+   <md-card class="md-card-start animated fadeInLeft"  ng-repeat='item in values=(jsonRecord | dispalyCommonItem:arrayManufacturer |
+    dispalyCommonItem:arrayStorage | dispalyCommonItem:arrayOs | dispalyCommonItem:arrayCamera)' md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch="">
      <md-card-header>
        <md-card-avatar>
          <img class="md-user-avatar" src="{{ item.image.small }}">

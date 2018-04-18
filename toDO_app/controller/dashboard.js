@@ -23,16 +23,16 @@ app.controller('dashboardCtrl', function ($scope,readJson,$mdDialog)
       $mdDialog.cancel();
     };
   }
-  $scope.selectedItems = angular.copy($scope.jsonRecord);
- console.log("$scope.selectedItems");
-    $scope.toggle = function (index) {
-      if ($scope.jsonRecord[index].selected) {
-        $scope.selectedItems.splice(index, 1);
-      }
-      else {
-        $scope.selectedItems.splice(index, 0, $scope.jsonRecord[index]);
-      }
-    }
+ //  $scope.selectedItems = angular.copy($scope.jsonRecord);
+ // console.log("$scope.selectedItems");
+ //    $scope.toggle = function (index) {
+ //      if ($scope.jsonRecord[index].selected) {
+ //        $scope.selectedItems.splice(index, 1);
+ //      }
+ //      else {
+ //        $scope.selectedItems.splice(index, 0, $scope.jsonRecord[index]);
+ //      }
+ //    }
   });
 
 app.config(function($mdThemingProvider) {
