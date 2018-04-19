@@ -19,7 +19,7 @@ app.controller('homeCtrl', function ($scope, $timeout,$mdSidenav,$state,readJson
        };
      }
 
-    
+
     $scope.sendLogin=function()
     {
      $state.go('login');
@@ -41,6 +41,8 @@ app.controller('homeCtrl', function ($scope, $timeout,$mdSidenav,$state,readJson
      $scope.Storage="storage";
      $scope.Os="os";
      $scope.Camera="camera";
+
+     $state.go('home.dashboard');
 
     $scope.toggle = function(type, value) {
       console.log("type",type);
@@ -85,9 +87,15 @@ app.controller('homeCtrl', function ($scope, $timeout,$mdSidenav,$state,readJson
  $scope.arrayOs = osItem;
  $scope.arrayCamera = cameraItem;
 
+console.log("arrMan",manufacturerItem);
+console.log("arrSto",storageItem);
+console.log("arrOs",osItem);
+console.log("arrCam",cameraItem);
+
+
   });
 
-  app.filter('dispalyCommonItem', function()
+  app.filter('dispalyCommonItem', function($filter)
   {
    return function(items, arrayManufacturer)
    {
@@ -113,14 +121,7 @@ app.controller('homeCtrl', function ($scope, $timeout,$mdSidenav,$state,readJson
           temp = filtered;
           filtered = [];
     }
-   else {
-    temp = items;
-  }
-    return temp;
-  };
 
-  return function(items, arrayStorage)
-  {
     if (items != undefined && arrayStorage.length > 0) {
       for (var i = 0; i < temp.length; i++) {
         var item = temp[i];
@@ -135,14 +136,7 @@ app.controller('homeCtrl', function ($scope, $timeout,$mdSidenav,$state,readJson
       temp = filtered;
       filtered = [];
     }
-      else {
-       temp = items;
-     }
-       return temp;
-     };
 
-  return function(items, arrayStorage)
-  {
     if (items != undefined && arrayOs.length > 0) {
       for (var i = 0; i < temp.length; i++) {
         var item = temp[i];
@@ -157,14 +151,7 @@ app.controller('homeCtrl', function ($scope, $timeout,$mdSidenav,$state,readJson
       temp = filtered;
       filtered = [];
       }
-      else {
-       temp = items;
-     }
-       return temp;
-     };
 
- return function(items, arrayStorage)
- {
    if (items != undefined && arrayCamera.length > 0) {
      for (var i = 0; i < temp.length; i++) {
        var item = temp[j];
@@ -180,9 +167,6 @@ app.controller('homeCtrl', function ($scope, $timeout,$mdSidenav,$state,readJson
      temp = filtered;
      filtered = [];
    }
-   else {
-    temp = items;
-  }
     return temp;
   };
 

@@ -21,13 +21,19 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'loginCtrl'
     })
 
+    .state('checkFilter', {
+      url: '/checkFilter',
+      templateUrl: 'templates/checkboxUsingFilter.html',
+      controller: 'checkBoxFilterCtrl'
+    })
+
     .state('home', {
       url: '/home',
       templateUrl: 'templates/home.html',
       controller: 'homeCtrl'
     })
 
-    
+
 
     .state('readJson', {
       url: '/readJson',
