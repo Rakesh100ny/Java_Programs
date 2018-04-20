@@ -21,6 +21,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'loginCtrl'
     })
 
+
     .state('checkFilter', {
       url: '/checkFilter',
       templateUrl: 'templates/checkboxUsingFilter.html',
