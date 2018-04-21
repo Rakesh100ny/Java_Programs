@@ -85,6 +85,12 @@
   }
 }
 
+@media(max-width:500px) and (orientation: portrait) {
+  .img404 {
+    background-image: url('images/small404.jpg');
+  }
+}
+
 .color {
   color: rebeccapurple;
 }

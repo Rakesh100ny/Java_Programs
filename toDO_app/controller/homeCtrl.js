@@ -1,4 +1,4 @@
-app.controller('homeCtrl', function($scope, $rootScope, $mdSidenav, $state, readJson, $filter) {
+app.controller('homeCtrl', function($scope, $mdSidenav, $state, readJson, $filter) {
   var manufacturerItem = [];
   var storageItem = [];
   var osItem = [];
@@ -27,10 +27,6 @@ app.controller('homeCtrl', function($scope, $rootScope, $mdSidenav, $state, read
     };
   }
 
-  $rootScope.$on("$locationChangeStart", function(event, next, current) {
-    $mdSidenav('left_panel').close();
-  });
-
   $mdSidenav('left', true).then(function(instance) {
     // On close callback to handle close, backdrop click, or escape key pressed.
     // Callback happens BEFORE the close action occurs.
@@ -48,8 +44,6 @@ app.controller('homeCtrl', function($scope, $rootScope, $mdSidenav, $state, read
   $scope.getData.then(function(response) {
     $scope.jsonRecord = response;
     angular.forEach($scope.jsonRecord, function(value, key) {
-       console.log("VALUE",value.specs.os);
-       console.log("KEY",key);
       arr.push(value.specs.os)
       //console.log(arr);
     });
@@ -63,35 +57,8 @@ app.controller('homeCtrl', function($scope, $rootScope, $mdSidenav, $state, read
 
   $state.go('home.dashboard');
 
-  $scope.types = {
-    "manufacturer": {
-      "Sony": "false",
-      "Apple": "false",
-      "HTC": "false",
-      "Samsung": "false",
-      "Nokia": "false",
-      "ZTE": "false"
-    },
-    "storage": {
-      "16": "false",
-      "32": "false"
-    },
-    "os": {
-      "Android": "false",
-      "iOS": "false",
-      "Windows": "false"
-    },
-    "camera": {
-      "5": "false",
-      "8": "false",
-      "12": "false",
-      "15": "false"
-    }
-  };
 
   $scope.toggle = function(type, value) {
-    console.log("type", type);
-    console.log("value", value);
     switch (type) {
       case 'manufacturer':
         var indexManufacturer = manufacturerItem.indexOf(value);
@@ -132,17 +99,20 @@ app.controller('homeCtrl', function($scope, $rootScope, $mdSidenav, $state, read
   $scope.arrayOs = osItem;
   $scope.arrayCamera = cameraItem;
 
-  // console.log("arrMan",manufacturerItem);
-  // console.log("arrSto",storageItem);
-  // console.log("arrOs",osItem);
-  // console.log("arrCam",cameraItem);
+   console.log("arrayManufacturer",manufacturerItem);
+   console.log("arrayStorage",storageItem);
+   console.log("arrayOs",osItem);
+   console.log("arrayCamera",cameraItem);
 });
 
 
 app.filter('myFilter', function() {
-  return function(items, arrayManufacturer, arrayStorage, arrayOs, arrayCamera) {
-    var filteredData = [];
+  return function(items, arrayManufacturer, arrayStorage, arrayOs, arrayCamera)
+   {
+    var displayData = [];
     var temp = [];
+    if (arrayManufacturer.length > 0 || arrayStorage.length>0 || arrayOs.length>0 || arrayCamera.length>0)
+    {
     if (arrayManufacturer.length > 0)
     {
      angular.forEach(items, function(value)
@@ -151,58 +121,118 @@ app.filter('myFilter', function() {
       {
         if (value.specs.manufacturer == data)
         {
-         filteredData.push(value);
+         displayData.push(value);
         }
       });
       });
-      temp = filteredData;
-      filteredData = [];
+      temp = displayData;
+      displayData = [];
+     }
       if (arrayStorage.length > 0)
       {
-       angular.forEach(temp, function(value)
+       if(temp.length>0)
        {
-        angular.forEach(arrayStorage, function(data)
-        {
-         if (value.specs.storage == data)
+         console.log("r1");
+         angular.forEach(temp, function(value)
          {
-          filteredData.push(value);
-         }
-        });
-       });
-       temp = filteredData;
-       filteredData = [];
+          console.log("r2");
+          angular.forEach(arrayStorage, function(data)
+          {
+            console.log("r3");
+            console.log("VALUE1",value.specs.storage);
+           if (value.specs.storage == data)
+           {
+            console.log("r4");
+            console.log("VALUE2",value.specs.storage);
+            displayData.push(value);
+           }
+          });
+         });
+       }
+       else
+       {
+         console.log("r1");
+         angular.forEach(items, function(value)
+         {
+          console.log("r2");
+          angular.forEach(arrayStorage, function(data)
+          {
+            console.log("r3");
+            console.log("VALUE1",value.specs.storage);
+           if (value.specs.storage == data)
+           {
+            console.log("r4");
+            console.log("VALUE2",value.specs.storage);
+            displayData.push(value);
+           }
+          });
+         });
+       }
+       temp = displayData;
+       console.log("tempArray",temp);
+       displayData = [];
       }
 
       if (arrayOs.length > 0)
       {
-       angular.forEach(temp, function(value)
-       {
-        angular.forEach(arrayOs, function(data)
+        if (temp.length>0)
         {
-          if (value.specs.os == data)
+          angular.forEach(temp, function(value)
           {
-           filteredData.push(value);
-          }
-        });
-       });
-       temp = filteredData;
-       filteredData = [];
+           angular.forEach(arrayOs, function(data)
+           {
+             if (value.specs.os == data)
+             {
+              displayData.push(value);
+             }
+           });
+          });
+        } else
+        {
+          angular.forEach(items, function(value)
+          {
+           angular.forEach(arrayOs, function(data)
+           {
+             if (value.specs.os == data)
+             {
+              displayData.push(value);
+             }
+           });
+          });
+        }
+       temp = displayData;
+       displayData = [];
        }
 
        if (arrayCamera.length > 0)
        {
-        angular.forEach(temp, function(value)
-        {
-         angular.forEach(arrayCamera, function(data)
-         {
-          if (value.specs.camera == data)
+        if (temp.length>0) {
+          angular.forEach(temp, function(value)
           {
-           filteredData.push(value);
-          }
-         });
-        });
-        temp = filteredData;
-        filteredData = [];
+           angular.forEach(arrayCamera, function(data)
+           {
+            if (value.specs.camera == data)
+            {
+             displayData.push(value);
+            }
+           });
+          });
+        } else
+        {
+          angular.forEach(items, function(value)
+          {
+           angular.forEach(arrayCamera, function(data)
+           {
+            if (value.specs.camera == data)
+            {
+             displayData.push(value);
+            }
+           });
+          });
+        }
+
+        temp = displayData;
+        displayData = [];
        }
       }
       else

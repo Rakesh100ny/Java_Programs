@@ -1,7 +1,7 @@
- <div class="dashboard"  id="dashboard" ng-cloak="" class="carddemoBasicUsage">
+ <div class="dashboard" id="dashboard" class="carddemoBasicUsage">
 
-      <md-content class="content" layout="row"  layout-padding layout-xs="column" layout-wrap layout-align-gt-md="start center" layout-align-md="space-around center" layout-align-sm="space-around center" >
-   <md-card class="md-card-start animated fadeInLeft"  ng-repeat='item in values=(jsonRecord | myFilter:arrayManufacturer:arrayStorage:arrayOs:arrayCamera)' md-theme="{{ dynamicTheme }}" md-theme-watch>
+      <md-content class="content" layout="row" ng-cloak layout-padding layout-xs="column" layout-wrap layout-align-gt-md="start center" layout-align-md="space-around center" layout-align-sm="space-around center" >
+   <md-card class="md-card-start animated fadeInLeft"  ng-repeat='item in items=(jsonRecord | myFilter:arrayManufacturer:arrayStorage:arrayOs:arrayCamera)' md-theme="{{ dynamicTheme }}" md-theme-watch>
      <md-card-header>
        <md-card-avatar>
          <img class="md-user-avatar" src="{{ item.image.small }}">
@@ -33,5 +33,10 @@
        <p><b>$ {{item.price}}</b></p>
      </md-card-actions>
    </md-card>
+  <md-card ng-if="items.length==0" class="img404" layout="row" layout-xs="colum" layout="center center">
+    <img src="images/404.jpg" alt="dataNotFound">
+  </md-card>
   </md-content>
+
+
 </div>

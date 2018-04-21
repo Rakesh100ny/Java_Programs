@@ -1,0 +1,96 @@
+class Person
+	- name;
+	- age
+	- address
+--------------------------------------------------------------------
+clas JsonAddressBook implements JsonAddressBook
+	List<person> persons = new ArrayList<>();
+	boolen isNew;
+
+	void addPersion(Person person)
+		- persons.add(persons)
+
+----------------------------------------------------------------------
+class JsonAddressBookManager implements AddressBookManager
+	boolen isNew;
+	String pathTobe
+	- AddressBook  open(String pathTobe Opned)
+		- deserilize the file
+		- pathTobe = pathTobe
+		- return AddressBook
+
+	- AddressBook  createNew()
+		AddressBook ab = ew AddressBook()
+		isNew = trues;
+		return ab;
+
+	- void save(String path, AddressBook book)
+		- serilize the book at given path
+
+	- void save(AddressBook book)
+		- serilize the book at given path
+
+----------------------------------------------------------------------
+
+
+class TestAddBook
+	p s v main(String [] str)	
+	{
+		//AddressBookManager abm = new JsonAddressBookManager();
+		AddressBookManager abm = AddressBookManagerFactory.getAddressBookManager( AddressBookManagerFactory.JSON_TYPE )
+			
+		choice()
+		{
+			1 - open
+				Sop("Enter path to be opened")
+				String path = ?
+				AddressBook ab = abm.open(path);
+				printPersonChoice(ab)
+			2 - new
+				AddressBook ab = abm.createNew();
+				printPersonChoice(ab)
+			3 - save
+				if ( new )
+				Sop("Enter path to be saved")
+				String path = ?
+				abm.save(path, ab)
+				abm.save()
+			4 - save as
+				Sop("Enter path to be saved")
+				String path = ?
+				abm.save(path, ab)
+		}
+
+		
+		printPersonChoice(AddressBook ab)
+			
+		choce()
+			a - add person
+				-  sop(""enter name)
+					String name = "
+					String addres = "
+				- Person p = new Person()
+					p.setName()
+					ab.addpersion(p);
+
+			b - delete person
+
+	}
+
+
+class AddressBookManagerFactory
+	p s String JSON_TYPE=1;
+	p s String DB_TYPE=2;
+
+	AddressBookManager getAddressBookManager(int type)
+	{
+		if(1)
+			return new JsonAddressBookManager()
+		else if (2)
+			return new DBAddressBookManager()
+		else
+			thrw new Exception("Type not supported")
+	}
+	
+		
+
