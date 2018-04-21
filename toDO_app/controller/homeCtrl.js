@@ -1,4 +1,4 @@
-app.controller('homeCtrl', function($scope,$rootScope, $timeout, $mdSidenav, $state, readJson, $filter) {
+app.controller('homeCtrl', function($scope, $rootScope, $mdSidenav, $state, readJson, $filter) {
   var manufacturerItem = [];
   var storageItem = [];
   var osItem = [];
@@ -9,27 +9,27 @@ app.controller('homeCtrl', function($scope,$rootScope, $timeout, $mdSidenav, $st
 
   function buildToggler(componentId) {
     return function() {
-      console.log("id",componentId);
-      if (componentId=='left') {
-         console.log("hii");
-         $mdSidenav(componentId).toggle();
-         var isOpen = $mdSidenav(componentId).isOpen();
-         if (isOpen) {
-           document.getElementById('dashboard').style.marginLeft = '320px';
-         } else {
-           document.getElementById('dashboard').style.marginLeft = '0px';
-         }
+      console.log("id", componentId);
+      if (componentId == 'left') {
+        console.log("hii");
+        $mdSidenav(componentId).toggle();
+        var isOpen = $mdSidenav(componentId).isOpen();
+        if (isOpen) {
+          document.getElementById('dashboard').style.marginLeft = '320px';
+        } else {
+          document.getElementById('dashboard').style.marginLeft = '0px';
+        }
       } else {
-       console.log("hello");
-       $mdSidenav(componentId).toggle();
+        console.log("hello");
+        $mdSidenav(componentId).toggle();
       }
 
     };
   }
 
-  $rootScope.$on("$locationChangeStart",function(event, next, current){
-                    $mdSidenav('left_panel').close();
-                });
+  $rootScope.$on("$locationChangeStart", function(event, next, current) {
+    $mdSidenav('left_panel').close();
+  });
 
   $mdSidenav('left', true).then(function(instance) {
     // On close callback to handle close, backdrop click, or escape key pressed.
@@ -38,9 +38,6 @@ app.controller('homeCtrl', function($scope,$rootScope, $timeout, $mdSidenav, $st
       document.getElementById('dashboard').style.marginLeft = '0px';
     });
   });
-
-
-  $scope.ArrayTheme = ['Blue', 'Grey', 'Purple', 'Orange'];
 
   $scope.sendLogin = function() {
     $state.go('login');
@@ -51,7 +48,8 @@ app.controller('homeCtrl', function($scope,$rootScope, $timeout, $mdSidenav, $st
   $scope.getData.then(function(response) {
     $scope.jsonRecord = response;
     angular.forEach($scope.jsonRecord, function(value, key) {
-      // console.log("VALUE",value.specs.os);
+       console.log("VALUE",value.specs.os);
+       console.log("KEY",key);
       arr.push(value.specs.os)
       //console.log(arr);
     });
@@ -65,11 +63,31 @@ app.controller('homeCtrl', function($scope,$rootScope, $timeout, $mdSidenav, $st
 
   $state.go('home.dashboard');
 
- $scope.types = { manufacturer:{},
-                 storage:{},
-                 os :{},
-                 camera:{}
-                };
+  $scope.types = {
+    "manufacturer": {
+      "Sony": "false",
+      "Apple": "false",
+      "HTC": "false",
+      "Samsung": "false",
+      "Nokia": "false",
+      "ZTE": "false"
+    },
+    "storage": {
+      "16": "false",
+      "32": "false"
+    },
+    "os": {
+      "Android": "false",
+      "iOS": "false",
+      "Windows": "false"
+    },
+    "camera": {
+      "5": "false",
+      "8": "false",
+      "12": "false",
+      "15": "false"
+    }
+  };
 
   $scope.toggle = function(type, value) {
     console.log("type", type);
@@ -120,65 +138,77 @@ app.controller('homeCtrl', function($scope,$rootScope, $timeout, $mdSidenav, $st
   // console.log("arrCam",cameraItem);
 });
 
+
 app.filter('myFilter', function() {
   return function(items, arrayManufacturer, arrayStorage, arrayOs, arrayCamera) {
-    var filtered = [];
-    var temparr = [];
-    if (items != undefined) {
-      if (arrayManufacturer.length > 0 || arrayStorage.length > 0 || arrayOs.length > 0 || arrayCamera.length > 0) {
-        for (var j = 0; j < items.length; j++) {
-          for (var i = 0; i < arrayManufacturer.length; i++) {
-            console.log("items",items[j].specs.manufacturer);
-            console.log("array",arrayManufacturer[i]);
-            if (items[j].specs.manufacturer == arrayManufacturer[i]) {
-              filtered.push(items[j]);
-            }
-          }
+    var filteredData = [];
+    var temp = [];
+    if (arrayManufacturer.length > 0)
+    {
+     angular.forEach(items, function(value)
+     {
+      angular.forEach(arrayManufacturer, function(data)
+      {
+        if (value.specs.manufacturer == data)
+        {
+         filteredData.push(value);
         }
-        if (filtered.length > 0) {
-          temparr = filtered;
-          filtered = [];
-        } else {
-          temparr = items;
-        }
-        if (arrayStorage.length > 0) {
-          for (var j = 0; j < temparr.length; j++) {
-            for (var i = 0; i < arrayStorage.length; i++) {
-              if (temparr[j].specs.storage == arrayStorage[i]) {
-                filtered.push(temparr[j]);
-              }
-            }
-          }
-          temparr = filtered;
-          filtered = [];
-        }
-        if (arrayOs.length > 0) {
-          for (var j = 0; j < temparr.length; j++) {
-            for (var i = 0; i < arrayOs.length; i++) {
-              if (temparr[j].specs.os == arrayOs[i])
-               {
-                filtered.push(temparr[j]);
-               }
-            }
-          }
-          temparr = filtered;
-          filtered = [];
-        }
-        if (arrayCamera.length > 0) {
-          for (var j = 0; j < temparr.length; j++) {
-            for (var i = 0; i < arrayCamera.length; i++) {
-              if (temparr[j].specs.camera == arrayCamera[i]) {
-                filtered.push(temparr[j]);
-              }
-            }
-          }
-          temparr = filtered;
-          filtered = [];
-        }
-      } else {
-        temparr = items;
+      });
+      });
+      temp = filteredData;
+      filteredData = [];
+      if (arrayStorage.length > 0)
+      {
+       angular.forEach(temp, function(value)
+       {
+        angular.forEach(arrayStorage, function(data)
+        {
+         if (value.specs.storage == data)
+         {
+          filteredData.push(value);
+         }
+        });
+       });
+       temp = filteredData;
+       filteredData = [];
       }
-    }
-    return temparr;
+
+      if (arrayOs.length > 0)
+      {
+       angular.forEach(temp, function(value)
+       {
+        angular.forEach(arrayOs, function(data)
+        {
+          if (value.specs.os == data)
+          {
+           filteredData.push(value);
+          }
+        });
+       });
+       temp = filteredData;
+       filteredData = [];
+       }
+
+       if (arrayCamera.length > 0)
+       {
+        angular.forEach(temp, function(value)
+        {
+         angular.forEach(arrayCamera, function(data)
+         {
+          if (value.specs.camera == data)
+          {
+           filteredData.push(value);
+          }
+         });
+        });
+        temp = filteredData;
+        filteredData = [];
+       }
+      }
+      else
+      {
+        temp = items;
+      }
+    return temp;
   };
 });
