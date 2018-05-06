@@ -1,6 +1,6 @@
 var app =
-  angular.module('myApp', ['ui.router', 'ngMaterial', 'ngMessages', 'angular.filter']);
-app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider,$mdThemingProvider) {
+  angular.module('myApp', ['ui.router', 'ngMaterial', 'ngMessages', 'angular.filter','jkAngularRatingStars']);
+app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
     .state('test', {
@@ -34,8 +34,6 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'homeCtrl'
     })
 
-
-
     .state('readJson', {
       url: '/readJson',
       templateUrl: 'templates/readingData.html',
@@ -47,7 +45,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       templateUrl: 'templates/dashboard.html',
       controller: 'dashboardCtrl'
     });
-  $urlRouterProvider.otherwise('/login');
 
+  $urlRouterProvider.otherwise('/login');
 
 }]);

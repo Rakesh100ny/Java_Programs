@@ -1,12 +1,11 @@
-<md-toolbar class="md-toolbar-tools" id="toolbar">
-
+<div layout="column" ng-controller="homeCtrl as demo" ng-cloak>
+  <md-toolbar  class="md-toolbar-tools" id="toolbar">
    <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="sidebar">
      <i class="material-icons">menu</i>
    </md-button>
-    <strong class="text">Single Page App Without A Framework</strong>
+    <strong class="text">Single Page Mobile App</strong>
         <span flex></span>
-
-          <md-button ng-click="toggleRight()" class="md-raised btn"  aria-label="sidebarRightSide">
+        <md-button ng-click="toggleRight()" class="md-raised btn"  aria-label="sidebarRightSide">
             <span><b>Theme Controller</b><i class="material-icons">color_lens</i></span>
             </md-button>
 
@@ -14,3 +13,21 @@
      <i class="material-icons">exit_to_app</i>
     </md-button>
 </md-toolbar>
+
+<!-- <md-fab-speed-dial class="lock-size fabSpeedDialdemoBasicUsage" layout-align="center end" md-direction="left" md-open="demo.isOpen"
+                   class="md-scale md-fab-top-right">
+  <md-fab-trigger>
+    <md-button aria-label="menu" class="md-fab md-warn">
+      <i class="material-icons">menu</i>
+    </md-button>
+  </md-fab-trigger>
+
+  <md-fab-actions>
+    <md-button class="md-fab md-raised md-mini" ng-click="dynamicTheme = 'dark-grey'">G</md-button>
+    <md-button class="md-fab md-raised md-mini" ng-click="dynamicTheme = 'dark-orange'">O</md-button>
+    <md-button class="md-fab md-raised md-mini" ng-click="dynamicTheme = 'dark-purple'">P</md-button>
+    <md-button class="md-fab md-raised md-mini" ng-click="dynamicTheme = 'dark-blue'">B</md-button>
+
+  </md-fab-actions>
+</md-fab-speed-dial> -->
+</div>

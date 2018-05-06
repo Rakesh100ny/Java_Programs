@@ -1,10 +1,36 @@
+.fabSpeedDialdemoBasicUsage .text-capitalize {
+  text-transform: capitalize; }
+
+.fabSpeedDialdemoBasicUsage .md-fab:hover, .fabSpeedDialdemoBasicUsage .md-fab.md-focused {
+  background-color: #000 !important; }
+
+.fabSpeedDialdemoBasicUsage p.note {
+  font-size: 1.2rem; }
+
+.fabSpeedDialdemoBasicUsage .lock-size {
+  min-width: 300px;
+  min-height: 300px;
+  width: 300px;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto; }
+
+
+
 #toolbar {
   position: fixed;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.35, 0, 0.25, 1);
+  transition-property: background-color, fill, color;
+
 }
 
 .dashboard {
   padding-top: 4%;
+  transition: margin-left .8s;
+  transition-property: all;
 }
+
 
 .content {
   padding-left: 5%;
@@ -21,8 +47,6 @@
   background-color: lightblue;
   align-self: center;
 }
-
-
 
 .pad {
   height: 100%;
@@ -59,12 +83,14 @@
 .md-sidenav-left {
   margin-top: 64px;
   position: fixed;
+  transition: 0.7s;
 }
 
 @media(max-width:959px) and (orientation: portrait) {
   .md-sidenav-left {
     margin-top: 56px;
     position: fixed;
+    transition: 0.7s;
   }
 }
 
@@ -76,6 +102,7 @@
   .md-sidenav-left {
     margin-top: 48px;
     position: fixed;
+    transition: 0.7s;
   }
 }
 
@@ -95,21 +122,39 @@
   color: rebeccapurple;
 }
 
-@media(max-width:496px) and (orientation: portrait) {
+@media(max-width:450px) and (orientation: portrait) {
   .text {
     font-size: 10px;
+    font-weight: bolder;
   }
   .btn
   {
-    width: 50px;
-    font-size: 8px;
+    width: 30px;
+    font-size: 5px;
   }
 }
 
 @media(max-width:496px) and (orientation: portrait) {
   .md-sidenav-left {
     width: auto;
+    transition: 0.7s;
   }
 }
 
+.jk-rating-stars-container  a:first-of-type{
+  display: none;
+
+}
+
+.jk-rating-stars-container .star-button .material-icons {
+    font-size:22px;
+    text-shadow: rgb(0, 0, 0) 0.06em 0.04em;
+}
+
+.jk-rating-stars-container .star-button.star-on .material-icons {
+  /* color: #003399; */
+  color: rgb(238, 154, 0);
+}
+ .jk-rating-stars-container .star-button.star-off .material-icons {
+  color: #99ccff;
 }
