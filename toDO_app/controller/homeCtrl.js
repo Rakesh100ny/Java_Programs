@@ -1,14 +1,8 @@
-app.controller('homeCtrl', function($scope, $mdSidenav, $state, readJson, $filter) {
+app.controller('homeCtrl', function($scope, $mdSidenav,$timeout,$state, readJson, $filter) {
 
 
-    this.isOpen = false;
 
-    this.availableModes = ['md-fling', 'md-scale'];
-    this.selectedMode = 'md-fling';
-
-    this.availableDirections = ['up','down','left','right'];
-    this.selectedDirection = 'left';
-
+  $scope.loading=true;
   var manufacturerItem = [];
   var storageItem = [];
   var osItem = [];
@@ -52,17 +46,65 @@ app.controller('homeCtrl', function($scope, $mdSidenav, $state, readJson, $filte
     $state.go('login');
   }
 
-  var arr = [];
+  // var arr = [];
+  // $timeout(function(){
+  //   $scope.getData = readJson.getJson();
+  //   $scope.getData.then(function(response) {
+  //     $scope.jsonRecord = response;
+  //     $scope.loading=false;
+  //   })
+  // },1);
+
   $scope.getData = readJson.getJson();
   $scope.getData.then(function(response) {
     $scope.jsonRecord = response;
-    angular.forEach($scope.jsonRecord, function(value, key) {
-      arr.push(value.specs.os)
-      //console.log(arr);
-    });
+    // angular.forEach($scope.jsonRecord, function(value, key) {
+    //   arr.push(value.specs.os)
+    //   //console.log(arr);
+    // });
     // console.log("$scope.jsonRecord",$scope.jsonRecord);
   })
 
+  $scope.openCart=function(data){
+    $scope.cart=data;
+    console.log("data",$scope.cart);
+    $state.go('home.cart');
+
+
+  };
+
+  $scope.todos = [
+      {
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+      {
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+      {
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+      {
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+      {
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+    ];
   $scope.Manufacturer = "manufacturer";
   $scope.Storage = "storage";
   $scope.Os = "os";
@@ -144,6 +186,10 @@ app.controller('homeCtrl', function($scope, $mdSidenav, $state, readJson, $filte
   $scope.arrayOs = osItem;
   $scope.arrayCamera = cameraItem;
 
+  console.log("manufacturerItem",$scope.arrayManufacturer);
+  console.log("storageItem",$scope.arrayStorage);
+  console.log("osItem",$scope.arrayOs);
+  console.log("cameraItem",$scope.arrayCamera);
 });
 
 
@@ -155,13 +201,14 @@ app.filter('myFilter', function() {
     if (arrayManufacturer.length > 0 || arrayStorage.length > 0 || arrayOs.length > 0 || arrayCamera.length > 0) {
       if (arrayManufacturer.length > 0) {
         iterateArray(items, arrayManufacturer, displayData);
-        if (displayData.length > 0) {
-          temp = displayData;
-          console.log("tempManufacturer", temp);
-          displayData = [];
-        } else {
-          temp = items;
-        }
+
+      }
+      if (displayData.length > 0) {
+        temp = displayData;
+        console.log("tempManufacturer", temp);
+        displayData = [];
+      } else {
+        temp = items;
       }
       if (arrayStorage.length > 0) {
         iterateArray(temp, arrayStorage, displayData);

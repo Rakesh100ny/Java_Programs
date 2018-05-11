@@ -1,4 +1,4 @@
-app.controller('dashboardCtrl', function ($scope,readJson,$mdDialog)
+app.controller('dashboardCtrl', function ($scope,readJson,$mdDialog,$state)
 {
     $scope.getData = readJson.getJson();
     $scope.getData.then(function(response){
@@ -23,4 +23,6 @@ app.controller('dashboardCtrl', function ($scope,readJson,$mdDialog)
       $mdDialog.cancel();
     };
   }
+
+  
 });

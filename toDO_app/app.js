@@ -1,5 +1,5 @@
 var app =
-  angular.module('myApp', ['ui.router', 'ngMaterial', 'ngMessages', 'angular.filter','jkAngularRatingStars']);
+  angular.module('myApp', ['ui.router', 'ngMaterial', 'ngMessages', 'angular.filter','jkAngularRatingStars','ngStorage']);
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -21,6 +21,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'loginCtrl'
     })
 
+    .state('register', {
+      url: '/register',
+      templateUrl: 'templates/register.html',
+      controller: 'registerCtrl'
+    })
+
 
     .state('checkFilter', {
       url: '/checkFilter',
@@ -40,12 +46,18 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'jsonCtrl'
     })
 
+    .state('home.cart', {
+      url: '/mycart',
+      templateUrl: 'templates/cart.html',
+      controller: 'cartCtrl'
+    })
+
     .state('home.dashboard', {
       url: '/dashboard',
       templateUrl: 'templates/dashboard.html',
       controller: 'dashboardCtrl'
     });
 
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/register');
 
 }]);
