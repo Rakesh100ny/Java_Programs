@@ -20,6 +20,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     .state("home.playerDetails", {
     url: "/playerDetails",
     templateUrl: "template/playerInfo.html",
+    controller: 'playerCtrl'
 
     });
 

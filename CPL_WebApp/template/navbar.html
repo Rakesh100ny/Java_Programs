@@ -2,11 +2,11 @@
   <md-toolbar  class="md-toolbar-tools" id="toolbar">
     <md-card-header>
       <md-card-avatar style="margin-right:5px;">
-        <img class="logo" ng-model="home" ng-show="home" ng-hide="playerInfo" src="images/team_logo/ipl-logo.svg" alt="logo image">
+        <img class="logo"  src="images/team_logo/ipl-logo.svg"   alt="logo image">
       </md-card-avatar>
     </md-card-header>
 
-   <md-button ng-click="toggleLeft()" class="md-icon-button" ng-model="playerInfo" ng-show="playerInfo" aria-label="sidebar">
+   <md-button ng-click="toggleLeft()" class="md-icon-button" ng-if="flag" aria-label="sidebar">
      <i class="material-icons">menu</i>
    </md-button>
 

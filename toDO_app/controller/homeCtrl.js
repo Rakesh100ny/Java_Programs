@@ -1,8 +1,5 @@
 app.controller('homeCtrl', function($scope, $mdSidenav,$timeout,$state, readJson, $filter) {
 
-
-
-  $scope.loading=true;
   var manufacturerItem = [];
   var storageItem = [];
   var osItem = [];
@@ -46,6 +43,12 @@ app.controller('homeCtrl', function($scope, $mdSidenav,$timeout,$state, readJson
     $state.go('login');
   }
 
+  $scope.sendHome = function() {
+    $scope.home="home";
+    $state.go('home.dashboard');
+  }
+
+  // $scope.loading=true;
   // var arr = [];
   // $timeout(function(){
   //   $scope.getData = readJson.getJson();
@@ -64,52 +67,20 @@ app.controller('homeCtrl', function($scope, $mdSidenav,$timeout,$state, readJson
     // });
     // console.log("$scope.jsonRecord",$scope.jsonRecord);
   })
-
+   var cartItem=[];
   $scope.openCart=function(data){
-    $scope.cart=data;
-    console.log("data",$scope.cart);
+    $scope.cart="cart";
+    cartItem.push(data);
+    $scope.length=cartItem.length;
+    console.log("length",$scope.length);
+    $scope.cart=cartItem;
     $state.go('home.cart');
-
-
   };
 
-  $scope.todos = [
-      {
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-    ];
   $scope.Manufacturer = "manufacturer";
   $scope.Storage = "storage";
   $scope.Os = "os";
   $scope.Camera = "camera";
-
   $state.go('home.dashboard');
 
 

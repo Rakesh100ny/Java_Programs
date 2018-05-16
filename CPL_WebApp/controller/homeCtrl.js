@@ -1,4 +1,4 @@
-app.controller('homeCtrl', function($scope, $state, readJson,$mdSidenav,$filter) {
+app.controller('homeCtrl', function($scope,$rootScope, $state, readJson,$mdSidenav,$filter) {
 
   $state.go('home.dashboard');
 
@@ -7,7 +7,6 @@ app.controller('homeCtrl', function($scope, $state, readJson,$mdSidenav,$filter)
   var bowlingItem=[];
   var nationalityItem=[];
 
-  $scope.home="home";
   // console.log("hii Ranu");
   $scope.getData = readJson.getJson();
   $scope.getData.then(function(response) {
@@ -102,8 +101,8 @@ app.controller('homeCtrl', function($scope, $state, readJson,$mdSidenav,$filter)
   var rcbItem = [];
   var shItem = [];
   $scope.showDetails = function(value) {
+
     console.log("name", value);
-    $scope.playerInfo="playerInfo";
     switch (value) {
       case 'Delhi Daredevils':
         var id = '1';
