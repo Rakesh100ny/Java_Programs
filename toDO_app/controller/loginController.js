@@ -7,7 +7,11 @@ app.controller('loginCtrl',function($scope,$rootScope,$state,$localStorage){
     // $localStorage.password=password;
     // $localStorage.email=email;
    if ($localStorage.email==email && $localStorage.password==password) {
-     $scope.result="User Log-in Successfully...!"
+      
+      console.log("$localStorage.email",$localStorage.email);
+      console.log("$localStorage.password",$localStorage.password);
+
+     // $scope.result="User Log-in Successfully...!"
            $state.go('home');
    } else {
       $scope.result="Error..Please SignUp First Then After Login...!";

@@ -1,6 +1,6 @@
 app.controller('homeCtrl', function($scope,$rootScope, $state, readJson,$mdSidenav,$filter) {
-
   $state.go('home.dashboard');
+
 
   var roleItem=[];
   var battingItem=[];

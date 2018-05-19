@@ -1,5 +1,8 @@
-app.controller('dashboardCtrl', function ($scope,readJson,$mdDialog,$state)
+app.controller('dashboardCtrl', function ($scope,$rootScope,readJson,$mdDialog,$state)
 {
+  $rootScope.flag1=true;
+  $rootScope.flag3=false;
+
     $scope.getData = readJson.getJson();
     $scope.getData.then(function(response){
       $scope.jsonRecord = response;
@@ -24,5 +27,5 @@ app.controller('dashboardCtrl', function ($scope,readJson,$mdDialog,$state)
     };
   }
 
-  
+
 });
