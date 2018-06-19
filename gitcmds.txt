@@ -1,0 +1,279 @@
+   31  [2018-02-24 12:58:32] Requirement org.eclipse.egit.feature.group
+   32  [2018-02-24 12:58:32] Requirement org.eclipse.egit.mylyn.feature.group
+   34  [2018-02-24 12:58:32] Requirement org.eclipse.jgit.feature.group
+   39  [2018-02-24 12:58:32] Requirement org.eclipse.mylyn.git.feature.group
+  117  git clone https://github.com/Ranu100ny/Ranu
+  118  apt-get install git
+  119  sudo apt-get install git
+  120  git clone https://github.com/Ranu100ny/Ranu
+  121  git status
+  122  git add -A 
+  123  git status
+  124  git commit -m "Hii Its My First Repositry"
+  125  git config --list
+  126  git config --globaluser.name "Ranu100ny"
+  127  git config --global user.name "Ranu100ny"
+  128  git config --global user.email "baberwalrakesh@yahoo.com" 
+  129  git config --list
+  130  git status
+  131  git commit -m "Hii Its My First Repositry"
+  132  git branch
+  133  git push origin master 
+  148  git add -A 
+  149  git commit -m "Add Projects"
+  150  git push origin master
+  151  git branch my_branch
+  152  git checkout my_branch 
+  153  git branch
+  154  git checkout master 
+  155  git branch
+  157  git add -A
+  158  git commit -m "Add New Project"
+  159  git push origin master
+  160  git add -A
+  161  git commit -m "Add New Project"
+  162  git push origin master
+  168  git status
+  169  git add -A
+  170  git commit -m "Projects"
+  171  git push origin master
+  172  git add -A
+  173  git commit -m "March 10"
+  174  git push origin master
+  175  git add -A
+  176  git commit -m "Add Files"
+  177  git push origin master
+  178  git add -A
+  179  git commit -m "oop Program"
+  180  git push origin master
+  185  git add -A
+  186  git commit -m "oop Programs"
+  187  git push origin master
+  188  git -A add
+  189  git add -A
+  190  git commit -m "oop Program"
+  191  git push origin master
+  192  git add -A
+  193  git commit -m "OOP Programs"
+  194  git push origin master
+  195  git add -A
+  196  git commit -m "designprograms"
+  197  git push origin master
+  198  git add -A
+  199  git commit -m "DesginPrograms"
+  200  git push origin master
+  201  git add -A
+  202  git commit -m "oo Program"
+  203  git push origin master
+  205  git status
+  206  git add -A
+  207  git commit -m "ooprograms"
+  208  git push origin master 
+  209  git add -A
+  210  git commit -m "oop Program"
+  211  git push origin master 
+  212  git add -A
+  213  git commit -m "Completed All Task"
+  214  git push origin master 
+  215  git add -A
+  216  git commit -m "Completed"
+  217  git push origin master 
+  258  git add -A
+  259  git commit -m "Final Submission"
+  260  git push origin master
+  279  git add -A
+  280  git commit -m "AngularJs"
+  281  git push origin master
+  285  $ git clone http://github.com/google/material-design-icons/
+  286  git clone http://github.com/google/material-design-icons/
+  289  git add -A
+  290  git commit -m "toDo_app"
+  291  git push origin master
+  292  git add -A
+  293  git commit -m "Project"
+  294  git push origin master 
+  298  git add -A
+  299  git commit -m "toDO"
+  300  git push origin master 
+  301  git add -A
+  302  git commit -m "Hello Ranu!"
+  303  git push origin master 
+  305  git add -A
+  306  git commit -m "toDO"
+  307  git push origin master 
+  308  git add -A
+  309  git commit -m "Complete toDO"
+  310  git push origin master 
+  312  git add -A
+  313  git commit -m "AddressBook"
+  314  git add -A
+  315  git commit -m "AddressBook"
+  316  git push origin master 
+  317  git add -A
+  318  git commit -m "AddressBook"
+  319  git add -A
+  320  git commit -m "AddressBook"
+  321  git push origin master 
+  322  git add -A
+  323  git commit -m "BookAddress"
+  324  git add -A
+  325  git commit -m "CliniqueUsingOOP"
+  326  git push origin master 
+  327  git add -A
+  328  git commit -m "Clinique"
+  329  git push origin master 
+  331  git add -A
+  332  git commit -m "final"
+  333  git add -A
+  334  git commit -m "final"
+  335  git push origin master 
+  336  git add -A
+  337  git commit -m "Fix the Bugs"
+  338  git push origin master 
+  339  git add -A
+  340  git commit -m "Final Submission"
+  341  git push origin master 
+  342  git add -A
+  343  git commit -m "Changes"
+  344  git push origin master 
+  351  git add -A
+  352  git commit -m "Clinique"
+  353  git push origin master 
+  373  wget https://github.com/atom/atom/releases/download/v1.18.0/atom-amd64.deb
+  384  git clone https://github.com/Ranu100ny/Ranu.git
+  385  git clone https://github.com/ghostac4/SinglePageAngularApp.git
+  389  git add -A
+  390  git commit -m "toDO"
+  391  git push origin master 
+  393  git clone https://github.com/ghostac4/SinglePageAngularApp.git
+  395  git add -A
+  396  git commit -m "...!"
+  397  git push origin master 
+  399  git add -A
+  400  git commit -m "toDo"
+  401  git push origin master 
+  403  git clone https://github.com/ghostac4/SinglePageAngularApp.git
+  405  git add -A
+  406  git commit -m "toDo"
+  407  git push origin master 
+  408  git clone https://github.com/jiren/filter.js.git
+  411  git add -A
+  412  git commit -m "toDO"
+  413  git push origin master 
+  414  git clone https://github.com/ghostac4/SinglePageAngularApp.git
+  415  git add -A
+  416  git commit -m "Final"
+  417  git push origin master 
+  419  git add -A
+  420  git commit -m "Final...!"
+  421  git push origin master 
+  423  git add -A
+  424  git commit -m "OOPconcept"
+  425  git push origin master 
+  426  git add -A
+  427  git commit -m "commit"
+  428  git push origin master 
+  429  git init
+  430  git add *
+  431  git commit -m "Angular"
+  432  git remote add origin https://github.com/Ranu100ny/Angular_App.git
+  433  git push origin master 
+  435  git add -A
+  436  git commit -m "toDo"
+  437  git push origin master 
+  439  git add -A
+  440  git commit -m "Changes"
+  441  git push origin master 
+  452  git clone https://github.com/ghostac4/SinglePageAngularApp.git
+  457  git add -A
+  458  git commit -m "java"
+  459  git push origin master 
+  491  git add -A
+  492  git commit -m "IPL"
+  493  git push origin master 
+  537  git clone https://github.com/Apress/jdbc-recipes.git
+  547  git add -A;
+  548  git commit -m "XXX";
+  549  git push origin master ;
+  633  git add -A;
+  634  git commit -m "JDBC"
+  635  git push origin master 
+  637  git add -A
+  638  git commit -m "JDBC_MySQL_ORACLE"
+  639  git push origin master 
+  640  git add -A;
+  641  git commit -m "JDBC_With_Wrong_Way"
+  642  git push origin master 
+  782  git clone https://github.com/Apress/pro-spring-5.git
+  783  git clone https://github.com/naturalprogrammer/spring-lemon.git
+  784  git clone https://github.com/arifhasnatnstucsteonGit/ProgrammingBooks.git
+  785  git clone https://github.com/spring-guides/gs-spring-boot.git
+  786  git clone https://github.com/Apress/spring-recipes-08.git
+  801  git clone https://github.com/Ranu100ny/Ranu.git
+  804  git init
+  805  git add -A
+  806  git commit -m "commit"
+  807  git remote add origin https://github.com/Ranu100ny/spring.git
+  808  git push origin master
+  810  git add -A;
+  811  git commit -m "springJDBC"
+  812  git push origin master 
+  820  git clone https://github.com/hellokoding/registration-login-spring-xml-maven-jsp-mysql.git
+  845  git add -A;
+  846  git Add -A;
+  847  git add -A;
+  848  git add -A
+  854  git add -A;
+  855  git commit -m "Hibernate"
+  856  git push origin master 
+  900  git init
+  901  touch .gitignore
+  902  gedit .gitignore
+  903  git add -A
+  904  git commit -m ".class File ignore"
+  905  git push origin master 
+  906  git init
+  908  git add README.md
+  909  git commit -m "first commit"
+  910  git remote add origin https://github.com/Ranu100ny/hibernate.git
+  911  git push -u origin master
+  912  touch .gitignore
+  913  nano .gitignore 
+  914  git status
+  915  nano .gitignore 
+  916  git status
+  917  nano .gitignore 
+  918  git status
+  919  git add -A;
+  920  git init
+  921  git status
+  922  git commit -m "ignore"
+  923  git push origin master 
+  924  git remote -v
+  925  git commit -m "angular"
+  926  git add -A;
+  927  git commit -m "Angular_repo"
+  928  git push origin master 
+  929  git status
+  930  git add -A
+  931  git commit -m "new update on cart"
+  932  git push origin master 
+  933  git status
+  934  nano .gitignore 
+  935  git add -A
+  936  git commit -m "initial commit"
+  938  git clone https://github.com/Ranu100ny/Angular_App.git
+  942  git remote -v
+  943  git rm -rf --cached *.class
+  944  git status
+  945  git add -A
+  946  git commit -m "class file deleted"
+  947  git push origin master 
+  948  git remote rm origin
+  949  git remote add origin  https://github.com/Ranu100ny/Java_Programs.git
+  950  git remote 
+  951  git remote rm origin
+  952  git remote add origin https://github.com/Ranu100ny/Java_Programs.git
+  953  git remote -v
+  955  history | grep git 
+  956  history | grep git > gitcmds.txt
